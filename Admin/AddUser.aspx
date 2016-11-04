@@ -37,9 +37,9 @@
         
         //-->
 
-    //$(document).ready(function () {
-    //    alert('hello')
-    //});
+    $(document).ready(function () {
+        alert('hello')
+    });
     //function closePopup()
     //{
     //    document.getElementById('PopupControl1_ASPxButtonOk_CD').parent.hide();
