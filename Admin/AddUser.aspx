@@ -9,6 +9,8 @@
     <title>BVH Commissioning Portal - Add User</title>
     <link href="../site_wide.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../Scripts/Common.js" type="text/javascript"></script>
+    <link href="../Contents/site.css" rel="stylesheet" />
     <script type="text/JavaScript">
     <!--
     function MM_swapImgRestore() { //v3.0
@@ -37,24 +39,108 @@
         
         //-->
 
-    $(document).ready(function () {
-        alert('hello')
-    });
+    //$(document).ready(function () {
+    //    alert('hello')
+    //});
     //function closePopup()
     //{
     //    document.getElementById('PopupControl1_ASPxButtonOk_CD').parent.hide();
         //}
 
-    $(document).on('click', '#btnOk', function () {
-        debugger;
-        $('#PopupControl1_PW-1').css('display', 'none');
-    });
+    //$(document).on('click', '#btnOk', function () {
+    //    debugger;
+    //    $('#PopupControl1_PW-1').css('display', 'none');
+        //});
+
+    //function checkPasswords()
+    //{
+    //    var pwd=$('#InputPassword').val();
+    //    var cPwd = $('#InputPassVerify').val();
+    //    if(pwd=='')
+    //    {
+    //        generateValidation($('#InputPassword'),'Required.');
+    //        return false;
+    //    }
+
+    //    if(cPwd=='')
+    //    {
+    //        generateValidation($('#InputPassVerify'), 'Required.');
+    //        return false;
+    //    }
+
+    //    if(cPwd!=pwd)
+    //    {
+    //        generateValidation($('#InputPassVerify') , 'password and confirm password do not match.');
+    //        return false;
+    //    }
+
+    //    return true;
+        
+
+    //}
+
+
+    //$(document).on('change','#InputPassVerify', function () {
+    //    if ($(this).val() != '')
+    //    {
+    //        $(this).parent().find('table').remove();
+    //    }
+    //    else
+    //    {
+    //        generateValidation($('#InputPassVerify'));
+            
+    //    }
+    //});
+
+    //$(document).on('change', '#InputPassword', function () {
+    //    if ($(this).val() != '') {
+    //        $(this).parent().find('table').remove();
+    //    }
+    //    else
+    //    {
+    //        generateValidation($('#InputPassword'));
+    //    }
+    //});
+
+
+       $(document).on('click', '#createPassword', function () {
+                PageMethods.GetNewPassowrd(onSucceeded, onFailed);   
+        });
+        
+   
+    function onFailed(error, userContext, methodName)
+    {
+        alert('something went wrong please try again after sometime.');
+    }
+
+    function onSucceeded(result,userContext,methodName)
+    {
+        $('#InputPassword').val(result);
+        $('#InputPassVerify').val(result);
+    }
+
+    function showSuccessMsg(msg)
+    {
+        openPopup(msg);
+        $('#popup .banner').css('top', '36%');
+        $('#popup .banner').css('width', '24%');
+        $('#popup .banner').css('height', '128px');
+        $('#popup .middle').css('height', '36px');
+        $('#popup .middle').css('width', '20%');
+
+    }
+
     </script>
 
 </head>
 
 <body onload="MM_preloadImages('../graphics/hmenu_over_02.gif','../graphics/hmenu_over_03.gif','../graphics/hmenu_over_04.gif','../graphics/hmenu_over_05.gif','../graphics/hmenu_over_06.gif')">
+    <div  id="popup" class="header" style="display:none">
+
+    </div>
+
     <form id="AddUser" runat="server">
+        <asp:ScriptManager ID="ScriptManager1"  EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="160"><img src="../graphics/top_gray.gif" width="160" height="48" alt="" /></td>
@@ -190,11 +276,11 @@
                     </tr>    
                     <tr>
                         <td>&nbsp;</td>
-                        <td class="text_bold">Full Name:</td>
+                        <td class="text_bold">First Name:</td>
                         <td>&nbsp;</td> 
                         <td width="461" colspan="3" class="text_reg">
                             <%--<asp:TextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>--%>
-                            <dxwdc:ASPxTextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" 
+                            <dxwdc:ASPxTextBox ID="InputFirstName" runat="server" TabIndex="2" Width="100%" 
                                 Font-Names="Verdana" Font-Size="12px" ForeColor="#666666">
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputUserName" Display="Dynamic" ErrorMessage="Required"></asp:RequiredFieldValidator>--%>
                                 <ValidationSettings CausesValidation="True" Display="Dynamic">
@@ -205,6 +291,23 @@
                         <td>&nbsp;</td>        
                     </tr>  
                     <tr>
+                        <td>&nbsp;</td>
+                        <td class="text_bold">Last Name:</td>
+                        <td>&nbsp;</td> 
+                        <td width="461" colspan="3" class="text_reg">
+                            <%--<asp:TextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>--%>
+                            <dxwdc:ASPxTextBox ID="InputLastName" runat="server" TabIndex="2" Width="100%" 
+                                Font-Names="Verdana" Font-Size="12px" ForeColor="#666666">
+                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputUserName" Display="Dynamic" ErrorMessage="Required"></asp:RequiredFieldValidator>--%>
+                                <ValidationSettings CausesValidation="True" Display="Dynamic">
+                                    <RequiredField ErrorText="Required" IsRequired="True" />
+                                </ValidationSettings>
+                            </dxwdc:ASPxTextBox>
+                        </td>
+                        <td>&nbsp;</td>        
+                    </tr>  
+
+                    <tr>
                         <td colspan="7" height="11"><img src="../graphics/1pix.gif" height="11" width="640" alt="" /></td>
                     </tr>    
                     <tr>
@@ -213,6 +316,7 @@
                         <td>&nbsp;</td> 
                         <td width="351" class="text_reg">
                             <asp:TextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
+                            <%--<asp:TextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" ></asp:TextBox>--%>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="InputPassword" runat="server" ErrorMessage="Required"></asp:RequiredFieldValidator>
                             <%--<dxwdc:ASPxTextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" 
                                 Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" Password="True">
@@ -220,8 +324,10 @@
                         </td>
                         <td>&nbsp;</td>   
                         <td width="100" rowspan="3" valign="middle" align="center" class="text_reg">
-                            <asp:LinkButton ID="BTNCreatePassword" runat="server" CssClass="text_reg" 
-                                Height="100%" Width="100%" Enabled="False" TabIndex="99">Create Password</asp:LinkButton></td>
+                           <a href="#" id="createPassword">Create Password</a>
+
+                             <%--<asp:LinkButton ID="BTNCreatePassword" runat="server" CssClass="text_reg" 
+                                Height="100%" Width="100%" Enabled="False" TabIndex="99">Create Password</asp:LinkButton></td>--%>
                         <td>&nbsp;</td>      
                     </tr>  
                     <tr>
@@ -233,12 +339,14 @@
                         <td class="text_bold">Verify Password:</td>
                         <td>&nbsp;</td> 
                         <td width="351" class="text_reg">
-                            <asp:TextBox ID="InputPassVerify" runat="server" TabIndex="4" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
+                            <asp:TextBox ID="InputPassVerify" runat="server"  TabIndex="4" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
                             <%--<dxwdc:ASPxTextBox ID="InputPassVerify" runat="server" TabIndex="4" 
                                 Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" 
                                 Password="True">
                         </dxwdc:ASPxTextBox>--%>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputPassVerify" ErrorMessage="Required"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:CompareValidator ID="CompareValidator1"  runat="server" ControlToCompare="InputPassword" ControlToValidate="InputPassVerify" ErrorMessage="password and confirm password do not match." Display="Dynamic"></asp:CompareValidator>
                         </td>
                         <td>&nbsp;</td>    
                         <td>&nbsp;</td>                              
