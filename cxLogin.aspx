@@ -1,43 +1,8 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="cxLogin.aspx.vb" Inherits="cxLogin" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="cxLogin.aspx.vb" Inherits="cxLogin" MasterPageFile="~/MasterPage.master"%>
 <%@ Register assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dxwdc" %>
 <%@ Register assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPopupControl" tagprefix="dxpc" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head runat="server">
-    <title>BVH Commissioning Portal - Login</title>
-    <link href="site_wide.css" rel="stylesheet" type="text/css" />
-
-    <script type="text/JavaScript">
-    <!--
-    function MM_swapImgRestore() { //v3.0
-      var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
-    }
-
-    function MM_preloadImages() { //v3.0
-      var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
-        var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
-        if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
-    }
-
-    function MM_findObj(n, d) { //v4.01
-      var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-        d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-      if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-      for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-      if(!x && d.getElementById) x=d.getElementById(n); return x;
-    }
-
-    function MM_swapImage() { //v3.0
-      var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
-       if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
-    }
-    //-->
-    </script>
-</head>
-<body onload="MM_preloadImages('graphics/hmenu_over_02.gif','graphics/hmenu_over_03.gif','graphics/hmenu_over_04.gif','graphics/hmenu_over_05.gif','graphics/hmenu_over_06.gif')">
-    <form id="cxLogin" runat="server">
+<asp:content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
+          <form id="cxLogin" runat="server">
     <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td width="160"><img src="graphics/top__01.gif" width="160" height="48" alt="" /></td>
@@ -223,9 +188,10 @@
 </ContentCollection>
         <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
     </dxpc:ASPxPopupControl>
-
-
-
     </form>
+</asp:content>
+
+<%--<body onload="MM_preloadImages('graphics/hmenu_over_02.gif','graphics/hmenu_over_03.gif','graphics/hmenu_over_04.gif','graphics/hmenu_over_05.gif','graphics/hmenu_over_06.gif')">
+  
 </body>
-</html>
+</html>--%>
