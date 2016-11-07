@@ -8,10 +8,12 @@ Partial Class AddUser
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         PopupControl1.ShowOnPageLoad = False
+        InputPassword.TextMode = TextBoxMode.Password
+        InputPassVerify.TextMode = TextBoxMode.Password
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
             If Not Session.Item("CurUserName") Is Nothing Then
                 LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-                InputPassword.TextMode = TextBoxMode.Password
+
             Else
                 Response.Redirect("../UserLogon.aspx")
             End If
