@@ -46,8 +46,11 @@
     </asp:ContentPlaceHolder>
 </head>  
 <body>
-    <div class="container">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container body-content">
+        <div class="main-menu">
+            
+        </div>
+<%--    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
@@ -69,10 +72,34 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>
+    </nav>--%>
         <div class="row">
             <div class="col-md-3">
-
+              <p class="loged-in-user">
+                  User not logged in
+              </p>
+                <div class="side-img">
+                             <div class="text-center">
+                     <img src="Graphics/bvh.jpg" />
+                </div>
+               
+                <ul class="nonbullet side-li">
+                    <li>Civil</li>
+                    <li>Structural</li>
+                    <li>Mechanical</li>
+                    <li>Electrical</li>
+                    <li>Commissioning</li>
+                    <li>Technology</li>
+                </ul>
+               
+                </div>
+    <div class="text-center">
+                     <img src="Graphics/cx_logo_03.gif" />
+                </div>
+                
+                <p class="side-text">
+                    BVH is a Corporate Member of the <a href="http://www.bcxa.org/certification/index.shtm" target="_blank">Building Commissioning Association</a>. Learn how a Certified Commissioning Professional can benefit your project.
+                </p>
             </div>
             <div class="col-md-9">
                  <asp:ContentPlaceHolder id="mainContent" runat="server">
