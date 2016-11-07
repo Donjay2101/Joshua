@@ -10,7 +10,7 @@
     <link href="../site_wide.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script src="../Scripts/Common.js" type="text/javascript"></script>
-    <link href="../Contents/site.css" rel="stylesheet" />
+    <link href="../Content/site.css" rel="stylesheet" />
     <script type="text/JavaScript">
     <!--
     function MM_swapImgRestore() { //v3.0

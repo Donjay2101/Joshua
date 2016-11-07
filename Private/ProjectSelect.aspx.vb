@@ -117,6 +117,9 @@ Partial Class ProjectSelect
     Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
         PopupControl1.ShowOnPageLoad = False
     End Sub
+    Protected Sub btnChangePassword_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
+
+    End Sub
 End Class
 
 
