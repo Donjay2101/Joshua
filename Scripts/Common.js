@@ -14,3 +14,24 @@ function generateValidation(elem,msg)
 
 
 
+function openPopup(msg)
+{
+    var htmlString ='<div class="banner">' +
+    '<div class="head">' +
+    '<img src="/Contents/image.png" id="btnClose" style="width: 3% ; float:right;margin-top: 5px;margin-right: 5px;margin-bottom: 3px;cursor:pointer">' +
+    '</div>' +
+    '<div class="middle" id="contentHolder">' +msg+'</div>' +
+    '<div class="last">' +
+    '<button class="button" id="btnOk">OK</button>' +
+    '</div>' +
+    '</div>';
+    
+    $('#popup').html(htmlString);
+    $('#popup').css('display', 'block');
+}
+
+
+$(document).on('click', '#btnClose,#btnOk', function () {
+    $('#popup').css('display','none');
+});
+

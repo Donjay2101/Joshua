@@ -1,4 +1,6 @@
 
+Imports System.Web.Script.Services
+
 Partial Class AddUser
     Inherits System.Web.UI.Page
 
@@ -7,6 +9,7 @@ Partial Class AddUser
     Protected CompanyDS As dsCommissioning.COMPANIESDataTable
 
     <System.Web.Services.WebMethod()> _
+    <ScriptMethod(ResponseFormat:=ResponseFormat.Json, UseHttpGet:=True)> _
     Public Shared Function GetNewPassowrd() As String
         Dim newpass As String
         newpass = RandomPassword.Generate(8, 8)
@@ -16,11 +19,12 @@ Partial Class AddUser
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        PopupControl1.ShowOnPageLoad = False
+        'PopupControl1.ShowOnPageLoad = False
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
             If Not Session.Item("CurUserName") Is Nothing Then
                 LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
                 InputPassword.TextMode = TextBoxMode.Password
+                InputPassVerify.TextMode = TextBoxMode.Password
             Else
                 Response.Redirect("../UserLogon.aspx")
             End If
@@ -33,7 +37,9 @@ Partial Class AddUser
             InputCompany.DataBind()
 
             If UserSelectPulldown.Value = -1 Then
-                InputUserName.Value = Nothing
+                InputFirstName.Text = Nothing
+                InputLastName.Text = Nothing
+                ' InputUserName.Value = Nothing
                 InputEmail.Value = Nothing
                 InputAdmin.Value = False
                 InputCompany.Value = Nothing
@@ -55,8 +61,11 @@ Partial Class AddUser
 
     Private Function UpdateUsers2DS() As Boolean
 
-        If Not InputUserName.Text Is Nothing Then
-            UserCurRow.USER_NAME = InputUserName.Text
+        If Not InputFirstName.Text Is Nothing Then
+            UserCurRow.USER_NAME = InputFirstName.Text + " " + InputLastName.Text
+            UserCurRow.FirstName = InputFirstName.Text
+            UserCurRow.LastName = InputLastName.Text
+
         Else
             PopupControl1.Text = "Name is required.  Please enter a Name."
             PopupControl1.ShowOnPageLoad = True
@@ -158,7 +167,9 @@ Partial Class AddUser
     Protected Sub UserSelectPulldown_SelectedIndexChanged1(ByVal sender As Object, ByVal e As System.EventArgs) Handles UserSelectPulldown.SelectedIndexChanged
         UserCurRow = UsersDS.FindByUSER_ID(UserSelectPulldown.Value)
         If UserSelectPulldown.Value > -1 And Not UserCurRow Is Nothing Then
-            InputUserName.Text = UserCurRow.USER_NAME.ToString
+            InputFirstName.Text = UserCurRow.FirstName
+            InputLastName.Text = UserCurRow.LastName
+            'InputUserName.Text = UserCurRow.USER_NAME.ToString
             InputEmail.Value = UserCurRow.USER_EMAIL.ToString
             InputCompany.Value = UserCurRow.COMPANY_ID
             If Not UserCurRow.IsISADMINNull Then
@@ -180,7 +191,10 @@ Partial Class AddUser
             ' BTNCreatePassword.Enabled = False
 
         ElseIf UserSelectPulldown.Value = -1 Then
-            InputUserName.Text = Nothing
+            InputFirstName.Text = Nothing
+            InputLastName.Text = Nothing
+
+            'InputUserName.Text = Nothing
             InputEmail.Value = Nothing
             InputAdmin.Value = False
             InputCompany.Value = Nothing
@@ -197,13 +211,16 @@ Partial Class AddUser
 
 
     Protected Sub BTNUpdate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNUpdate.Click
+        Dim msg As String
+
         Try
             If UserSelectPulldown.Value > -1 Then
                 UserCurRow = UsersDS.FindByUSER_ID(UserSelectPulldown.Value)
                 If UpdateUsers2DS() = True Then
                     cxClass.UpdateUsers(UsersDS)
-                    PopupControl1.Text = "User Updated"
-                    PopupControl1.ShowOnPageLoad = True
+                    'PopupControl1.Text = "User Updated"
+                    'PopupControl1.ShowOnPageLoad = True
+                    msg = "user updated successfully."
                 Else
                     Exit Sub
                 End If
@@ -213,11 +230,12 @@ Partial Class AddUser
                 If UpdateUsers2DS() = True Then
                     UsersDS.AddUSERSRow(UserCurRow)
                     cxClass.UpdateUsers(UsersDS)
-                    PopupControl1.Text = "User Added"
-                    PopupControl1.ShowOnPageLoad = True
+                    'PopupControl1.Text = "User Added"
+                    'PopupControl1.ShowOnPageLoad = True
 
                     'reset fields to be ready for another new user.
-                    InputUserName.Text = Nothing
+                    InputFirstName.Text = Nothing
+                    InputLastName.Text = Nothing
                     InputEmail.Value = Nothing
                     InputAdmin.Value = False
                     InputCompany.Value = Nothing
@@ -228,6 +246,7 @@ Partial Class AddUser
 
                     InputPassword.Enabled = True
                     InputPassVerify.Enabled = True
+                    msg = "user created successfully."
                 Else
                     Exit Sub
                 End If
@@ -241,7 +260,10 @@ Partial Class AddUser
                 UserSelectPulldown.Items.Add(UserCurRow.USER_NAME.ToString, UserCurRow.USER_ID)
             Next
 
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + msg + "');", True)
+
         Catch ex As Exception
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + ex.Message + "');", True)
             'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
     End Sub

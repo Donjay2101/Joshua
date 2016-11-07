@@ -476,13 +476,13 @@ Public Class cxClass
 
         Dim vUsersDataAdapter As New SqlDataAdapter
         Dim vSQL As String
-        vSQL = "SELECT DISTINCT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, COMPANY_ID, USER_PHONE, ISACTIVE, ISADMIN"
+        vSQL = "SELECT DISTINCT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, COMPANY_ID, USER_PHONE, ISACTIVE, ISADMIN,FirstName,LastName"
         vSQL &= " FROM USERS "
 
         If pShowActiveOnly = True Then
             vSQL &= " WHERE USERS.ISACTIVE = @ISACTIVE"
         End If
-        vSQL &= " ORDER BY USERS.USER_NAME"
+        vSQL &= " ORDER BY USERS.LastName"
 
         vUsersDataAdapter.SelectCommand = New SqlCommand(vSQL, vCommConn)
         If pShowActiveOnly = True Then
@@ -506,9 +506,9 @@ Public Class cxClass
         '--- Insert Command ---
         vUsersDataAdapter.InsertCommand = New SqlCommand("" _
         & "INSERT INTO USERS (USER_NAME, USER_PASSWORD, " _
-        & " USER_EMAIL, COMPANY_ID, USER_PHONE, ISADMIN, ISACTIVE)" _
+        & " USER_EMAIL, COMPANY_ID, USER_PHONE, ISADMIN, ISACTIVE,firstName,lastName)" _
         & " VALUES (@USER_NAME, @USER_PASSWORD, @USER_EMAIL, @COMPANY_ID," _
-        & " @USER_PHONE, @ISADMIN, @ISACTIVE);" _
+        & " @USER_PHONE, @ISADMIN, @ISACTIVE,@FirstName,@LastName);" _
         & " SELECT *" _
         & " FROM USERS" _
         & " WHERE (USER_ID = @USER_ID)", vCommConn)
@@ -521,6 +521,8 @@ Public Class cxClass
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISADMIN", SqlDbType.Bit, 1, "ISADMIN"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISACTIVE", SqlDbType.Bit, 1, "ISACTIVE"))
+        vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@FirstName", SqlDbType.NVarChar, 100, "FirstName"))
+        vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@LastName", SqlDbType.NVarChar, 100, "LastName"))
 
 
         '--- Update Command ---
@@ -529,7 +531,7 @@ Public Class cxClass
         & " SET USER_NAME = @USER_NAME," _
         & " USER_PASSWORD = @USER_PASSWORD, USER_EMAIL = @USER_EMAIL," _
         & " COMPANY_ID = @COMPANY_ID, USER_PHONE = @USER_PHONE," _
-        & " ISADMIN = @ISADMIN, ISACTIVE = @ISACTIVE" _
+        & " ISADMIN = @ISADMIN, ISACTIVE = @ISACTIVE, FirstName=@FirstName, lastName=@lastName" _
         & " WHERE (USER_ID = @USER_ID);" _
         & " SELECT *" _
         & " FROM USERS" _
@@ -543,6 +545,8 @@ Public Class cxClass
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISADMIN", SqlDbType.Bit, 1, "ISADMIN"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISACTIVE", SqlDbType.Bit, 1, "ISACTIVE"))
+        vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@FirstName", SqlDbType.NVarChar, 100, "FirstName"))
+        vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@LastName", SqlDbType.NVarChar, 100, "LastName"))
 
 
         '--- Delete Command ---

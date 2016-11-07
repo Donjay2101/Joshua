@@ -10,6 +10,7 @@
     <link href="../site_wide.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
     <script src="../Scripts/Common.js" type="text/javascript"></script>
+    <link href="../Contents/site.css" rel="stylesheet" />
     <script type="text/JavaScript">
     <!--
     function MM_swapImgRestore() { //v3.0
@@ -102,27 +103,44 @@
     //});
 
 
-    $(document).on('click', '#createPassword', function () {
-        $.ajax({            
-            url: "/Admin/AddUser.aspx/GetNewPassowrd",
-            dataType: "json",
-        success: function (d) {
-            $('#InputPassword').val(d);
-            $('#InputPassVerify').val(d);
-        },
-        failure: function(response) {
-            alert(response.d);
-        }
-            
-
+       $(document).on('click', '#createPassword', function () {
+                PageMethods.GetNewPassowrd(onSucceeded, onFailed);   
         });
-    });
+        
+   
+    function onFailed(error, userContext, methodName)
+    {
+        alert('something went wrong please try again after sometime.');
+    }
+
+    function onSucceeded(result,userContext,methodName)
+    {
+        $('#InputPassword').val(result);
+        $('#InputPassVerify').val(result);
+    }
+
+    function showSuccessMsg(msg)
+    {
+        openPopup(msg);
+        $('#popup .banner').css('top', '36%');
+        $('#popup .banner').css('width', '24%');
+        $('#popup .banner').css('height', '128px');
+        $('#popup .middle').css('height', '36px');
+        $('#popup .middle').css('width', '20%');
+
+    }
+
     </script>
 
 </head>
 
 <body onload="MM_preloadImages('../graphics/hmenu_over_02.gif','../graphics/hmenu_over_03.gif','../graphics/hmenu_over_04.gif','../graphics/hmenu_over_05.gif','../graphics/hmenu_over_06.gif')">
+    <div  id="popup" class="header" style="display:none">
+
+    </div>
+
     <form id="AddUser" runat="server">
+        <asp:ScriptManager ID="ScriptManager1"  EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="160"><img src="../graphics/top_gray.gif" width="160" height="48" alt="" /></td>
@@ -258,11 +276,11 @@
                     </tr>    
                     <tr>
                         <td>&nbsp;</td>
-                        <td class="text_bold">Full Name:</td>
+                        <td class="text_bold">First Name:</td>
                         <td>&nbsp;</td> 
                         <td width="461" colspan="3" class="text_reg">
                             <%--<asp:TextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>--%>
-                            <dxwdc:ASPxTextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" 
+                            <dxwdc:ASPxTextBox ID="InputFirstName" runat="server" TabIndex="2" Width="100%" 
                                 Font-Names="Verdana" Font-Size="12px" ForeColor="#666666">
                             <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputUserName" Display="Dynamic" ErrorMessage="Required"></asp:RequiredFieldValidator>--%>
                                 <ValidationSettings CausesValidation="True" Display="Dynamic">
@@ -272,6 +290,23 @@
                         </td>
                         <td>&nbsp;</td>        
                     </tr>  
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="text_bold">Last Name:</td>
+                        <td>&nbsp;</td> 
+                        <td width="461" colspan="3" class="text_reg">
+                            <%--<asp:TextBox ID="InputUserName" runat="server" TabIndex="2" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>--%>
+                            <dxwdc:ASPxTextBox ID="InputLastName" runat="server" TabIndex="2" Width="100%" 
+                                Font-Names="Verdana" Font-Size="12px" ForeColor="#666666">
+                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputUserName" Display="Dynamic" ErrorMessage="Required"></asp:RequiredFieldValidator>--%>
+                                <ValidationSettings CausesValidation="True" Display="Dynamic">
+                                    <RequiredField ErrorText="Required" IsRequired="True" />
+                                </ValidationSettings>
+                            </dxwdc:ASPxTextBox>
+                        </td>
+                        <td>&nbsp;</td>        
+                    </tr>  
+
                     <tr>
                         <td colspan="7" height="11"><img src="../graphics/1pix.gif" height="11" width="640" alt="" /></td>
                     </tr>    
@@ -310,6 +345,8 @@
                                 Password="True">
                         </dxwdc:ASPxTextBox>--%>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="InputPassVerify" ErrorMessage="Required"></asp:RequiredFieldValidator>
+                            <br />
+                            <asp:CompareValidator ID="CompareValidator1"  runat="server" ControlToCompare="InputPassword" ControlToValidate="InputPassVerify" ErrorMessage="password and confirm password do not match." Display="Dynamic"></asp:CompareValidator>
                         </td>
                         <td>&nbsp;</td>    
                         <td>&nbsp;</td>                              
