@@ -6,6 +6,15 @@ Partial Class AddUser
     Protected UserCurRow As dsCommissioning.USERSRow
     Protected CompanyDS As dsCommissioning.COMPANIESDataTable
 
+    <System.Web.Services.WebMethod()> _
+    Public Shared Function GetNewPassowrd() As String
+        Dim newpass As String
+        newpass = RandomPassword.Generate(8, 8)
+        Return newpass
+    End Function
+
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         PopupControl1.ShowOnPageLoad = False
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
@@ -32,7 +41,7 @@ Partial Class AddUser
                 InputUserActive.Value = True
                 InputPassword.Text = Nothing
                 InputPassVerify.Text = Nothing
-                BTNCreatePassword.Enabled = True
+                ' BTNCreatePassword.Enabled = True
             End If
         End If
 
@@ -168,7 +177,7 @@ Partial Class AddUser
             InputPassVerify.Enabled = False
             InputPassword.BackColor = Drawing.Color.LightGray
             InputPassVerify.BackColor = Drawing.Color.LightGray
-            BTNCreatePassword.Enabled = False
+            ' BTNCreatePassword.Enabled = False
 
         ElseIf UserSelectPulldown.Value = -1 Then
             InputUserName.Text = Nothing
@@ -182,7 +191,7 @@ Partial Class AddUser
 
             InputPassword.Enabled = True
             InputPassVerify.Enabled = True
-            BTNCreatePassword.Enabled = True
+            'BTNCreatePassword.Enabled = True
         End If
     End Sub
 
@@ -297,17 +306,17 @@ Partial Class AddUser
     End Sub
 
 
-    Protected Sub BTNCreatePassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNCreatePassword.Click
-        Dim newpass As String = ""
-        newpass = RandomPassword.Generate(8, 8)
-        'InputPassword.Text = newpass
-        InputPassword.Attributes.Add("value", newpass)
-        'InputUserName.Value = "asdasd"
-        'InputPassVerify.Text = newpass
-        InputPassword.Attributes.Add("value", newpass)
-        'Must Decide if it should email people or display in plain text etc.
+    'Protected Sub BTNCreatePassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNCreatePassword.Click
+    '    Dim newpass As String = ""
+    '    newpass = RandomPassword.Generate(8, 8)
+    '    'InputPassword.Text = newpass
+    '    InputPassword.Attributes.Add("value", newpass)
+    '    'InputUserName.Value = "asdasd"
+    '    'InputPassVerify.Text = newpass
+    '    InputPassword.Attributes.Add("value", newpass)
+    '    'Must Decide if it should email people or display in plain text etc.
 
-    End Sub
+    'End Sub
 
 
     'Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click

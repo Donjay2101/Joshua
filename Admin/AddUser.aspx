@@ -9,6 +9,7 @@
     <title>BVH Commissioning Portal - Add User</title>
     <link href="../site_wide.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../Scripts/Common.js" type="text/javascript"></script>
     <script type="text/JavaScript">
     <!--
     function MM_swapImgRestore() { //v3.0
@@ -37,17 +38,84 @@
         
         //-->
 
-    $(document).ready(function () {
-        alert('hello')
-    });
+    //$(document).ready(function () {
+    //    alert('hello')
+    //});
     //function closePopup()
     //{
     //    document.getElementById('PopupControl1_ASPxButtonOk_CD').parent.hide();
         //}
 
-    $(document).on('click', '#btnOk', function () {
-        debugger;
-        $('#PopupControl1_PW-1').css('display', 'none');
+    //$(document).on('click', '#btnOk', function () {
+    //    debugger;
+    //    $('#PopupControl1_PW-1').css('display', 'none');
+        //});
+
+    //function checkPasswords()
+    //{
+    //    var pwd=$('#InputPassword').val();
+    //    var cPwd = $('#InputPassVerify').val();
+    //    if(pwd=='')
+    //    {
+    //        generateValidation($('#InputPassword'),'Required.');
+    //        return false;
+    //    }
+
+    //    if(cPwd=='')
+    //    {
+    //        generateValidation($('#InputPassVerify'), 'Required.');
+    //        return false;
+    //    }
+
+    //    if(cPwd!=pwd)
+    //    {
+    //        generateValidation($('#InputPassVerify') , 'password and confirm password do not match.');
+    //        return false;
+    //    }
+
+    //    return true;
+        
+
+    //}
+
+
+    //$(document).on('change','#InputPassVerify', function () {
+    //    if ($(this).val() != '')
+    //    {
+    //        $(this).parent().find('table').remove();
+    //    }
+    //    else
+    //    {
+    //        generateValidation($('#InputPassVerify'));
+            
+    //    }
+    //});
+
+    //$(document).on('change', '#InputPassword', function () {
+    //    if ($(this).val() != '') {
+    //        $(this).parent().find('table').remove();
+    //    }
+    //    else
+    //    {
+    //        generateValidation($('#InputPassword'));
+    //    }
+    //});
+
+
+    $(document).on('click', '#createPassword', function () {
+        $.ajax({            
+            url: "/Admin/AddUser.aspx/GetNewPassowrd",
+            dataType: "json",
+        success: function (d) {
+            $('#InputPassword').val(d);
+            $('#InputPassVerify').val(d);
+        },
+        failure: function(response) {
+            alert(response.d);
+        }
+            
+
+        });
     });
     </script>
 
@@ -213,6 +281,7 @@
                         <td>&nbsp;</td> 
                         <td width="351" class="text_reg">
                             <asp:TextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
+                            <%--<asp:TextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" ></asp:TextBox>--%>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="InputPassword" runat="server" ErrorMessage="Required"></asp:RequiredFieldValidator>
                             <%--<dxwdc:ASPxTextBox ID="InputPassword" runat="server" TabIndex="3" Width="100%" 
                                 Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" Password="True">
@@ -220,8 +289,10 @@
                         </td>
                         <td>&nbsp;</td>   
                         <td width="100" rowspan="3" valign="middle" align="center" class="text_reg">
-                            <asp:LinkButton ID="BTNCreatePassword" runat="server" CssClass="text_reg" 
-                                Height="100%" Width="100%" Enabled="False" TabIndex="99">Create Password</asp:LinkButton></td>
+                           <a href="#" id="createPassword">Create Password</a>
+
+                             <%--<asp:LinkButton ID="BTNCreatePassword" runat="server" CssClass="text_reg" 
+                                Height="100%" Width="100%" Enabled="False" TabIndex="99">Create Password</asp:LinkButton></td>--%>
                         <td>&nbsp;</td>      
                     </tr>  
                     <tr>
@@ -233,7 +304,7 @@
                         <td class="text_bold">Verify Password:</td>
                         <td>&nbsp;</td> 
                         <td width="351" class="text_reg">
-                            <asp:TextBox ID="InputPassVerify" runat="server" TabIndex="4" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
+                            <asp:TextBox ID="InputPassVerify" runat="server"  TabIndex="4" Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"></asp:TextBox>
                             <%--<dxwdc:ASPxTextBox ID="InputPassVerify" runat="server" TabIndex="4" 
                                 Width="100%" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" 
                                 Password="True">

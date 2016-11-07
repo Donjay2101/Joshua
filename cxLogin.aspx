@@ -148,10 +148,13 @@
                     <td height="24" align="right" class="text_bold">Username</td>
                     <td width="19"><img src="graphics/1pix.gif" width="19" height="24" alt="" /></td>
                     <td valign="middle" colspan="2">
-                        <dxwdc:ASPxTextBox ID="InputUsername" runat="server" Height="23px" Width="100%" 
+                        <asp:TextBox ID="InputUsername" runat="server" Height="23px" Width="100%" 
+                            TabIndex="1" AutoCompleteType="Email" Font-Names="Verdana" Font-Size="12px" 
+                            ForeColor="#666666"></asp:TextBox>
+                       <%-- <dxwdc:ASPxTextBox ID="InputUsername" runat="server" Height="23px" Width="100%" 
                             TabIndex="1" AutoCompleteType="Email" Font-Names="Verdana" Font-Size="12px" 
                             ForeColor="#666666">
-                        </dxwdc:ASPxTextBox>
+                        </dxwdc:ASPxTextBox>--%>
                     </td>                   
                     <td><dxwdc:ASPxLabel ID="ErrorLabel" runat="server" CssClass="text_reg_red" 
                             TabIndex="0" Width="100%" Visible="False"></dxwdc:ASPxLabel></td>
@@ -166,10 +169,13 @@
                     <td height="24" align="right" class="text_bold">Password</td>
                     <td width="19"><img src="graphics/1pix.gif" width="19" height="24" alt="" /></td>
                     <td valign="middle" colspan="2">
-                        <dxwdc:ASPxTextBox ID="InputPassword" runat="server" Height="23px" Width="100%" 
+                        <asp:TextBox ID="InputPassword" runat="server" Height="23px" Width="100%" 
+                            TabIndex="3" Password="True" Font-Names="Verdana" Font-Size="12px" 
+                            ForeColor="#666666"></asp:TextBox>
+                       <%-- <dxwdc:ASPxTextBox ID="InputPassword" runat="server" Height="23px" Width="100%" 
                             TabIndex="3" Password="True" Font-Names="Verdana" Font-Size="12px" 
                             ForeColor="#666666">
-                        </dxwdc:ASPxTextBox>
+                        </dxwdc:ASPxTextBox>--%>
                     </td>                   
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

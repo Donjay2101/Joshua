@@ -5,7 +5,7 @@ Partial Class cxLogin
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        ErrorLabel.Visible = False
+        'ErrorLabel.Visible = False
         Me.Form.DefaultButton = "BTNLogin"
         Me.Form.DefaultFocus = "InputUsername"
 
@@ -17,8 +17,8 @@ Partial Class cxLogin
     End Sub
 
     Protected Sub BTNLogin_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNLogin.Click
-        If ValidateUser(InputUsername.Value, InputPassword.Value) Then
-            FormsAuthentication.RedirectFromLoginPage(InputUsername.Value, False)
+        If ValidateUser(InputUsername.Text, InputPassword.Text) Then
+            FormsAuthentication.RedirectFromLoginPage(InputUsername.Text, False)
         Else
             PopupControl1.ShowOnPageLoad = True
             'ErrorLabel.Visible = True
