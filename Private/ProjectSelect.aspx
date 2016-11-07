@@ -67,14 +67,15 @@
                 </tr>
                   <tr>
                     <td><img src="../graphics/1pix.gif" width="7" alt="" /></td>
-                    <td height="14" valign="bottom" class="login_text_bold"><dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold"></dxwdc:ASPxLabel></td>
+                    <td colspan="2" height="14" valign="bottom" class="login_text_bold"><dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold"></dxwdc:ASPxLabel></td>                    
                 </tr>
                 <tr>
                     <td><img src="../graphics/1pix.gif" width="7" alt="" /></td>
                     <td height="13" valign="top" align="left" class="project_list_reg"><a runat="server" href="../cxLogin.aspx" >Sign out</a></td>
+                    <td><asp:LinkButton ID="btnChangePassword" runat="server" CssClass="text_reg">Change Password</asp:LinkButton></td>
                 </tr>
                  <tr>
-                  <td height="11" colspan="2" valign="top"><img src="../graphics/1pix.gif" height="11" width="160" alt="" /></td>
+                  <td height="11" colspan="3" valign="top"><img src="../graphics/1pix.gif" height="11" width="160" alt=""  /></td>
                 </tr>
                 
                 <tr>
@@ -174,7 +175,7 @@
                <tr>
                     <td><img src="../graphics/1pix.gif" height="29" width="29" alt="" /></td>
                     <td height="29" valign="middle" colspan="3" class="text_reg"><asp:LinkButton ID="BTNUsageLog" runat="server" CssClass="text_reg">View cxPortal Usage Log</asp:LinkButton></td>
-               </tr>       
+               </tr> 
             </table>    
          <!-- End Content SubTable -->
         </td>    
