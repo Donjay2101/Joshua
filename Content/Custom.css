@@ -44,6 +44,19 @@ p.side-text {
     font-size: small;
     font-weight: 800;
 }
+nav{
+    width:60%;
+    margin: 0 auto;
+    position:relative;
+}
+.banner{
+    width:100%;
+}
+.menu-section ul{
+    display:flex;
+    padding-left:0px;
+    margin-bottom: 0px;
+}
 @media only screen and (min-width:320px) and (max-width:600px)
 {
     .body-content {
@@ -59,5 +72,10 @@ p.side-text {
 }
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape)
 {
-
+    .body-content {
+        width: 90%;
+    }
+    nav {
+        width: 60%;
+    }
 }

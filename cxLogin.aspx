@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="cxLogin.aspx.vb" Inherits="cxLogin" MasterPageFile="~/MasterPage.master" %>
-
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
 <%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
@@ -15,25 +14,30 @@
                 </div>
             </div>
             <div class="row form-group">
-                <div class="form-group form-group">
-                    <label for="inputEmail3" class="col-md-3 control-label">Username</label>
-                    <div class="col-sm-10">                  
+                <div class="row form-group">
+                    <label for="inputEmail3" class="col-md-2 control-label">Username</label>
+                    <div class="col-md-5">                  
                         <dxwdc:ASPxTextBox ID="InputUsername" runat="server" Height="23px" Width="100%" 
                             TabIndex="1" AutoCompleteType="Email" Font-Names="Verdana" Font-Size="12px" 
                             ForeColor="#666666">
                         </dxwdc:ASPxTextBox>
                     </div>
                 </div>
-                 <div class="form-group form-group">
-                    <label for="inputEmail3" class="col-md-3 control-label">Password</label>
-                    <div class="col-sm-10">                     
+                 <div class="row form-group">
+                    <label for="inputEmail3" class="col-md-2 control-label">Password</label>
+                    <div  class="col-md-5">                     
                         <dxwdc:ASPxTextBox ID="InputPassword" runat="server" Height="23px" Width="100%" 
                             TabIndex="3" Password="True" Font-Names="Verdana" Font-Size="12px" 
                             ForeColor="#666666">
                         </dxwdc:ASPxTextBox>
                     </div>
                 </div>
-                <asp:LinkButton ID="BTNLogin" runat="server" CssClass="text_bold">Sign In</asp:LinkButton>
+                <div class="row">
+                    <div class="col-md-7 text-right">
+                        <asp:LinkButton ID="BTNLogin" runat="server" CssClass="text_bold">Sign In</asp:LinkButton>
+                    </div>
+                </div>
+                
             </div>
 
 
