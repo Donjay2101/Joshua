@@ -171,6 +171,9 @@
                     <tr>
                         <td><img src="../graphics/1pix.gif" width="7" alt="" /></td>
                         <td height="13" valign="top" align="left" class="project_list_reg"><a runat="server" href="../cxLogin.aspx" onclick="clearSess">Sign out</a></td>
+                        <td>
+                            <asp:HyperLink ID="btnChngPassword" NavigateUrl="~/Private/ChangePassword.aspx" runat="server">Change Password</asp:HyperLink>
+                        </td>
                     </tr>
                      <tr>
                       <td height="11" colspan="2" valign="top"><img src="../graphics/1pix.gif" height="11" width="160" alt="" /></td>
