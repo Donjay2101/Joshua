@@ -1005,7 +1005,7 @@ Public Class cxClass
 
         vSQL &= " FROM DEFICIENCIES "
         vSQL &= " LEFT OUTER JOIN COMPANIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID "
-      
+
 
         vSQL &= " WHERE (DEFICIENCIES.PROJECT_ID = @PROJECT_ID)"
         If Not pCurCompany = Nothing Then
@@ -1055,5 +1055,31 @@ Public Class cxClass
 
         vCommConn.Close()
         Return vDeficienciesDataSet.RPT_DEFICIENCIES
+    End Function
+
+
+    Public Shared Function User_GetByUserName(ByVal USER_EMAIL As String) As dsCommissioning.USERSRow
+        Try
+            vCommConn.Open()
+        Catch ex As Exception
+
+        End Try
+
+        Dim sqlCommand As New SqlCommand
+        Dim userDataSet As New dsCommissioning
+        Dim vSQL As String
+
+        vSQL = "sp_GetUserByEmail"
+
+
+        sqlCommand.CommandText = "sp_GetUserByEmail"
+        sqlCommand.Connection = vCommConn
+        sqlCommand.CommandType = CommandType.StoredProcedure
+        sqlCommand.Parameters.AddWithValue("@email", USER_EMAIL)
+
+        Dim vUserAdapter As New SqlDataAdapter(sqlCommand)
+        vUserAdapter.Fill(userDataSet, "USERS")
+        vCommConn.Close()
+        Return userDataSet.USERS.Rows(0)
     End Function
 End Class
