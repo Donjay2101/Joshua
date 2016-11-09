@@ -6,15 +6,15 @@ Partial Class AddCompany
     Friend CompanyDS As dsCommissioning.COMPANIESDataTable
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If (Not IsPostBack) AndAlso (Not IsCallback) Then
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("../UserLogon.aspx")
-            End If
+        'If (Not IsPostBack) AndAlso (Not IsCallback) Then
+        '    If Not Session.Item("CurUserName") Is Nothing Then
+        '        LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+        '    Else
+        '        Response.Redirect("../UserLogon.aspx")
+        '    End If
 
 
-        End If
+        'End If
 
         CompanyDS = cxClass.GetCompanies(0, False)
         CompanySelectPulldown.Items.Clear()

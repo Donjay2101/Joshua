@@ -12,14 +12,14 @@ Partial Class AddIssue
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         rowcount = 0
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("../UserLogon.aspx")
-            End If
-            If Session.Item("CurProjectID") Is Nothing Then ' Check to see if Project is Selected
-                Response.Redirect("../Private/ProjectSelect.aspx")
-            End If
+            'If Not Session.Item("CurUserName") Is Nothing Then
+            '    LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+            'Else
+            '    Response.Redirect("../UserLogon.aspx")
+            'End If
+            'If Session.Item("CurProjectID") Is Nothing Then ' Check to see if Project is Selected
+            '    Response.Redirect("../Private/ProjectSelect.aspx")
+            'End If
 
             cxClass.GetDeficiencies(Session.Item("CurProjectID"), 0, "All", DeficiencyDS)
             txtProjName.Value = Session.Item("CurProjectName")

@@ -12,11 +12,11 @@ Partial Class ProjectSummary
             Session.Contents.Remove("CurGridStatusFilter")
             Session.Contents.Remove("CurGridTradeFilter")
 
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("UserLogon.aspx")
-            End If
+            'If Not Session.Item("CurUserName") Is Nothing Then
+            '    LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+            'Else
+            '    Response.Redirect("UserLogon.aspx")
+            'End If
 
             If Session.Item("CurProjectID") = Nothing Then
                 Response.Redirect("ProjectSelect.aspx")

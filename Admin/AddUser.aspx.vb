@@ -21,13 +21,13 @@ Partial Class AddUser
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'PopupControl1.ShowOnPageLoad = False
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-                InputPassword.TextMode = TextBoxMode.Password
-                InputPassVerify.TextMode = TextBoxMode.Password
-            Else
-                Response.Redirect("../UserLogon.aspx")
-            End If
+            '    If Not Session.Item("CurUserName") Is Nothing Then
+            '        LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+            '        InputPassword.TextMode = TextBoxMode.Password
+            '        InputPassVerify.TextMode = TextBoxMode.Password
+            '    Else
+            '        Response.Redirect("../UserLogon.aspx")
+            '    End If
 
             UserSelectPulldown.Value = -1
             CompanyDS = cxClass.GetCompanies(0, False)
@@ -218,8 +218,8 @@ Partial Class AddUser
                 UserCurRow = UsersDS.FindByUSER_ID(UserSelectPulldown.Value)
                 If UpdateUsers2DS() = True Then
                     cxClass.UpdateUsers(UsersDS)
-                    'PopupControl1.Text = "User Updated"
-                    'PopupControl1.ShowOnPageLoad = True
+                    PopupControl1.Text = "User Updated"
+                    PopupControl1.ShowOnPageLoad = True
                     msg = "user updated successfully."
                 Else
                     Exit Sub
@@ -230,8 +230,8 @@ Partial Class AddUser
                 If UpdateUsers2DS() = True Then
                     UsersDS.AddUSERSRow(UserCurRow)
                     cxClass.UpdateUsers(UsersDS)
-                    'PopupControl1.Text = "User Added"
-                    'PopupControl1.ShowOnPageLoad = True
+                    PopupControl1.Text = "User Added"
+                    PopupControl1.ShowOnPageLoad = True
 
                     'reset fields to be ready for another new user.
                     InputFirstName.Text = Nothing
@@ -260,7 +260,7 @@ Partial Class AddUser
                 UserSelectPulldown.Items.Add(UserCurRow.USER_NAME.ToString, UserCurRow.USER_ID)
             Next
 
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + msg + "');", True)
+            'ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + msg + "');", True)
 
         Catch ex As Exception
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + ex.Message + "');", True)
@@ -341,7 +341,7 @@ Partial Class AddUser
     'End Sub
 
 
-    'Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
-    '    PopupControl1.ShowOnPageLoad = False
-    'End Sub
+    Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
+        PopupControl1.ShowOnPageLoad = False
+    End Sub
 End Class

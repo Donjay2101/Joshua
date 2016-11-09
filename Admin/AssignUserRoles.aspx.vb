@@ -10,11 +10,11 @@ Partial Class AssignUserRoles
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("../UserLogon.aspx")
-            End If
+            'If Not Session.Item("CurUserName") Is Nothing Then
+            '    LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+            'Else
+            '    Response.Redirect("../UserLogon.aspx")
+            'End If
 
             ProjectDS = cxClass.GetProjects(0, True, True, Session.Item("CurUserID"))
             ProjectSelectPulldown.DataSource = ProjectDS

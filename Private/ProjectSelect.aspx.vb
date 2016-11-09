@@ -13,11 +13,13 @@ Partial Class ProjectSelect
             Session.Contents.Remove("CurGridStatusFilter")
             Session.Contents.Remove("CurGridTradeFilter")
 
-            If Not Session.Item("CurUserName") Is Nothing Then
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("UserLogon.aspx")
-            End If
+            'If Not Session.Item("CurUserName") Is Nothing Then
+            '    Dim lbl As Label = DirectCast(Master.FindControl("LBLCurUser"), Label)
+
+            '    lbl.Text = "Welcome, " & Session.Item("CurUserName")
+            'Else
+            '    Response.Redirect("UserLogon.aspx")
+            'End If
 
             ProjectsDS = cxClass.GetProjects(0, User.IsInRole("Admin"), False, Session.Item("CurUserID"))
             ProjectsPulldown.DataSource = ProjectsDS
@@ -117,9 +119,7 @@ Partial Class ProjectSelect
     Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
         PopupControl1.ShowOnPageLoad = False
     End Sub
-    Protected Sub btnChangePassword_Click(sender As Object, e As EventArgs) Handles btnChangePassword.Click
 
-    End Sub
 End Class
 
 
