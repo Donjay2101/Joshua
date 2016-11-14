@@ -34,7 +34,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <dxwgv:ASPxGridView ID="G1" ClientInstanceName="G1" runat="server" Width="100%" AutoGenerateColumns="False"
-                    KeyFieldName="ITEM_NUMBER" CssClass="text_reg" Font-Names="Verdana" Font-Size="12px">
+                    KeyFieldName="ITEM_NUMBER" CssClass="text_reg issue-log" Font-Names="Verdana" Font-Size="12px">
                     <Templates>
                         <DetailRow>
                             <dxwgv:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID" Width="100%" CssClass="text_reg" Font-Names="Verdana" Font-Size="12px" OnRowInserting="ASPxGridView2_RowInserting" OnBeforePerformDataSelect="ASPxGridView2_DataSelect" ClientInstanceName='<%# string.Format("detailGrid{0}", Container.VisibleIndex) %>'>

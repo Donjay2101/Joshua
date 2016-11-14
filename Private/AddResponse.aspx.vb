@@ -9,11 +9,11 @@ Partial Class AddResponse
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            If Not Session.Item("CurUserName") Is Nothing Then  'Check if someone is Logged on
-                LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
-            Else
-                Response.Redirect("../UserLogon.aspx")
-            End If
+            'If Not Session.Item("CurUserName") Is Nothing Then  'Check if someone is Logged on
+            '    LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
+            'Else
+            '    Response.Redirect("../UserLogon.aspx")
+            'End If
             If Session.Item("CurProjectID") Is Nothing Then ' Check to see if Project is Selected
                 Response.Redirect("ProjectSelect.aspx")
             Else
