@@ -214,19 +214,19 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-3">
                 <asp:LinkButton ID="BTNAddIssues" runat="server" CssClass="text_reg">Add Issue to Log</asp:LinkButton>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
                 <asp:LinkButton ID="BTNContacts" runat="server" CssClass="text_reg">Project Contacts</asp:LinkButton>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
                 <asp:LinkButton ID="BTNCompanyKey" runat="server" CssClass="text_reg">Action Codes</asp:LinkButton>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-3">
                 <asp:LinkButton ID="BTNIssuesReport" runat="server" CssClass="text_reg">Printable Version</asp:LinkButton>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
                 <asp:LinkButton ID="BTNAddResponse" runat="server" CssClass="text_reg">Respond to Issue</asp:LinkButton>
             </div>
         </div>

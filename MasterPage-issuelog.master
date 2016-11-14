@@ -60,73 +60,56 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs">
-        <div class="main-menu">
-            <img src="/Graphics/banner.jpg" alt="" class="banner" />
-        </div>
-        <div class="menu-section">
-             <ul class="nonbullet">
-                <li id="li-1" class="menu-list"><a runat="server" href="cxLogin.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','graphics/hmenu_over_02.gif',1)">
-                    <img  src="/graphics/hmenu_over_02.gif" name="Image5" border="0" id="Image5" alt="" class="menu-img"/></a></li>
-                <li id="li-2"  class="menu-list"><a runat="server" href="Private/ProjectSelect.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','graphics/hmenu_over_03.gif',1)">
-                    <img src="/graphics/hmenu_03.gif" name="Image6"  border="0" id="Image6" alt="" class="menu-img" /></a></li>
-                <li id="li-3"  class="menu-list"><a runat="server" href="Private/ProjectSummary.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','graphics/hmenu_over_04.gif',1)">
-                    <img src="/graphics/hmenu_04.gif" name="Image7"  border="0" id="Image7" alt=""  class="menu-img"/></a></li>
-                <li id="li-4"  class="menu-list"><a runat="server" href="Private/IssueLog.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','graphics/hmenu_over_05.gif',1)">
-                    <img src="/graphics/hmenu_05.gif" name="Image8"  border="0" id="Image8" alt="" class="menu-img"/></a></li>
-                <li id="li-5"  class="menu-list"><a runat="server" href="Help.aspx" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','graphics/hmenu_over_06.gif',1)">
-                    <img src="/graphics/hmenu_06.gif" name="Image9" border="0" id="Image9" alt="" class="menu-img"/></a></li>
+ <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs">
+        <div class="main-menu" style="position:relative;">
+            <div id="u7432">
+                <!-- group -->
+                <a class="block" href="index.html" data-href="page:U68"></a>
+                <div class="clip_frame grpelem" id="u55614" data-href="page:U68">
+                    <!-- svg -->
+                    <a href="/index.html" data-muse-uid="U55614">
+                        <img class="svg" id="u38463" src="/Graphics/logo.jpg" alt="" /></a>
+                </div>                
+            </div>
+
+            <ul class="nonbullet bvh-menu">
+                <li class="pull-left"><a href="/Private/ProjectSelect.aspx">Project Selection</a></li>
+                <li class="pull-left"><a href="/Private/ProjectSummary.aspx">Project Summary</a></li>
+                <li class="pull-left"><a href="/Private/IssueLog.aspx">Issue Log</a></li>
+                <li class="pull-left"><a href="/Help.aspx">help</a></li>
             </ul>
+      
+             <div class="credentials">
+                   <a href="/cxLogin.aspx" class="white pull-right">Sing Out</a>
+             </div>
         </div>
+
     </nav>
-  <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"></a>
+    <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
+        <div class="container">
+            <div class="navbar-header">
+              <%--  <label class="cp">Commission Portal</label>--%>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+                <ul class="nav navbar-nav mobile-ul bvh-menu">
+                    <li><a href="/cxLogin.aspx">Login</a></li>
+                    <li><a href="/Private/ProjectSelect.aspx">Project Selection</a></li>
+                    <li><a href="/Private/ProjectSummary.aspx">Project Summary</a></li>
+                    <li><a href="/Private/IssueLog.aspx">Issue Log</a></li>
+                    <li><a href="/Help.aspx">help</a></li>
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-            <ul class="nav navbar-nav mobile-ul">
-            <li class="active black"><a href="cxLogin.aspx" class="white">Login</a></li>
-            <li class="red"><a href="/Private/ProjectSelect.aspx" class="white">Project Selection</a></li>
-            <li class="blue-li"><a href="/Private/ProjectSummary.aspx"  class="white">Project Summary</a></li>
-            <li class="green"><a href="/Private/IssueLog.aspx"  class="white">Issue Log</a></li>
-            <li class="yellow"><a  href="/Help.aspx"  class="grey">help</a></li>        
-          </ul>
-        </div>
-      </div>
     </nav>
     <div class="container body-content">
-        <%--    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expand
-            
-            ed="true" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Login</a></li>
-            <li><a href="#about">Project Selection</a></li>
-            <li><a href="#contact">Project Summary</a></li>
-            <li><a href="#contact">Issue Log</a></li>
-            <li><a href="#contact">help</a></li>
-        
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>--%>
+   
 
         <div class="row">
              <div class="col-md-12">
