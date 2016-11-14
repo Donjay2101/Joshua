@@ -109,7 +109,7 @@
     <div class="container body-content">
       
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-4">
                 <p class="loged-in-user">
                     User not logged in
                 </p>
@@ -136,7 +136,7 @@
                     BVH is a Corporate Member of the <a href="http://www.bcxa.org/certification/index.shtm" target="_blank">Building Commissioning Association</a>. Learn how a Certified Commissioning Professional can benefit your project.
                 </p>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-8">
                 <asp:ContentPlaceHolder ID="mainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

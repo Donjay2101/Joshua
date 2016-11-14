@@ -66,13 +66,14 @@ nav{
 }
 .menu-list{
     width:20%!important;
-        position: relative;
+    position: relative;
 }
-#li-1:hover{
-    background-color:black;
+/*#li-1:hover{
+    background-image:url("../Graphics/top__01.gif");
     width:20%;
-}
-#li-2:hover{
+    position:absolute;
+}*/
+/*#li-2:hover{
     background-image:url("../Graphics/top_02.gif");
     width:20%;
 }
@@ -87,7 +88,7 @@ nav{
 #li-5:hover{
     background-image:url("../Graphics/top_05.gif");
     width:20%;
-}
+}*/
 label.grey-text {
     font-weight: bold;
     color: #666666;
