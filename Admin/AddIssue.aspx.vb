@@ -1,6 +1,7 @@
 Imports System.Data.SqlClient
 Imports System.Data
 Imports DevExpress.Web.ASPxUploadControl
+Imports System.IO
 
 Partial Class AddIssue
     Inherits System.Web.UI.Page
@@ -178,14 +179,22 @@ Partial Class AddIssue
     End Sub
 
     Protected Sub ASPxUploadControl1_FilesUploadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxUploadControl1.FilesUploadComplete
-        If Not ASPxUploadControl1.UploadedFiles(0).FileBytes.Length = 0 Then
-            Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
-        End If
-        If Not ASPxUploadControl1.UploadedFiles(1).FileBytes.Length = 0 Then
-            Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
-        End If
-        If Not ASPxUploadControl1.UploadedFiles(2).FileBytes.Length = 0 Then
-            Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
+
+        Dim folderPath As String = Server.MapPath("~/Files/")
+        If Not Directory.Exists(folderPath) Then
+            Directory.CreateDirectory(folderPath)
+            If Not ASPxUploadControl1.UploadedFiles(0).FileBytes.Length = 0 Then
+                ASPxUploadControl1.UploadedFiles(0).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(0).FileName))
+                'Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
+            End If
+            If Not ASPxUploadControl1.UploadedFiles(1).FileBytes.Length = 0 Then
+                ASPxUploadControl1.UploadedFiles(1).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(1).FileName))
+                'Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
+            End If
+            If Not ASPxUploadControl1.UploadedFiles(2).FileBytes.Length = 0 Then
+                ASPxUploadControl1.UploadedFiles(2).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(2).FileName))
+                'Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
+            End If
         End If
     End Sub
 
