@@ -58,12 +58,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-md-offset-6 text-right">
+            <div class="col-md-3 col-md-offset-6 col-sm-6 text-right">
                 <asp:LinkButton ID="BTNUpdate" runat="server" Width="100%" CssClass="text_reg"
                     TabIndex="4">Add/Update Company</asp:LinkButton>
             
             </div>
-            <div class="col-md-3 text-right">
+            <div class="col-md-3 col-sm-6 text-right">
                     <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
@@ -73,9 +73,11 @@
                     <ContentStyle Font-Bold="False" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" HorizontalAlign="Center" Wrap="True"></ContentStyle>
                     <ContentCollection>
                         <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
-
-                            <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px"></dxwdc:ASPxButton>
-
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px"></dxwdc:ASPxButton>
+                                </div>
+                            </div>
                         </dxpc:PopupControlContentControl>
                     </ContentCollection>
                     <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />

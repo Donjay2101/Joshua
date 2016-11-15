@@ -19,7 +19,7 @@
                 <label class="grey-text">New password:</label> 
             </div>
             <div class="col-md-8">
-                <asp:TextBox ID="txtNewPassword" runat="server" class="input-text"></asp:TextBox>
+                <asp:TextBox ID="txtNewPassword" runat="server" class="input-text bodered-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNewPassword" ErrorMessage="Required."></asp:RequiredFieldValidator>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <label class="grey-text"> Confirm password:</label>
             </div>
             <div class="col-md-8">
-                <asp:TextBox ID="txtConfirmPassword" runat="server" class="input-text"></asp:TextBox>
+                <asp:TextBox ID="txtConfirmPassword" runat="server" class="input-text bodered-input"></asp:TextBox>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword" ErrorMessage="password and confirm password do not match."></asp:CompareValidator>
             </div>
         </div>

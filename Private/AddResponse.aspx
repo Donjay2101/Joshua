@@ -119,11 +119,11 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-offset-6 col-md-3 text-center">
+            <div class="col-md-offset-6 col-md-3 col-sm-4 col-sm-offset-4 col-xs-6 text-center">
                 <asp:LinkButton ID="BTNAdd" runat="server" CssClass="text_reg" Width="100%"
                     TabIndex="5">Add Response</asp:LinkButton>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-4 col-xs-6">
                 <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
                     TabIndex="6">Back to Issue Log</asp:LinkButton>
             </div>
