@@ -54,37 +54,36 @@
        <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs">
         <div class="main-menu" style="position:relative;">
             <div id="u7432">
-                <!-- group -->
-                <a class="block" href="index.html" data-href="page:U68"></a>
+                <!-- group -->               
                 <div class="clip_frame grpelem" id="u55614" data-href="page:U68">
                     <!-- svg -->
                     <a href="/index.html" data-muse-uid="U55614">
                         <img class="svg" id="u38463" src="/Graphics/logo.jpg" alt="" /></a>
                 </div>                
             </div>
-
             <ul class="nonbullet bvh-menu">
                 <li class="pull-left"><a href="/Private/ProjectSelect.aspx">Project Selection</a></li>
                 <li class="pull-left"><a href="/Private/ProjectSummary.aspx">Project Summary</a></li>
                 <li class="pull-left"><a href="/Private/IssueLog.aspx">Issue Log</a></li>
                 <li class="pull-left"><a href="/Help.aspx">help</a></li>
-            </ul>
-      
+            </ul>      
              <div class="credentials">
                  <a runat="server" href="/cxLogin.aspx" class="white pull-right">Sign out</a>                 
              </div>
         </div>
-
     </nav>
-    <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
+  <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
         <div class="container">
             <div class="navbar-header">
+                <img src="/Graphics/mobile-logo.gif" style="width: 15%;"/>
               <%--  <label class="cp">Commission Portal</label>--%>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                   
+                    <span class="icon-bar" style="background-color:#fbf43d;"></span>
+                    <span class="icon-bar" style="background-color:#047ac2;"></span>
+                     <span class="icon-bar" style="background-color:#ef3842;"></span>
+                    <span class="icon-bar" style="background-color: #04a886;"></span>
                 </button>
                 <a class="navbar-brand" href="#"></a>
             </div>
@@ -101,8 +100,12 @@
     </nav>
  <div class="container body-content">
         <div class="row">
-            <div class="col-md-3 col-sm-4">     
-                <ul class="nonbullet">
+               <div class="col-md-9 col-sm-8 col-lg-9 col-lg-push-3 col-sm-push-4">
+                <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="col-md-3 col-sm-4 col-lg-3 col-lg-pull-9 col-sm-pull-8">     
+                <ul class="nonbullet" style="padding-left: 0px">
                     <asp:Label ID="LBLCurUser" runat="server"  CssClass="login_text_bold"></asp:Label>                     
                    <%--  <li><a runat="server" href="cxLogin.aspx" >Sign out</a></li>--%>
                      <li><span class="glyphicon glyphicon-cog"></span><a href="/Private/ChangePassword.aspx" class="change-pass">Change Password </a></li>
@@ -129,10 +132,7 @@
                     BVH is a Corporate Member of the <a href="http://www.bcxa.org/certification/index.shtm" target="_blank">Building Commissioning Association</a>. Learn how a Certified Commissioning Professional can benefit your project.
                 </p>
             </div>
-            <div class="col-md-9 col-sm-8">
-                <asp:ContentPlaceHolder ID="mainContent" runat="server">
-                </asp:ContentPlaceHolder>
-            </div>
+         
         </div>
     </div>
 

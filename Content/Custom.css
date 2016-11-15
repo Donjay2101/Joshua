@@ -152,7 +152,7 @@ img#u38463 {
     padding: 7px 15px;
 }
 .bvh-menu{
-  width: 63%;
+  width: 66%;
     height: 60px;
     margin: 0 auto;
     padding-top: 15px;
@@ -190,11 +190,11 @@ img#u38463 {
     margin-top: 0px;
 }
      .mobile-nav .navbar-header{
-    background: #dadada;
+    background:#ffffff;
     color: grey;
       }
-     .navbar-toggle {
-    border-color: #adabab!important;
+  .navbar-toggle {
+    border-color: #ffffff!important;
 }
 
      .bodered-input{
