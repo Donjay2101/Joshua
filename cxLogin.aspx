@@ -63,7 +63,7 @@
                 </div>
                 <div class="row" >
                     <div class="col-md-7 text-right">
-                        <asp:Button ID="BTNLogin" runat="server" Text="Sign In" OnClick="BTNLogin_Click"/>
+                        <asp:Button ID="BTNLogin" runat="server" Text="Sign In" OnClick="BTNLogin_Click" CssClass="new-btn"/>
                         <%--<asp:LinkButton ID="BTNLogin" OnClick="BTNLogin_Click" runat="server" CssClass="text_bold">Sign In</asp:LinkButton>--%>
                         <a href="#" id="forgotpassword">Forgot password?</a>                        
                     </div>
