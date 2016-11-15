@@ -41,7 +41,7 @@ Partial Class cxLogin
         cnn.Open()
         dr = cmd.ExecuteReader()
         While (dr.Read())
-            If StrComp(dr.Item("USER_PASSWORD"), FormsAuthentication.HashPasswordForStoringInConfigFile("169A00289AFE6B14220C8B0B7CFFA8D3CA8E7216", "SHA1"), 1) = 0 Then
+            If StrComp(dr.Item("USER_PASSWORD"), FormsAuthentication.HashPasswordForStoringInConfigFile(passwd, "SHA1"), 1) = 0 Then
                 retVal = True
                 Session.Add("CurUserName", dr.Item("USER_NAME"))
                 Session.Add("CurUserID", dr.Item("USER_ID"))
