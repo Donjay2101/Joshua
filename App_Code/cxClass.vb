@@ -1082,4 +1082,30 @@ Public Class cxClass
         vCommConn.Close()
         Return userDataSet.USERS.Rows(0)
     End Function
+
+    Public Shared Function User_UpdatePassword(ByVal USER_EMAIL As String, ByVal USER_PASSWORD As String) As Integer
+        Try
+            vCommConn.Open()
+        Catch ex As Exception
+
+        End Try
+
+        Dim sqlCommand As New SqlCommand
+        Dim userDataSet As New dsCommissioning
+        Dim vSQL As String
+
+        vSQL = "spUpdatePassword"
+
+
+        sqlCommand.CommandText = vSQL
+        sqlCommand.Connection = vCommConn
+        sqlCommand.CommandType = CommandType.StoredProcedure
+        sqlCommand.Parameters.AddWithValue("@email", USER_EMAIL)
+        sqlCommand.Parameters.AddWithValue("@password", USER_PASSWORD)
+
+
+        Return sqlCommand.ExecuteNonQuery()
+    End Function
+
+
 End Class
