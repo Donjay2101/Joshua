@@ -87,7 +87,7 @@ Partial Class cxLogin
         Dim cmd As SqlCommand
         Dim dr As SqlDataReader
         Dim retVal As Boolean = False
-        cnn = New SqlConnection("Data Source=.;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;")
+        cnn = New SqlConnection("Data Source=.;Initial Catalog=cxExample;Integrated Security=true;")
 
         'Dim vSQL As String
         'vSQL &= "SELECT USER_ID, USER_NAME, COMPANY_ID, ISADMIN, ISACTIVE "
