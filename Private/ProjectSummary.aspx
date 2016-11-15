@@ -99,13 +99,13 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-offset-3 col-md-3 text-right">
+            <div class="col-md-offset-3 col-md-3 text-right col-sm-4">
                 <asp:LinkButton ID="BTNResponseAdd" runat="server" CssClass="text_reg">Respond to Issues</asp:LinkButton>
             </div>
-            <div class="col-md-3  text-right">
+            <div class="col-md-3 col-sm-4  text-right">
                 <asp:LinkButton ID="BTNContacts" runat="server" CssClass="text_reg">View Contact Page</asp:LinkButton>
             </div>
-            <div class="col-md-3  text-right">
+            <div class="col-md-3 col-sm-4  text-right">
                 <asp:LinkButton ID="BTNShowIssues" runat="server" CssClass="text_reg">View Issue Log</asp:LinkButton>
             </div>
         </div>

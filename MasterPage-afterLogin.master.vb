@@ -5,7 +5,7 @@ Partial Class MasterPage_afterLogin
         If Not Session.Item("CurUserName") Is Nothing Then
             LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
         Else
-            Response.Redirect("../UserLogon.aspx")
+            Response.Redirect("cxLogin.aspx")
         End If
     End Sub
 End Class
