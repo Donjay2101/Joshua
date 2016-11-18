@@ -9,6 +9,7 @@ Partial Class AddIssue
     Protected DeficiencyDS As New dsCommissioning.DEFICIENCIESDataTable
     Protected CompanyDS As dsCommissioning.COMPANIESDataTable
     Public rowcount As Integer = 0
+    'Protected url As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         rowcount = 0
@@ -86,13 +87,14 @@ Partial Class AddIssue
 
             vPhotoDataAdapter.SelectCommand = New SqlCommand("SELECT * FROM PHOTOS", cxClass.vCommConn)
 
-            vPhotoDataAdapter.InsertCommand = New SqlCommand("INSERT INTO PHOTOS (ID, Bytes, DESCRIPTION, PROJECT_ID, ITEM_NUMBER) VALUES (@ID, @Bytes, @DESCRIPTION, @PROJECT_ID, @ITEM_NUMBER)", cxClass.vCommConn)
+            vPhotoDataAdapter.InsertCommand = New SqlCommand("INSERT INTO PHOTOS (ID, DESCRIPTION, PROJECT_ID, ITEM_NUMBER,Url) VALUES (@ID, @DESCRIPTION, @PROJECT_ID, @ITEM_NUMBER, @Url)", cxClass.vCommConn)
 
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ID", SqlDbType.NVarChar, 100, "ID"))
-            vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Bytes", SqlDbType.Image, 2147483647, "Bytes"))
+            'vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Bytes", SqlDbType.Image, 2147483647, "Bytes"))
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@DESCRIPTION", SqlDbType.NVarChar, 100, "DESCRIPTION"))
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ITEM_NUMBER", SqlDbType.Int, 4, "ITEM_NUMBER"))
+            vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Url", SqlDbType.NVarChar, 500, "Url"))
 
 
 
@@ -107,10 +109,11 @@ Partial Class AddIssue
                 vPhotoRow = PhotoDS.NewPHOTOSRow
                 If Not vPhotoRow Is Nothing Then
                     vPhotoRow.Description = PhotoDesc1.Text
-                    vPhotoRow.Bytes = Session.Item("Image1bytes")
+                    'vPhotoRow.Bytes = Session.Item("Image1bytes")
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(0).FileName
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image1bytes")
@@ -121,10 +124,11 @@ Partial Class AddIssue
                 vPhotoRow = PhotoDS.NewPHOTOSRow
                 If Not vPhotoRow Is Nothing Then
                     vPhotoRow.Description = PhotoDesc2.Text
-                    vPhotoRow.Bytes = Session.Item("Image2bytes")
+                    'vPhotoRow.Bytes = Session.Item("Image2bytes")
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(1).FileName
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image2bytes")
@@ -135,10 +139,11 @@ Partial Class AddIssue
                 vPhotoRow = PhotoDS.NewPHOTOSRow
                 If Not vPhotoRow Is Nothing Then
                     vPhotoRow.Description = PhotoDesc3.Text
-                    vPhotoRow.Bytes = Session.Item("Image3bytes")
+                    'vPhotoRow.Bytes = Session.Item("Image3bytes")
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(2).FileName
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image3bytes")
@@ -149,6 +154,7 @@ Partial Class AddIssue
             cxClass.vCommConn.Close()
 
         Catch ex As Exception
+            Response.Write(ex.Message)
 
         End Try
 
@@ -180,20 +186,21 @@ Partial Class AddIssue
 
     Protected Sub ASPxUploadControl1_FilesUploadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxUploadControl1.FilesUploadComplete
 
-        Dim folderPath As String = Server.MapPath("~/Files/")
+        Dim folderPath As String = Server.MapPath("~/Uploads/" & Session.Item("CurProjectID") & "/")
+        'url = folderPath
         If Not Directory.Exists(folderPath) Then
             Directory.CreateDirectory(folderPath)
             If Not ASPxUploadControl1.UploadedFiles(0).FileBytes.Length = 0 Then
                 ASPxUploadControl1.UploadedFiles(0).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(0).FileName))
-                'Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
+                Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
             End If
             If Not ASPxUploadControl1.UploadedFiles(1).FileBytes.Length = 0 Then
                 ASPxUploadControl1.UploadedFiles(1).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(1).FileName))
-                'Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
+                Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
             End If
             If Not ASPxUploadControl1.UploadedFiles(2).FileBytes.Length = 0 Then
                 ASPxUploadControl1.UploadedFiles(2).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(2).FileName))
-                'Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
+                Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
             End If
         End If
     End Sub
