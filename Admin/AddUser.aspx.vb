@@ -57,6 +57,16 @@ Partial Class AddUser
         For Each Me.UserCurRow In UsersDS
             UserSelectPulldown.Items.Add(UserCurRow.USER_NAME.ToString, UserCurRow.USER_ID)
         Next
+
+        'User Role Section---------------
+        ASPxComboBoxRole.Items.Add("Select User Role", -1)
+        ASPxComboBoxRole.Items.Add("IT Admin (BVH IT)", 0)
+        ASPxComboBoxRole.Items.Add("Cx Admin (BVH Cx)", 1)
+        ASPxComboBoxRole.Items.Add("Owner's Cx/Cx Super (BVH Sub)", 2)
+        ASPxComboBoxRole.Items.Add("Cx Sub (BVH Super)", 3)
+        ASPxComboBoxRole.Items.Add("CM/GM", 4)
+        ASPxComboBoxRole.Items.Add("Subcontractor", 5)
+        ASPxComboBoxRole.Items.Add("Observer", 6)
     End Sub
 
     Private Function UpdateUsers2DS() As Boolean
@@ -81,10 +91,17 @@ Partial Class AddUser
         UserCurRow.USER_EMAIL = InputEmail.Value
 
 
-        If Not InputAdmin.Value Is Nothing Then
-            UserCurRow.ISADMIN = InputAdmin.Value
+        'If Not InputAdmin.Value Is Nothing Then
+        '    UserCurRow.ISADMIN = InputAdmin.Value
+        'Else
+        '    UserCurRow.SetISADMINNull()
+        'End If
+
+        If Not ASPxComboBoxRole.Value = (-1) Then
+            UserCurRow.ROLE = Convert.ToInt32(ASPxComboBoxRole.Value)
         Else
-            UserCurRow.SetISADMINNull()
+            UserCurRow.SetROLENull()
+
         End If
 
         If Not InputUserActive.Value Is Nothing Then
@@ -172,8 +189,8 @@ Partial Class AddUser
             'InputUserName.Text = UserCurRow.USER_NAME.ToString
             InputEmail.Value = UserCurRow.USER_EMAIL.ToString
             InputCompany.Value = UserCurRow.COMPANY_ID
-            If Not UserCurRow.IsISADMINNull Then
-                InputAdmin.Value = UserCurRow.ISADMIN
+            If Not UserCurRow.IsROLENull Then
+                InputAdmin.Value = UserCurRow.ROLE
             End If
             If Not UserCurRow.IsUSER_PHONENull Then
                 InputPhone.Value = UserCurRow.USER_PHONE.ToString
@@ -267,6 +284,18 @@ Partial Class AddUser
             'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
     End Sub
+    Protected Sub LinkButtonDelete_Click(sender As Object, e As EventArgs) Handles LinkButtonDelete.Click
+        'If UserSelectPulldown.Value = -1 Then
+        '    'code to check if user exist before add to prevent duplicates
+        '    UserCurRow = UsersDS.NewUSERSRow
+        '    If UpdateUsers2DS() = True Then
+        '        UsersDS.AddUSERSRow(UserCurRow)
+        '        cxClass.DeleteUsers(UsersDS)
+        '    End If
+        'End If
+        Response.Write("Button Clicked")
+
+    End Sub
     Protected Sub BTNNewPassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNNewPassword.Click
         Try
             If Not UserSelectPulldown.Value = -1 Then
@@ -344,4 +373,5 @@ Partial Class AddUser
     Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
         PopupControl1.ShowOnPageLoad = False
     End Sub
+
 End Class

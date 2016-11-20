@@ -181,6 +181,22 @@
             </div>
         </div>
         <div class="row form-group">
+            <div class="col-md-3">
+                <label class="grey-text">User's Role</label>
+            </div>
+            <div class="col-md-9">
+                <dxwdc:ASPxComboBox ID="ASPxComboBoxRole" runat="server" Width="100%"
+                    AutoPostBack="True" EnableIncrementalFiltering="True"
+                    ValueType="System.Int32" Font-Names="Verdana" Font-Size="12px"
+                    ForeColor="#666666">
+                    <ItemStyle>
+                        <SelectedStyle ForeColor="White">
+                        </SelectedStyle>
+                    </ItemStyle>
+                </dxwdc:ASPxComboBox>
+            </div>
+        </div>
+        <div class="row form-group">
             <div class="col-md-5">
                 <asp:LinkButton ID="BTNNewPassword" runat="server" TabIndex="100">Generate New Password for Selected User</asp:LinkButton>
             </div>
@@ -188,9 +204,13 @@
                 <asp:LinkButton ID="BTNUpdate" runat="server" CssClass="text_reg" Width="100%"
                     TabIndex="9">Add/Update User</asp:LinkButton>
             </div>
+             <div class="col-md-3">
+                <asp:LinkButton ID="LinkButtonDelete" runat="server" CssClass="text_reg" Width="100%"
+                    TabIndex="10" CausesValidation="True">Delete User</asp:LinkButton>
+            </div>
             <div class="col-md-3">
                 <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
-                    TabIndex="10">Back to Project Selection</asp:LinkButton>
+                    TabIndex="11">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
         <div id="popControl1" runat="server">
