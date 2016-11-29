@@ -8,7 +8,7 @@
     $(document).on('click', '#forgotpassword', function () {
         $('#divForgotpassword').css('display', 'block');
     });
-    $(document).on('click', '#btnSendEmail', function () {
+    $(document).on('click', '#btnSendEmail1', function () {
         debugger;
         var email=$('#txtEmailBox').val();
 
@@ -20,10 +20,11 @@
                 alert('password  updated successfully, new password has been sent to your registered email.');
             },
             error: function (err) {
-                alert(err.statusText);s
+                alert(err.statusText);
             }            
         });
         //PageMethods.SendEmail(email);
+        
     });
 </script>
 </asp:Content>
@@ -75,7 +76,9 @@
                     <div>
                         <asp:TextBox ID="txtEmailBox" ClientIDMode="Static"  runat="server"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="entered is not an email." ControlToValidate="txtEmailBox" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                        <input type="button" id="btnSendEmail" value="submit"name="submit"/>
+                        <%--<input type="button" id="btnSendEmail" value="submit"name="submit"/>--%>
+                        <asp:Button ID="btnSendEmail" runat="server" Text="submit" />
+
                     </div>
                 </div>
             </div>
