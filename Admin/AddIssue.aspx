@@ -1,7 +1,8 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="AddIssue.aspx.vb" Inherits="AddIssue" MasterPageFile="~/MasterPage-afterLogin.master"%>
-<%@ Register assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dxwdc" %>
-<%@ Register assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPopupControl" tagprefix="dxpc" %>
-<%@ Register assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxUploadControl" tagprefix="dxuc" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="AddIssue.aspx.vb" Inherits="AddIssue" MasterPageFile="~/MasterPage-afterLogin.master" %>
+
+<%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
+<%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
+<%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxUploadControl" TagPrefix="dxuc" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
     <form id="AddIssue" runat="server">
         <div class="row form-group">
@@ -122,11 +123,11 @@
                     TabIndex="9">Save and Add Another Issue</asp:LinkButton>
             </div>
             <div class="col-md-3 text-right">
-                  <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
+                <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
                     TabIndex="10">Back to Issue Log</asp:LinkButton>
             </div>
         </div>
-       
+
         <div class="row">
             <div class="col-md-12">
                 <dxpc:ASPxPopupControl ID="PopupControl1" runat="server"
@@ -138,15 +139,17 @@
                     </ContentStyle>
                     <ContentCollection>
                         <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
-
-                            <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
-                                Text="Ok" Width="75px">
-                            </dxwdc:ASPxButton>
-
-                        </dxpc:PopupControlContentControl>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top: 20px;">
+                                    <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
+                                        Text="Ok" Width="75px">
+                                    </dxwdc:ASPxButton>
+                                </div>
+        </div>
+        </dxpc:PopupControlContentControl>
                     </ContentCollection>
-                    <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
-                </dxpc:ASPxPopupControl>
+                    <headerstyle font-bold="True" font-names="Verdana" font-size="12px" />
+        </dxpc:ASPxPopupControl>
             </div>
         </div>
     </form>

@@ -51,7 +51,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-       <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs">
+       <nav class="navbar navbar-inverse hidden-xs">
         <div class="main-menu" style="position:relative;">
             <div id="u7432">
                 <!-- group -->               
@@ -72,10 +72,10 @@
              </div>
         </div>
     </nav>
-  <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
-        <div class="container">
+  <nav class="navbar navbar-inverse  hidden-lg hidden-md hidden-sm mobile-nav">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <img src="/Graphics/mobile-logo.gif" style="width: 15%;"/>
+                <img src="/Graphics/mobile-logo.gif" class="logo-img"/>
               <%--  <label class="cp">Commission Portal</label>--%>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -87,7 +87,7 @@
                 </button>
                 <a class="navbar-brand" href="#"></a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
                 <ul class="nav navbar-nav mobile-ul bvh-menu">
                     <li><a href="/cxLogin.aspx">Login</a></li>
                     <li><a href="/Private/ProjectSelect.aspx">Project Selection</a></li>
@@ -98,11 +98,13 @@
             </div>
         </div>
     </nav>
- <div class="container body-content">
+ <div class="container-fluid body-content">
         <div class="row">
                <div class="col-sm-8 col-lg-9 col-lg-push-3 col-sm-push-4 col-xs-12">
-                <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                  
+                             <asp:ContentPlaceHolder ID="mainContent" runat="server">
                 </asp:ContentPlaceHolder>
+                    
             </div>
             <div class="col-sm-4 col-lg-3 col-lg-pull-9 col-sm-pull-8  col-xs-12">     
                 <ul class="nonbullet" style="padding-left: 0px">

@@ -1,7 +1,9 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" MasterPageFile="~/MasterPage.master" CodeFile="ChangePassword.aspx.vb" Inherits="Private_ChangePassword" %>
 
 <asp:Content ContentPlaceHolderID="mainContent" runat="server" ID="mainContent">
-    <form runat="server">
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+                <form runat="server">
         <div class="row form-group"></div>
  <div class="row">
      <div class="col-md-10 col-md-offset-2">
@@ -40,4 +42,7 @@
      </div>       
 </div>
     </form>   
+        </div>
+    </div>
+
 </asp:Content>

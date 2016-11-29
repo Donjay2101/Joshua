@@ -85,10 +85,10 @@
         </div>
 
     </nav>
- <nav class="navbar navbar-inverse navbar-fixed-top hidden-lg hidden-md hidden-sm mobile-nav">
-        <div class="container">
+  <nav class="navbar navbar-inverse  hidden-lg hidden-md hidden-sm mobile-nav">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <img src="/Graphics/mobile-logo.gif" style="width: 15%;"/>
+                <img src="/Graphics/mobile-logo.gif" class="logo-img"/>
               <%--  <label class="cp">Commission Portal</label>--%>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -100,7 +100,7 @@
                 </button>
                 <a class="navbar-brand" href="#"></a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+            <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
                 <ul class="nav navbar-nav mobile-ul bvh-menu">
                     <li><a href="/cxLogin.aspx">Login</a></li>
                     <li><a href="/Private/ProjectSelect.aspx">Project Selection</a></li>
@@ -111,7 +111,7 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
    
 
         <div class="row">

@@ -45,7 +45,9 @@
     </script>
     <div id="popup" class="header" style="display: none">
     </div>
-    <form id="AddUser" runat="server">
+    <div class="row">
+        <div class="col-md-10 col-xs-12 col-sm-12">
+              <form id="AddUser" runat="server">
         <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <div class="row form-group">
             <div class="col-md-12">
@@ -231,15 +233,21 @@
             <ContentStyle Font-Bold="False" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" HorizontalAlign="Center" Wrap="True"></ContentStyle>
             <ContentCollection>
                 <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">              
-
+                     <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top:20px;">
                                 <%-- <input type="button" value="OK" id="btnOk" /> --%>
                                  <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
                                         Text="Ok" Width="75px">
-                                    </dxwdc:ASPxButton>                     
+                                    </dxwdc:ASPxButton>  
+                                    </div>
+                         </div>                   
                 </dxpc:PopupControlContentControl>
             </ContentCollection>
             <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
         </dxpc:ASPxPopupControl>
     </form>
+        </div>
+    </div>
+  
 </asp:Content>
 

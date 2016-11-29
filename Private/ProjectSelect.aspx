@@ -2,9 +2,12 @@
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
 <%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent"  runat="server">
-    <form id="ProjectSelect" runat="server">       
+            <div class="row">
+            <div class="col-md-10 col-xs-12 col-sm-12">
+                  <form id="ProjectSelect" runat="server">    
+  
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-9 col-sm-12 col-xs-12">
                 <label>Please Select a Project:</label>
                 <dxwdc:ASPxComboBox ID="ProjectsPulldown" runat="server" Width="100%"
                     EnableIncrementalFiltering="True" ValueType="System.Int32"
@@ -18,7 +21,7 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-12 text-right">
+            <div class="col-md-9 col-sm-12 col-xs-12 text-right">
                 <asp:LinkButton ID="BTNProjectSelect" runat="server" CssClass="text_bold">Enter Project</asp:LinkButton>
             </div>
         </div>
@@ -51,12 +54,14 @@
                 </ContentStyle>
                 <ContentCollection>
                     <dxpc:PopupControlContentControl runat="server">
-
+                         <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top:20px;">
                       
                                     <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
                                         Text="Ok" Width="75px">
                                     </dxwdc:ASPxButton>
-                          
+                          </div>
+                             </div>
                     </dxpc:PopupControlContentControl>
                 </ContentCollection>
                 <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
@@ -64,5 +69,8 @@
 
         </div>
     </form>
+            </div>
+        </div> 
+  
 </asp:Content>
 

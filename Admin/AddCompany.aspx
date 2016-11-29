@@ -3,7 +3,9 @@
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
 <%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
-    <form id="AddCompany" runat="server">
+    <div class="row">
+        <div class="col-md-10 col-sm-12 col-xs-12">
+              <form id="AddCompany" runat="server">
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
@@ -83,8 +85,8 @@
                     <ContentCollection>
                         <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px"></dxwdc:ASPxButton>
+                                <div class="col-md-12 text-center" style="margin-top:20px;">
+                                    <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px" CssClass="poput-btn"></dxwdc:ASPxButton>
                                 </div>
                             </div>
                         </dxpc:PopupControlContentControl>
@@ -94,4 +96,7 @@
             </div>
         </div>
     </form>
+        </div>
+    </div>
+  
 </asp:Content>
