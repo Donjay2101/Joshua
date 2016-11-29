@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="AddCompany.aspx.vb" Inherits="AddCompany" MasterPageFile="~/MasterPage-afterLogin.master" %>
+
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
 <%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
@@ -48,23 +49,22 @@
         </div>
         <div class="row form-group">
             <div class="col-md-4">
-                 <dxwdc:ASPxCheckBox ID="InputCompanyActive" runat="server" Checked="false" 
+                <dxwdc:ASPxCheckBox ID="InputCompanyActive" runat="server" Checked="false"
                     Width="100%" Text="Company Active" TextAlign="Left" Layout="Flow"
                     TextSpacing="15px" TabIndex="3">
                 </dxwdc:ASPxCheckBox>
             </div>
             <div class="col-md-5">
-             
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-md-offset-6 col-sm-6 text-right">
                 <asp:LinkButton ID="BTNUpdate" runat="server" Width="100%" CssClass="text_reg"
                     TabIndex="4">Add/Update Company</asp:LinkButton>
-            
+
             </div>
             <div class="col-md-3 col-sm-6 text-right">
-                    <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
+                <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
         <div class="row">
