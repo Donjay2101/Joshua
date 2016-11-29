@@ -93,7 +93,7 @@ Partial Class AddResponse
         Dim UserAssignedJob As Boolean = False
 
         For Each userrolerow In UserRoleDS
-            If userrolerow.USER_ID = Session.Item("CurUserID") Then
+            If userrolerow.COMPANY_ID = Session.Item("CurUserID") Then
                 UserAssignedJob = True
             End If
         Next

@@ -443,16 +443,26 @@ Partial Class IssueLog
     Protected Sub ASPxGridView2_RowInserting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataInsertingEventArgs)
         Dim grid As ASPxGridView = TryCast(sender, ASPxGridView)
         Dim textBox As ASPxTextBox = TryCast(FindPageControl(grid).FindControl("txbDesc"), ASPxTextBox)
+
+        'New Code-----------
+        'Dim fileUpload As ASPxUploadControl = TryCast(FindPageControl(grid).FindControl("ASPxUploadControl1"), ASPxUploadControl)   'New Code-----------
         e.NewValues("Description") = textBox.Text
         e.NewValues("ID") = Guid.NewGuid().ToString().Replace("-", "")
         e.NewValues("PROJECT_ID") = Session.Item("CurProjectID")
         e.NewValues("ITEM_NUMBER") = Session.Item("ITEM_NUMBER")
+        e.NewValues("Url") = "~/Uploads/" & Session.Item("CurProjectID") & "/" & Url
 
         e.Cancel = Not SaveFileBytesToRow(grid, e.NewValues)
     End Sub
+
+    Shared Url As String
     Protected Sub ASPxUploadControl1_FileUploadComplete(ByVal sender As Object, ByVal e As FileUploadCompleteEventArgs)
         If TryCast(sender, ASPxUploadControl).IsValid Then
             Session("data") = TryCast(sender, ASPxUploadControl).FileBytes
+            Url = TryCast(sender, ASPxUploadControl).FileName
+
+            Dim folderPath As String = Server.MapPath("~/Uploads/" & Session.Item("CurProjectID") & "/")
+            sender.UploadedFiles(0).SaveAs(folderPath & System.IO.Path.GetFileName(sender.UploadedFiles(0).FileName))
         End If
     End Sub
 

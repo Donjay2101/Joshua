@@ -1,4 +1,5 @@
-
+Imports System.Data.SqlClient
+Imports System.Data
 Partial Class AddProject
     Inherits System.Web.UI.Page
 
@@ -22,6 +23,7 @@ Partial Class AddProject
             InputProjectDescription.Text = Nothing
             InputProjectClosed.Value = False
             InputProjectOwner.Value = Nothing
+            MakeProjectNumber()
             InputComNoticeIntro.Value = "The Construction Manager is asked to ensure that all issues noted on the commissioning notice are corrected in a timely manner.  It is crucial to the commissioning process that the Commissioning Portal is updated after the corrections have been made. Once the Portal has been updated, the commissioning provider will verify the completion of all outstanding items and the issue will be closed."
             'InputComNoticeIntro.Value = "Construction Manager is asked to distribute this commissioning notice to all parties for their review and comment. Once the corrections have been made, the commissioning notice shall be returned to BVH indicating all corrections are complete or exceptions have been taken. BVHis will verify their completion of all outstanding items."
         End If
@@ -35,6 +37,43 @@ Partial Class AddProject
 
     End Sub
 
+    Private Function MakeProjectNumber() As Boolean
+        Dim ConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
+        'Dim ConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123;"
+        Dim Conn As New SqlConnection(ConnStr)
+        Dim sda As SqlDataAdapter
+        Dim sds As DataSet
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("Select  top (1) PROJECT_NUMBER from PROJECTS ORDER BY PROJECT_NUMBER desc", Conn)
+        cmd.CommandType = CommandType.Text
+        sda = New SqlDataAdapter()
+        sda.SelectCommand = cmd
+        sds = New DataSet()
+        sda.Fill(sds)
+
+        Dim str As String
+        str = sds.Tables(0).Rows(0)(0)
+        Dim prjNum As Integer
+        prjNum = Convert.ToInt32(str)
+
+        Dim sprj As String
+        Dim yr As String
+        yr = "21"
+        yr += DateTime.Now.ToString("yy")
+
+        prjNum = prjNum Mod 1000
+        If (prjNum < 10) Then
+            sprj = "00" & Convert.ToString(prjNum + 1)
+        ElseIf (prjNum < 100) Then
+            sprj = "0" & Convert.ToString(prjNum + 1)
+        Else
+            sprj = Convert.ToString(prjNum + 1)
+        End If
+
+        yr += sprj
+        InputProjectNumber.Text = yr
+        Return True
+    End Function
     Private Function UpdateProject2Dataset() As Boolean
 
         If Regex.IsMatch(InputProjectNumber.Value, "([0-9]{7})|([0-9]{7}[\.][0-9]{2})") Then
@@ -123,7 +162,7 @@ Partial Class AddProject
             If Not ProjectCurRow.IsPROJECT_COMNOTICE_INFONull Then
                 InputComNoticeIntro.Value = ProjectCurRow.PROJECT_COMNOTICE_INFO.ToString
             End If
-        ElseIf ProjectSelectPulldown.Value = 1 Then
+        ElseIf ProjectSelectPulldown.Value = -1 Then
             InputProjectNumber.Value = Nothing
             InputProjectName.Value = Nothing
             InputProjectLocation.Value = Nothing
@@ -132,6 +171,7 @@ Partial Class AddProject
             InputProjectDescription.Text = Nothing
             InputProjectClosed.Value = False
             InputProjectOwner.Value = Nothing
+            MakeProjectNumber()
             InputComNoticeIntro.Value = "Construction Manager is asked to distribute this commissioning notice to all parties for their review and comment. Once the corrections have been made, the commissioning notice shall be returned to BVH indicating all corrections are complete or exceptions have been taken. BVHis will verify their completion of all outstanding items."
         End If
     End Sub
@@ -164,6 +204,7 @@ Partial Class AddProject
                 InputProjectDescription.Text = Nothing
                 InputProjectClosed.Value = False
                 InputProjectOwner.Value = Nothing
+                MakeProjectNumber()
                 InputComNoticeIntro.Value = "Construction Manager is asked to distribute this commissioning notice to all parties for their review and comment. Once the corrections have been made, the commissioning notice shall be returned to BVH indicating all corrections are complete or exceptions have been taken. BVHis will verify their completion of all outstanding items."
             Else
                 Exit Sub

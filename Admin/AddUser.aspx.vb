@@ -1,4 +1,6 @@
 
+Imports System.Net
+Imports System.Net.Mail
 Imports System.Web.Script.Services
 
 Partial Class AddUser
@@ -7,16 +9,16 @@ Partial Class AddUser
     Protected UsersDS As dsCommissioning.USERSDataTable
     Protected UserCurRow As dsCommissioning.USERSRow
     Protected CompanyDS As dsCommissioning.COMPANIESDataTable
+    Public Shared n_password As String
 
-    <System.Web.Services.WebMethod()> _
+    <System.Web.Services.WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json, UseHttpGet:=True)> _
     Public Shared Function GetNewPassowrd() As String
         Dim newpass As String
         newpass = RandomPassword.Generate(8, 8)
+        n_password = newpass
         Return newpass
     End Function
-
-
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'PopupControl1.ShowOnPageLoad = False
@@ -48,25 +50,28 @@ Partial Class AddUser
                 InputPassword.Text = Nothing
                 InputPassVerify.Text = Nothing
                 ' BTNCreatePassword.Enabled = True
+
+                'User Role Section---------------
+
+                ASPxComboBoxRole.Items.Add("IT Admin (BVH IT)", 0)
+                ASPxComboBoxRole.Items.Add("Cx Admin (BVH Cx)", 1)
+                ASPxComboBoxRole.Items.Add("Owner's Cx/Cx Super (BVH Sub)", 2)
+                ASPxComboBoxRole.Items.Add("Cx Sub (BVH Super)", 3)
+                ASPxComboBoxRole.Items.Add("CM/GM", 4)
+                ASPxComboBoxRole.Items.Add("Subcontractor", 5)
+                ASPxComboBoxRole.Items.Add("Observer", 6)
             End If
         End If
 
         UsersDS = cxClass.GetUsers(False)
         UserSelectPulldown.Items.Clear()
         UserSelectPulldown.Items.Add("Add New User...", -1)
+
         For Each Me.UserCurRow In UsersDS
             UserSelectPulldown.Items.Add(UserCurRow.USER_NAME.ToString, UserCurRow.USER_ID)
         Next
+        'ASPxComboBoxRole.SelectedIndex = 0
 
-        'User Role Section---------------
-        ASPxComboBoxRole.Items.Add("Select User Role", -1)
-        ASPxComboBoxRole.Items.Add("IT Admin (BVH IT)", 0)
-        ASPxComboBoxRole.Items.Add("Cx Admin (BVH Cx)", 1)
-        ASPxComboBoxRole.Items.Add("Owner's Cx/Cx Super (BVH Sub)", 2)
-        ASPxComboBoxRole.Items.Add("Cx Sub (BVH Super)", 3)
-        ASPxComboBoxRole.Items.Add("CM/GM", 4)
-        ASPxComboBoxRole.Items.Add("Subcontractor", 5)
-        ASPxComboBoxRole.Items.Add("Observer", 6)
     End Sub
 
     Private Function UpdateUsers2DS() As Boolean
@@ -186,6 +191,7 @@ Partial Class AddUser
         If UserSelectPulldown.Value > -1 And Not UserCurRow Is Nothing Then
             InputFirstName.Text = UserCurRow.FirstName
             InputLastName.Text = UserCurRow.LastName
+            InputPassword.Text = UserCurRow.USER_PASSWORD
             'InputUserName.Text = UserCurRow.USER_NAME.ToString
             InputEmail.Value = UserCurRow.USER_EMAIL.ToString
             InputCompany.Value = UserCurRow.COMPANY_ID
@@ -195,8 +201,11 @@ Partial Class AddUser
             If Not UserCurRow.IsUSER_PHONENull Then
                 InputPhone.Value = UserCurRow.USER_PHONE.ToString
             End If
-            If Not UserCurRow.IsISACTIVENull Then
-                InputUserActive.Value = UserCurRow.ISACTIVE
+            'If Not UserCurRow.IsISACTIVENull Then
+            '    InputUserActive.Value = UserCurRow.ISACTIVE
+            'End If
+            If Not UserCurRow.IsROLENull Then
+                ASPxComboBoxRole.SelectedIndex = UserCurRow.ROLE
             End If
             InputPassword.Text = Nothing
             InputPassVerify.Text = Nothing
@@ -285,15 +294,30 @@ Partial Class AddUser
         End Try
     End Sub
     Protected Sub LinkButtonDelete_Click(sender As Object, e As EventArgs) Handles LinkButtonDelete.Click
-        'If UserSelectPulldown.Value = -1 Then
-        '    'code to check if user exist before add to prevent duplicates
-        '    UserCurRow = UsersDS.NewUSERSRow
-        '    If UpdateUsers2DS() = True Then
-        '        UsersDS.AddUSERSRow(UserCurRow)
-        '        cxClass.DeleteUsers(UsersDS)
-        '    End If
-        'End If
-        Response.Write("Button Clicked")
+
+        If (cxClass.DeleteUsers(UserSelectPulldown.SelectedItem.Value)) Then
+            PopupControl1.Text = "User Deleted..."
+            PopupControl1.ShowOnPageLoad = False
+            'reset fields to be ready for another new user.
+            InputFirstName.Text = Nothing
+            InputLastName.Text = Nothing
+            InputEmail.Value = Nothing
+            InputAdmin.Value = False
+            InputCompany.Value = Nothing
+            InputPhone.Value = Nothing
+            InputUserActive.Value = True
+            InputPassword.Text = Nothing
+            InputPassVerify.Text = Nothing
+
+            InputPassword.Enabled = True
+            InputPassVerify.Enabled = True
+            PopupControl1.Text = "User Deleted"
+            PopupControl1.ShowOnPageLoad = True
+
+        Else
+            PopupControl1.Text = "Error Occured..."
+        End If
+
 
     End Sub
     Protected Sub BTNNewPassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNNewPassword.Click
@@ -309,7 +333,7 @@ Partial Class AddUser
 
             'Generate Random Password
             Dim newpass As String = ""
-            newpass = RandomPassword.Generate(8, 8)
+            newpass = n_password
 
             'code to encrypt password and insert to db goes here
             Dim HashedPass As String = ""
@@ -320,32 +344,52 @@ Partial Class AddUser
             PopupControl1.ShowOnPageLoad = True
 
             'Create email and send
-            Dim insmail As New System.Web.Mail.MailMessage
+            'Dim insmail As New System.Web.Mail.MailMessage
 
-            Dim messagebody As String
-            messagebody = ""
-            messagebody &= "A new random password has been generated for " & UserCurRow.USER_NAME.ToString & ".  "
-            messagebody &= "Please remember to record this password for your records, it will be required for you to access the BVH Commissioning portal." & vbCrLf
-            messagebody &= vbCrLf
-            messagebody &= "To logon to the cxPortal please go to http://cx.bvhis.com and logon using the information listed below." & vbCrLf
-            messagebody &= vbCrLf
-            messagebody &= "Username: " & UserCurRow.USER_EMAIL.ToString & vbCrLf
-            messagebody &= "Password: " & newpass & vbCrLf
 
-            With insmail
-                .From = "Administrator@BVHis.com"
-                'Could make email be addressed to currently logged on user which
-                'this should always be the CA agent who clicked the button 
-                'since only admins have access to page with button
+            'Dim messagebody As String
+            'messagebody = ""
+            'messagebody &= "A new random password has been generated for " & UserCurRow.USER_NAME.ToString & ".  "
+            'messagebody &= "Please remember to record this password for your records, it will be required for you to access the BVH Commissioning portal." & vbCrLf
+            'messagebody &= vbCrLf
+            'messagebody &= "To logon to the cxPortal please go to http://cx.bvhis.com and logon using the information listed below." & vbCrLf
+            'messagebody &= vbCrLf
+            'messagebody &= "Username: " & UserCurRow.USER_EMAIL.ToString & vbCrLf
+            'messagebody &= "Password: " & newpass & vbCrLf
 
-                'Should User be sent his password and cx department bcc'ed or just to cx department
-                .To = UserCurRow.USER_EMAIL.ToString
-                .Bcc = UsersDS.FindByUSER_ID(Session.Item("CurUserID")).USER_EMAIL.ToString
-                .Subject = "New cxPortal Password for " & UserCurRow.USER_NAME.ToString
-                .Body = messagebody
-            End With
-            System.Web.Mail.SmtpMail.SmtpServer = "192.168.100.4"
-            System.Web.Mail.SmtpMail.Send(insmail)
+            'With insmail
+            '    .From = "Administrator@BVHis.com"
+            '    'Could make email be addressed to currently logged on user which
+            '    'this should always be the CA agent who clicked the button 
+            '    'since only admins have access to page with button
+
+            '    'Should User be sent his password and cx department bcc'ed or just to cx department
+            '    .To = UserCurRow.USER_EMAIL.ToString
+            '    .Bcc = UsersDS.FindByUSER_ID(Session.Item("CurUserID")).USER_EMAIL.ToString
+            '    .Subject = "New cxPortal Password for " & UserCurRow.USER_NAME.ToString
+            '    .Body = messagebody
+            'End With
+            'System.Web.Mail.SmtpMail.SmtpServer = "127.0.0.1" '"192.168.100.4"
+            'System.Web.Mail.SmtpMail.Send(insmail)
+
+
+            Dim mm As New MailMessage("testeac7@gmail.com", UserCurRow.USER_EMAIL.ToString)
+            mm.Subject = "Password Recovery"
+            mm.Body = String.Format("A new random password has been generated for " & UserCurRow.USER_NAME.ToString & vbCrLf & ".  " & "Please remember to record this password for your records, it will be required for you to access the BVH Commissioning portal." & vbCrLf & vbCrLf & "To logon to the cxPortal please go to http://cx.bvhis.com and logon using the information listed below." & vbCrLf & vbCrLf & "Username: " & UserCurRow.USER_EMAIL.ToString & vbCrLf & "Password: " & n_password & vbCrLf & "")
+
+            mm.IsBodyHtml = True
+            Dim smtp As New SmtpClient()
+            smtp.Host = "smtp.gmail.com"
+            smtp.EnableSsl = True
+            Dim NetworkCred As New NetworkCredential()
+            NetworkCred.UserName = "testeac7@gmail.com"
+            NetworkCred.Password = "popup$$1234"
+            smtp.UseDefaultCredentials = True
+            smtp.Credentials = NetworkCred
+            smtp.Port = 587
+            smtp.Send(mm)
+
+
         Catch ex As Exception
             PopupControl1.Text = ex.Message
             PopupControl1.ShowOnPageLoad = True

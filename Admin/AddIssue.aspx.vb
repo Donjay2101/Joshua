@@ -87,7 +87,7 @@ Partial Class AddIssue
 
             vPhotoDataAdapter.SelectCommand = New SqlCommand("SELECT * FROM PHOTOS", cxClass.vCommConn)
 
-            vPhotoDataAdapter.InsertCommand = New SqlCommand("INSERT INTO PHOTOS (ID, DESCRIPTION, PROJECT_ID, ITEM_NUMBER,Url) VALUES (@ID, @DESCRIPTION, @PROJECT_ID, @ITEM_NUMBER, @Url)", cxClass.vCommConn)
+            vPhotoDataAdapter.InsertCommand = New SqlCommand("INSERT INTO PHOTOS (ID, DESCRIPTION, PROJECT_ID, ITEM_NUMBER, Url) VALUES (@ID, @DESCRIPTION, @PROJECT_ID, @ITEM_NUMBER, @Url)", cxClass.vCommConn)
 
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ID", SqlDbType.NVarChar, 100, "ID"))
             'vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Bytes", SqlDbType.Image, 2147483647, "Bytes"))
@@ -95,6 +95,7 @@ Partial Class AddIssue
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ITEM_NUMBER", SqlDbType.Int, 4, "ITEM_NUMBER"))
             vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Url", SqlDbType.NVarChar, 500, "Url"))
+            'vPhotoDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ContentType", SqlDbType.NVarChar, 500, "ContentType"))
 
 
 
@@ -114,6 +115,7 @@ Partial Class AddIssue
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
                     vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(0).FileName
+
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image1bytes")
@@ -139,7 +141,7 @@ Partial Class AddIssue
                 vPhotoRow = PhotoDS.NewPHOTOSRow
                 If Not vPhotoRow Is Nothing Then
                     vPhotoRow.Description = PhotoDesc3.Text
-                    'vPhotoRow.Bytes = Session.Item("Image3bytes")
+                    ' vPhotoRow.Bytes = Session.Item("Image3bytes")
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo

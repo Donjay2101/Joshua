@@ -312,14 +312,14 @@ Public Class cxClass
 
         '--- Insert Command ---
         vUser_RolesDataAdapter.InsertCommand = New SqlCommand("" _
-        & "INSERT INTO USER_ROLES (PROJECT_ID, USER_ID, TRADE_ID)" _
-        & " VALUES (@PROJECT_ID, @USER_ID, @TRADE_ID);" _
+        & "INSERT INTO USER_ROLES (PROJECT_ID, COMPANY_ID, TRADE_ID)" _
+        & " VALUES (@PROJECT_ID, @COMPANY_ID, @TRADE_ID);" _
         & " SELECT *" _
         & " FROM USER_ROLES" _
-        & " WHERE (PROJECT_ID = @PROJECT_ID AND USER_ID = @USER_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID AND COMPANY_ID = @COMPANY_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
 
         vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
+        vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.Int, 4, "COMPANY_ID"))
         vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", SqlDbType.Int, 4, "TRADE_ID"))
 
         '--- Update Command ---
@@ -338,28 +338,28 @@ Public Class cxClass
 
         vUser_RolesDataAdapter.UpdateCommand = New SqlCommand("" _
         & "UPDATE USER_ROLES" _
-        & " SET PROJECT_ID = @PROJECT_ID, USER_ID = @USER_ID, TRADE_ID = @TRADE_ID " _
-        & " WHERE (PROJECT_ID = @Original_PROJECT_ID) AND (TRADE_ID = @Original_TRADE_ID) AND (USER_ID = @Original_USER_ID); " _
-        & " SELECT PROJECT_ID, USER_ID, TRADE_ID " _
+        & " SET PROJECT_ID = @PROJECT_ID, COMPANY_ID = @COMPANY_ID, TRADE_ID = @TRADE_ID " _
+        & " WHERE (PROJECT_ID = @Original_PROJECT_ID) AND (TRADE_ID = @Original_TRADE_ID) AND (COMPANY_ID = @Original_COMPANY_ID); " _
+        & " SELECT PROJECT_ID, COMPANY_ID, TRADE_ID " _
         & " FROM USER_ROLES " _
-        & " WHERE (PROJECT_ID = @PROJECT_ID) AND (TRADE_ID = @TRADE_ID) AND (USER_ID = @USER_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID) AND (TRADE_ID = @TRADE_ID) AND (COMPANY_ID = @COMPANY_ID)", vCommConn)
 
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", System.Data.SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", System.Data.SqlDbType.Int, 4, "USER_ID"))
+        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", System.Data.SqlDbType.Int, 4, "COMPANY_ID"))
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", System.Data.SqlDbType.Int, 4, "TRADE_ID"))
 
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_PROJECT_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "PROJECT_ID", System.Data.DataRowVersion.Original, Nothing))
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_TRADE_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRADE_ID", System.Data.DataRowVersion.Original, Nothing))
-        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_USER_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "USER_ID", System.Data.DataRowVersion.Original, Nothing))
+        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_COMPANY_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "COMPANY_ID", System.Data.DataRowVersion.Original, Nothing))
 
         '--- Delete Command ---
         vUser_RolesDataAdapter.DeleteCommand = New SqlCommand("" _
         & "DELETE " _
         & " FROM USER_ROLES" _
-        & " WHERE (PROJECT_ID = @PROJECT_ID AND USER_ID = @USER_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID AND COMPANY_ID = @COMPANY_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
 
         vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
+        vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.Int, 4, "COMPANY_ID"))
         vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", SqlDbType.Int, 4, "TRADE_ID"))
 
         vUser_RolesDataAdapter.Update(pUser_RolesDS)
@@ -381,7 +381,7 @@ Public Class cxClass
         If Not pCurProj = 0 Then
             vSQL &= " LEFT OUTER JOIN DEFICIENCIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID"
             vSQL &= " INNER JOIN USERS ON USERS.COMPANY_ID = COMPANIES.COMPANY_ID"
-            vSQL &= " INNER JOIN USER_ROLES ON USER_ROLES.USER_ID = USERS.USER_ID"
+            vSQL &= " INNER JOIN USER_ROLES ON USER_ROLES.COMPANY_ID = USERS.COMPANY_ID"
             vSQL &= " WHERE USER_ROLES.PROJECT_ID = @PROJECT_ID OR DEFICIENCIES.PROJECT_ID = @PROJECT_ID"
         ElseIf pShowActiveOnly = True Then
             vSQL &= " WHERE COMPANIES.ISACTIVE = @ISACTIVE"
@@ -519,7 +519,7 @@ Public Class cxClass
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_EMAIL", SqlDbType.NVarChar, 50, "USER_EMAIL"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.NVarChar, 50, "COMPANY_ID"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_PHONE", SqlDbType.NVarChar, 50, "USER_PHONE"))
-        vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ROLE", SqlDbType.Int, "ROLE"))
+        vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ROLE", SqlDbType.Int, 4, "ROLE"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISACTIVE", SqlDbType.Bit, 1, "ISACTIVE"))
         vUsersDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@FirstName", SqlDbType.NVarChar, 100, "FirstName"))
@@ -543,7 +543,7 @@ Public Class cxClass
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_EMAIL", SqlDbType.NVarChar, 50, "USER_EMAIL"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.NVarChar, 50, "COMPANY_ID"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_PHONE", SqlDbType.NVarChar, 50, "USER_PHONE"))
-        vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ROLE", SqlDbType.Int, "ROLE"))
+        vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ROLE", SqlDbType.Int, 4, "ROLE"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@ISACTIVE", SqlDbType.Bit, 1, "ISACTIVE"))
         vUsersDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@FirstName", SqlDbType.NVarChar, 100, "FirstName"))
@@ -563,27 +563,23 @@ Public Class cxClass
         vCommConn.Close()
         Return True
     End Function
+    Public Shared Function DeleteUsers(cname As String) As Boolean
+        Try
+            vCommConn.Open()
+            Dim cmdText = "DELETE FROM USERS WHERE USER_ID= @cname"
+            Dim cmd As SqlCommand = New SqlCommand(cmdText, vCommConn)
+            With cmd.Parameters
+                .Add(New SqlParameter("@cname", cname))
+            End With
+            Dim dt As New DataTable("USERS")
+            cmd.ExecuteNonQuery()
+            vCommConn.Close()
+        Catch ex As Exception
+            Return False
+        End Try
 
-    'Public Shared Function DeleteUsers(ByVal pUsersDS As dsCommissioning.USERSDataTable) As Boolean
-    '    Try
-    '        vCommConn.Open()
-    '    Catch ex As Exception
-    '        'MsgBox(ex.Message, MsgBoxStyle.Critical)
-    '    End Try
-
-    '    Dim vUsersDataAdapter As New SqlDataAdapter
-    '    vUsersDataAdapter.DeleteCommand = New SqlCommand("" _
-    '    & "DELETE " _
-    '    & " FROM USERS" _
-    '    & " WHERE (USER_ID = @USER_ID)", vCommConn)
-
-    '    vUsersDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
-
-    '    vUsersDataAdapter.Update(pUsersDS)
-
-    '    vCommConn.Close()
-    '    Return True
-    'End Function
+        Return True
+    End Function
 
     Public Shared Function GetCompany_Heirachy(ByVal pCurProj As Integer, ByVal pCompany_HeirachyDS As dsCommissioning.COMPANY_HEIRACHYDataTable) As Boolean
         Try

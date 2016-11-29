@@ -1,4 +1,6 @@
 Imports System.Data.SqlClient
+Imports System.Data
+Imports System.Data.Sql
 
 
 Partial Class cxLogin
@@ -26,10 +28,13 @@ Partial Class cxLogin
         End If
     End Sub
 
+    Dim cnn As SqlConnection
+    Dim cmd As SqlCommand
+    Dim dr As SqlDataReader
     Function ValidateUser(ByVal uid As String, ByVal passwd As String) As Boolean
-        Dim cnn As SqlConnection
-        Dim cmd As SqlCommand
-        Dim dr As SqlDataReader
+        'Dim cnn As SqlConnection
+        'Dim cmd As SqlCommand
+        'Dim dr As SqlDataReader
         Dim retVal As Boolean = False
         'cnn = New SqlConnection("Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123;")
         cnn = New SqlConnection("Data Source=.;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;")
@@ -42,7 +47,7 @@ Partial Class cxLogin
         cnn.Open()
         dr = cmd.ExecuteReader()
         While (dr.Read())
-            If StrComp(dr.Item("USER_PASSWORD"), FormsAuthentication.HashPasswordForStoringInConfigFile("169A00289AFE6B14220C8B0B7CFFA8D3CA8E7216", "SHA1"), 1) = 0 Then
+            If StrComp(dr.Item("USER_PASSWORD"), FormsAuthentication.HashPasswordForStoringInConfigFile(InputPassword.Text, "SHA1"), 1) = 0 Then
                 retVal = True
                 Session.Add("CurUserName", dr.Item("USER_NAME"))
                 Session.Add("CurUserID", dr.Item("USER_ID"))
@@ -55,6 +60,18 @@ Partial Class cxLogin
 
 
     Protected Sub ASPxButtonOk_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxButtonOk.Click
-        PopupControl1.ShowOnPageLoad = False
+        '    PopupControl1.ShowOnPageLoad = False
+        'End Sub
+        'Protected Sub btnSendEmail_Click(sender As Object, e As EventArgs) Handles btnSendEmail.Click
+        '    cnn = New SqlConnection("Data Source=.;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;")
+        '    cmd = New SqlCommand("SELECT * FROM USERS WHERE USER_EMAIL = '" & txtEmailBox.Text & "' AND ISACTIVE = 1", cnn)
+        '    cnn.Open()
+        '    dr = cmd.ExecuteReader()
+        '    While (dr.Read())
+        '        If (StrComp(dr.Item("USER_EMAIL"), txtEmailBox.Text) = 0) Then
+        '            Response.Write(dr.Item("USER_PASSWORD").ToString())
+        '        End If
+        '    End While
+
     End Sub
 End Class

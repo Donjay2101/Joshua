@@ -34,6 +34,15 @@
 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="mainContent" ID="content1" runat="server">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+        rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id*=InputEmail]").autocomplete({ source: '<%=ResolveUrl("~/Admin/UserHandler.ashx") %>' });
+        });      
+    </script>
     <div id="popup" class="header" style="display: none">
     </div>
     <form id="AddUser" runat="server">
@@ -184,9 +193,10 @@
             <div class="col-md-3">
                 <label class="grey-text">User's Role</label>
             </div>
+            <%-- ASPxComboBoxRole --%>
             <div class="col-md-9">
                 <dxwdc:ASPxComboBox ID="ASPxComboBoxRole" runat="server" Width="100%"
-                    AutoPostBack="True" EnableIncrementalFiltering="True"
+                    AutoPostBack="false" EnableIncrementalFiltering="True"
                     ValueType="System.Int32" Font-Names="Verdana" Font-Size="12px"
                     ForeColor="#666666">
                     <ItemStyle>
@@ -194,6 +204,8 @@
                         </SelectedStyle>
                     </ItemStyle>
                 </dxwdc:ASPxComboBox>
+
+
             </div>
         </div>
         <div class="row form-group">
@@ -206,7 +218,7 @@
             </div>
              <div class="col-md-3">
                 <asp:LinkButton ID="LinkButtonDelete" runat="server" CssClass="text_reg" Width="100%"
-                    TabIndex="10" CausesValidation="True">Delete User</asp:LinkButton>
+                    TabIndex="10" CausesValidation="False">Delete User</asp:LinkButton>
             </div>
             <div class="col-md-3">
                 <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"

@@ -93,7 +93,7 @@
                                                                                                 <td>
                                                                                                     <dxuc:ASPxUploadControl runat="server" ClientInstanceName="uploader" Size="35" ID="ASPxUploadControl1" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete"
                                                                                                         ClientSideEvents-FileUploadComplete='<%# GetFileUploadComplete(Container) %>'>
-                                                                                                        <validationsettings allowedcontenttypes="image/jpeg,image/pjpeg" maxfilesize="2000000">
+                                                                                                        <validationsettings AllowedFileExtensions=".jpg, .jpeg, .doc, .docx, .xsl, .xlsx, .pdf, .csv" maxfilesize="2000000">
                                                                                                                             </validationsettings>
                                                                                                     </dxuc:ASPxUploadControl>
                                                                                                 </td>
@@ -152,9 +152,11 @@
                     </Styles>
                     <SettingsEditing EditFormColumnCount="3" Mode="EditForm" />
                     <Columns>
-                        <dxwgv:GridViewCommandColumn Caption=" " Name="Btns" VisibleIndex="0" Width="23px">
+                        <dxwgv:GridViewCommandColumn Caption=" " Name="Btns" VisibleIndex="0" Width="80px">
                             <EditButton Visible="True">
                             </EditButton>
+                            <DeleteButton Visible="True">
+                            </DeleteButton>
                             <ClearFilterButton Visible="True">
                             </ClearFilterButton>
                         </dxwgv:GridViewCommandColumn>
@@ -272,7 +274,7 @@
 
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>"
             SelectCommand="SELECT * FROM [PHOTOS] WHERE (([PROJECT_ID] = @PROJECT_ID) AND ([ITEM_NUMBER] = @ITEM_NUMBER))"
-            InsertCommand="INSERT INTO [Photos] ([ID], [Bytes], [Description], [PROJECT_ID], [ITEM_NUMBER]) VALUES (@ID, @Bytes, @Description, @Project_ID, @Item_Number)"
+            InsertCommand="INSERT INTO [Photos] ([ID], [Description], [PROJECT_ID], [ITEM_NUMBER],[Url]) VALUES (@ID, @Description, @Project_ID, @Item_Number,@Url)"
             DeleteCommand="DELETE FROM [Photos] WHERE (([ID] = @ID) AND ([PROJECT_ID] = @PROJECT_ID) AND ([ITEM_NUMBER] = @ITEM_NUMBER))">
 
             <SelectParameters>
