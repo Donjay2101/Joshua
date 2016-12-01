@@ -93,7 +93,7 @@
                                                                                                 <td>
                                                                                                     <dxuc:ASPxUploadControl runat="server" ClientInstanceName="uploader" Size="35" ID="ASPxUploadControl1" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete"
                                                                                                         ClientSideEvents-FileUploadComplete='<%# GetFileUploadComplete(Container) %>'>
-                                                                                                        <validationsettings AllowedFileExtensions=".jpg, .jpeg, .doc, .docx, .xsl, .xlsx, .pdf, .csv" maxfilesize="2000000">
+                                                                                                        <validationsettings AllowedFileExtensions=".jpg, .jpeg, .doc, .docx, .xsl, .xlsx, .pdf, .csv, .png" maxfilesize="2000000">
                                                                                                                             </validationsettings>
                                                                                                     </dxuc:ASPxUploadControl>
                                                                                                 </td>

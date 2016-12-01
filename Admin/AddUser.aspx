@@ -233,8 +233,8 @@
                 <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">              
 
                                 <%-- <input type="button" value="OK" id="btnOk" /> --%>
-                                 <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
-                                        Text="Ok" Width="75px">
+                                 <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" CausesValidation="false" HorizontalAlign="Center"
+                                        Text="Ok" Width="75px" >
                                     </dxwdc:ASPxButton>                     
                 </dxpc:PopupControlContentControl>
             </ContentCollection>
