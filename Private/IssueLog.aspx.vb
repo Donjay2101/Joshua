@@ -5,7 +5,9 @@ Imports System.Web.UI.HtmlControls
 Imports System.Collections.Specialized
 Imports DevExpress.Web.ASPxTabControl
 Imports DevExpress.Web.ASPxUploadControl
-
+Imports System.IO
+Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Partial Class IssueLog
     Inherits System.Web.UI.Page
 
@@ -449,7 +451,7 @@ Partial Class IssueLog
         e.NewValues("Description") = textBox.Text
         e.NewValues("ID") = Guid.NewGuid().ToString().Replace("-", "")
         e.NewValues("PROJECT_ID") = Session.Item("CurProjectID")
-        e.NewValues("ITEM_NUMBER") = Session.Item("ITEM_NUMBER")
+        e.NewValues("ITEM_NUMBER") = (TryCast(sender, ASPxGridView)).GetMasterRowKeyValue() 'Session.Item("ITEM_NUMBER")
         e.NewValues("Url") = "~/Uploads/" & Session.Item("CurProjectID") & "/" & Url
 
         e.Cancel = Not SaveFileBytesToRow(grid, e.NewValues)
@@ -460,11 +462,43 @@ Partial Class IssueLog
         If TryCast(sender, ASPxUploadControl).IsValid Then
             Session("data") = TryCast(sender, ASPxUploadControl).FileBytes
             Url = TryCast(sender, ASPxUploadControl).FileName
-
             Dim folderPath As String = Server.MapPath("~/Uploads/" & Session.Item("CurProjectID") & "/")
+            If Not Directory.Exists(folderPath) Then
+                Directory.CreateDirectory(folderPath)
+            End If
+            Dim extension As String = Path.GetExtension(sender.UploadedFiles(0).FileName)
+            If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
+                Dim strm As Stream = sender.UploadedFiles(0).PostedFile.InputStream
+                Using image = System.Drawing.Image.FromStream(strm)
+                    ' Print Original Size of file (Height or Width)   
+
+                    Dim newWidth As Integer = 240
+                    ' New Width of Image in Pixel  
+                    Dim newHeight As Integer = 240
+                    ' New Height of Image in Pixel  
+                    Dim thumbImg = New System.Drawing.Bitmap(newWidth, newHeight)
+                    Dim thumbGraph = Graphics.FromImage(thumbImg)
+                    thumbGraph.CompositingQuality = CompositingQuality.HighQuality
+                    thumbGraph.SmoothingMode = SmoothingMode.HighQuality
+                    thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic
+                    Dim imgRectangle = New Rectangle(0, 0, newWidth, newHeight)
+                    thumbGraph.DrawImage(image, imgRectangle)
+                    ' Save the file  
+                    Dim targetPath As String = folderPath & Path.GetFileName(sender.UploadedFiles(0).FileName)
+                    thumbImg.Save(targetPath, image.RawFormat)
+                    ' Print new Size of file (height or Width)  
+
+                    'Show Image  
+
+                End Using
+
+            End If
+
             sender.UploadedFiles(0).SaveAs(folderPath & System.IO.Path.GetFileName(sender.UploadedFiles(0).FileName))
-        End If
+            End If
     End Sub
+
+
 
     Protected Function SaveFileBytesToRow(ByVal grid As ASPxGridView, ByVal newValues As OrderedDictionary) As Boolean
         Dim ret As Boolean = True

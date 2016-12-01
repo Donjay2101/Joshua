@@ -2,6 +2,8 @@ Imports System.Data.SqlClient
 Imports System.Data
 Imports DevExpress.Web.ASPxUploadControl
 Imports System.IO
+Imports System.Drawing
+Imports System.Drawing.Drawing2D
 
 Partial Class AddIssue
     Inherits System.Web.UI.Page
@@ -186,21 +188,81 @@ Partial Class AddIssue
         PopupControl1.ShowOnPageLoad = False
     End Sub
 
+    Public Function Resize(ByVal FolderPath As String, ByVal img As Int32) As Boolean
+        Dim extension As String = Path.GetExtension(ASPxUploadControl1.UploadedFiles(img).FileName)
+        If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
+            Dim strm As Stream = ASPxUploadControl1.UploadedFiles(img).PostedFile.InputStream
+            Using image = System.Drawing.Image.FromStream(strm)
+
+                Dim img_height As Integer
+                img_height = image.Height
+                Dim img_width As Integer
+                img_width = image.Width
+                Dim newWidth As Integer '= image.Width / 10
+                ' New Width of Image in Pixel  
+                Dim newHeight As Integer '= image.Height / 10
+                If (img_height > 1441 AndAlso img_width > 2197) Then
+                    newHeight = 1400
+                    newWidth = 2100
+                Else
+                    newHeight = image.Height
+                    newWidth = image.Width
+                End If
+
+                ' New Height of Image in Pixel  
+                Dim thumbImg = New System.Drawing.Bitmap(newWidth, newHeight)
+                Dim thumbGraph = Graphics.FromImage(thumbImg)
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic
+                Dim imgRectangle = New Rectangle(0, 0, newWidth, newHeight)
+                thumbGraph.DrawImage(image, imgRectangle)
+                ' Save the file  
+                Dim targetPath As String = FolderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(img).FileName)
+                thumbImg.Save(targetPath, image.RawFormat)
+                ' Print new Size of file (height or Width)  
+
+                'Show Image  
+
+            End Using
+
+        End If
+        Return True
+    End Function
     Protected Sub ASPxUploadControl1_FilesUploadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxUploadControl1.FilesUploadComplete
 
         Dim folderPath As String = Server.MapPath("~/Uploads/" & Session.Item("CurProjectID") & "/")
         'url = folderPath
         If Not Directory.Exists(folderPath) Then
             Directory.CreateDirectory(folderPath)
-            If Not ASPxUploadControl1.UploadedFiles(0).FileBytes.Length = 0 Then
+        End If
+        If Not ASPxUploadControl1.UploadedFiles(0).FileBytes.Length = 0 Then
+            Dim extension As String = Path.GetExtension(ASPxUploadControl1.UploadedFiles(0).FileName)
+            If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
+                Resize(folderPath, 0)
+                Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
+            Else
                 ASPxUploadControl1.UploadedFiles(0).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(0).FileName))
                 Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
             End If
-            If Not ASPxUploadControl1.UploadedFiles(1).FileBytes.Length = 0 Then
+
+        End If
+        If Not ASPxUploadControl1.UploadedFiles(1).FileBytes.Length = 0 Then
+            Dim extension As String = Path.GetExtension(ASPxUploadControl1.UploadedFiles(1).FileName)
+            If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
+                Resize(folderPath, 1)
+                Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
+            Else
                 ASPxUploadControl1.UploadedFiles(1).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(1).FileName))
                 Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
             End If
-            If Not ASPxUploadControl1.UploadedFiles(2).FileBytes.Length = 0 Then
+        End If
+        If Not ASPxUploadControl1.UploadedFiles(2).FileBytes.Length = 0 Then
+            Dim extension As String = Path.GetExtension(ASPxUploadControl1.UploadedFiles(2).FileName)
+            If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
+                Resize(folderPath, 2)
+                Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
+            Else
                 ASPxUploadControl1.UploadedFiles(2).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(2).FileName))
                 Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
             End If

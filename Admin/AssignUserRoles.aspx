@@ -54,10 +54,10 @@
                             <Settings AllowAutoFilter="True" AllowSort="True"
                                 AutoFilterCondition="Contains" SortMode="DisplayText" />
                         </dxwgv:GridViewDataComboBoxColumn>
-                        <dxwgv:GridViewDataComboBoxColumn Caption="Company" FieldName="COMPANY_ID"
+                        <dxwgv:GridViewDataComboBoxColumn Caption="User" FieldName="USER_ID"
                             VisibleIndex="2" SortIndex="1" SortOrder="Ascending">
-                            <PropertiesComboBox DataSourceID="UserDS" TextField="COMPANY_NAME"
-                                ValueField="COMPANY_ID" ValueType="System.Int32" EnableIncrementalFiltering="True">
+                            <PropertiesComboBox DataSourceID="UserDS" TextField="USER_NAME"
+                                ValueField="USER_ID" ValueType="System.Int32" EnableIncrementalFiltering="True">
                             </PropertiesComboBox>
                             <Settings AllowAutoFilter="True" AllowSort="True"
                                 AutoFilterCondition="Contains" SortMode="DisplayText" />
@@ -79,9 +79,8 @@
                 <asp:Parameter DefaultValue="True" Name="pFullList" Type="Boolean" />
             </SelectParameters>
         </asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="UserDS" runat="server" SelectMethod="GetCompanies" TypeName="cxClass">
+        <asp:ObjectDataSource ID="UserDS" runat="server" SelectMethod="GetUsers" TypeName="cxClass">
             <SelectParameters>
-                <asp:Parameter Name="pCurProj" Type="Int32" />
                 <asp:Parameter DefaultValue="False" Name="pShowActiveOnly" Type="Boolean" />
             </SelectParameters>
         </asp:ObjectDataSource>

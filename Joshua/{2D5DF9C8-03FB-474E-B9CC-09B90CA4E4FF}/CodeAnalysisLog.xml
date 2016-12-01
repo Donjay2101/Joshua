@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 14.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="14.0">
+ <Targets>
+  <Target Name="C:\Users\EACD-DN04\AppData\Local\Temp\tmp570C.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="cxClass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetLastestDateDef(System.Int32)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="cxClass.vb" Line="960">The query string passed to 'SqlCommand.New(String, SqlConnection)' in 'cxClass.GetLastestDateDef(Integer)' could contain the following variables 'Conversions.ToString(pCurProj)'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetRPTDeficiencies(System.Int32,System.Int32,System.String,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="cxClass.vb" Line="1045">The query string passed to 'SqlCommand.New(String, SqlConnection)' in 'cxClass.GetRPTDeficiencies(Integer, Integer, String, String)' could contain the following variables 'pCurSort'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="dsCommissioning" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+COMPANIESDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.COMPANIESDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+COMPANY_HEIRACHYDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.COMPANY_HEIRACHYDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+DEFICIENCIESDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.DEFICIENCIESDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+PHOTOSDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.PHOTOSDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+PROJECTSDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.PROJECTSDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+RPT_DEFICIENCIESDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.RPT_DEFICIENCIESDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+RPT_PROJ_CONTACTDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.RPT_PROJ_CONTACTDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+TRADESDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.TRADESDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+USAGE_LOGDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.USAGE_LOGDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+USER_ROLESDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.USER_ROLESDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="dsCommissioning+USERSDataTable" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+           <Issue Certainty="60" Level="Error">Add an implementation of GetObjectData to type 'dsCommissioning.USERSDataTable'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="RPTProjectContacts" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_BVHLogo():XRPictureBox</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_Detail():DetailBand</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_LBLTrade():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_PageFooter():PageFooterBand</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_ProjName():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_ProjNameFTR():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectContacts.get_ProjNum():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectContacts.vb" Line="6">'RPTProjectContacts.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectContacts..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectContacts.InitializeComponent():Void&#xD;&#xA;RPTProjectContacts.get_TableContacts():XRTable</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="RPTProjectIssues" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_ComNoticeInfoTXT():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_CurDate():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataActionBy():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataItem():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataNo():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataPostedOn():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataResponse():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataStatus():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_DataTag():XRTableCell</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_Detail():DetailBand</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_Key():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_LeadCA():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_PageFooter():PageFooterBand</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_PageHeader():PageHeaderBand</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_ProjName():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_ProjNum():XRLabel</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;ISupportInitialize.BeginInit():Void&#xD;&#xA;RPTProjectIssues.get_TBLRowIssues():XRTableRow</Issue>
+             <Issue Certainty="95" Level="CriticalWarning" Path="C:\Users\EACD-DN04\Desktop\Joshua\App_Code" File="RPTProjectIssues.vb" Line="7">'RPTProjectIssues.New()' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: &#xD;&#xA;&#xD;&#xA;RPTProjectIssues..ctor()&#xD;&#xA;XRControl.add_BeforePrint(PrintEventHandler):Void&#xD;&#xA;RPTProjectIssues.InitializeComponent():Void&#xD;&#xA;RPTProjectIssues.get_TBLIssues():XRTable</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\EACD-DN04\AppData\Local\Temp\tmp570C.tmp.cadir\bin\App_global.asax.dll">
+   <Modules>
+    <Module Name="app_global.asax.dll">
+     <Namespaces>
+      <Namespace Name="ASP">
+       <Types>
+        <Type Name="global_asax" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Application_AuthenticateRequest(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua" File="global.asax" Line="49">The query string passed to 'SqlCommand.New(String, SqlConnection)' in 'global_asax.Application_AuthenticateRequest(Object, EventArgs)' could contain the following variables 'id.Name'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\EACD-DN04\AppData\Local\Temp\tmp570C.tmp.cadir\bin\App_Web_k1ffezjf.dll">
+   <Modules>
+    <Module Name="app_web_k1ffezjf.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="cxLogin" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ValidateUser(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua" File="cxLogin.aspx.vb" Line="46">The query string passed to 'SqlCommand.New(String, SqlConnection)' in 'cxLogin.ValidateUser(String, String)' could contain the following variables 'uid'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Merge_Companies" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BTNUpdate_Click(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua" File="Merge_Companies.aspx.vb" Line="47">The query string passed to 'SqlCommand.CommandText.Set(String)' in 'Merge_Companies.BTNUpdate_Click(Object, EventArgs)' could contain the following variables 'Me.GetValues()'. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\EACD-DN04\AppData\Local\Temp\tmp570C.tmp.cadir\bin\App_Web_xwqvm5fa.dll">
+   <Modules>
+    <Module Name="app_web_xwqvm5fa.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CompanyHandler" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ProcessRequest(System.Web.HttpContext)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua\Admin" File="CompanyHandler.ashx" Line="30">Object 'conn' can be disposed more than once in method 'CompanyHandler.ProcessRequest(HttpContext)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 30</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UserHandler" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ProcessRequest(System.Web.HttpContext)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2016-12-01 03:56:10Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\EACD-DN04\Desktop\Joshua\Admin" File="UserHandler.ashx" Line="30">Object 'conn' can be disposed more than once in method 'UserHandler.ProcessRequest(HttpContext)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 30</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 30</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
+   <Name>Do not call overridable methods in constructors</Name>
+   <Description>Virtual methods defined on the class should not be called from constructors. If a derived class has overridden the method, the derived class version will be called (before the derived class constructor is called).</Description>
+   <Resolution Name="Default">{0} contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: {1}</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182331.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="ImplementISerializableCorrectly" Category="Microsoft.Usage" CheckId="CA2240">
+   <Name>Implement ISerializable correctly</Name>
+   <Description>If a type is assignable to ISerializable, it should implement GetObjectData. For unsealed types, the GetObjectData method should be callable and overridable by derived types.</Description>
+   <Resolution Name="Default">Add an implementation of GetObjectData to type {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182342.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="60">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="14.0.0.0" />
+  </Rule>
+  <Rule TypeName="Review SQL queries for security vulnerabilities" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Review SQL queries for security vulnerabilities</Name>
+   <Description>A SQL command string built from user input is vulnerable to SQL injection attacks. Microsoft SQL Server and other database servers support stored procedures and parameterized SQL queries, which reduce the risk of injection attacks.</Description>
+   <Resolution Name="WithNonLiterals">The query string passed to {0} in {1} could contain the following variables {2}. If any of these variables could come from user input, consider using a stored procedure or a parameterized SQL query instead of building the query with string concatenations.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="14.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>

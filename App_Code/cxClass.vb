@@ -5,8 +5,8 @@ Imports System.data
 Public Class cxClass
     Inherits System.ComponentModel.Component
 
-    Public Shared gConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123"
-    'Public Shared gConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
+    'Public Shared gConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123"
+    Public Shared gConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
 
     Public Shared vCommConn As New SqlConnection(gConnStr)
     Public Shared ImageHolder As String
@@ -312,14 +312,14 @@ Public Class cxClass
 
         '--- Insert Command ---
         vUser_RolesDataAdapter.InsertCommand = New SqlCommand("" _
-        & "INSERT INTO USER_ROLES (PROJECT_ID, COMPANY_ID, TRADE_ID)" _
-        & " VALUES (@PROJECT_ID, @COMPANY_ID, @TRADE_ID);" _
+        & "INSERT INTO USER_ROLES (PROJECT_ID, USER_ID, TRADE_ID)" _
+        & " VALUES (@PROJECT_ID, @USER_ID, @TRADE_ID);" _
         & " SELECT *" _
         & " FROM USER_ROLES" _
-        & " WHERE (PROJECT_ID = @PROJECT_ID AND COMPANY_ID = @COMPANY_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID AND USER_ID = @USER_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
 
         vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.Int, 4, "COMPANY_ID"))
+        vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUser_RolesDataAdapter.InsertCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", SqlDbType.Int, 4, "TRADE_ID"))
 
         '--- Update Command ---
@@ -338,28 +338,28 @@ Public Class cxClass
 
         vUser_RolesDataAdapter.UpdateCommand = New SqlCommand("" _
         & "UPDATE USER_ROLES" _
-        & " SET PROJECT_ID = @PROJECT_ID, COMPANY_ID = @COMPANY_ID, TRADE_ID = @TRADE_ID " _
-        & " WHERE (PROJECT_ID = @Original_PROJECT_ID) AND (TRADE_ID = @Original_TRADE_ID) AND (COMPANY_ID = @Original_COMPANY_ID); " _
-        & " SELECT PROJECT_ID, COMPANY_ID, TRADE_ID " _
+        & " SET PROJECT_ID = @PROJECT_ID, USER_ID = @COMPANY_ID, TRADE_ID = @TRADE_ID " _
+        & " WHERE (PROJECT_ID = @Original_PROJECT_ID) AND (TRADE_ID = @Original_TRADE_ID) AND (USER_ID = @Original_USER_ID); " _
+        & " SELECT PROJECT_ID, USER_ID, TRADE_ID " _
         & " FROM USER_ROLES " _
-        & " WHERE (PROJECT_ID = @PROJECT_ID) AND (TRADE_ID = @TRADE_ID) AND (COMPANY_ID = @COMPANY_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID) AND (TRADE_ID = @TRADE_ID) AND (USER_ID = @USER_ID)", vCommConn)
 
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", System.Data.SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", System.Data.SqlDbType.Int, 4, "COMPANY_ID"))
+        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", System.Data.SqlDbType.Int, 4, "USER_ID"))
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", System.Data.SqlDbType.Int, 4, "TRADE_ID"))
 
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_PROJECT_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "PROJECT_ID", System.Data.DataRowVersion.Original, Nothing))
         vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_TRADE_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "TRADE_ID", System.Data.DataRowVersion.Original, Nothing))
-        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_COMPANY_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "COMPANY_ID", System.Data.DataRowVersion.Original, Nothing))
+        vUser_RolesDataAdapter.UpdateCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@Original_USER_ID", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.Input, False, CType(0, Byte), CType(0, Byte), "USER_ID", System.Data.DataRowVersion.Original, Nothing))
 
         '--- Delete Command ---
         vUser_RolesDataAdapter.DeleteCommand = New SqlCommand("" _
         & "DELETE " _
         & " FROM USER_ROLES" _
-        & " WHERE (PROJECT_ID = @PROJECT_ID AND COMPANY_ID = @COMPANY_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
+        & " WHERE (PROJECT_ID = @PROJECT_ID AND USER_ID = @USER_ID AND TRADE_ID = @TRADE_ID)", vCommConn)
 
         vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@PROJECT_ID", SqlDbType.Int, 4, "PROJECT_ID"))
-        vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@COMPANY_ID", SqlDbType.Int, 4, "COMPANY_ID"))
+        vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@USER_ID", SqlDbType.Int, 4, "USER_ID"))
         vUser_RolesDataAdapter.DeleteCommand.Parameters.Add(New System.Data.SqlClient.SqlParameter("@TRADE_ID", SqlDbType.Int, 4, "TRADE_ID"))
 
         vUser_RolesDataAdapter.Update(pUser_RolesDS)
@@ -381,7 +381,7 @@ Public Class cxClass
         If Not pCurProj = 0 Then
             vSQL &= " LEFT OUTER JOIN DEFICIENCIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID"
             vSQL &= " INNER JOIN USERS ON USERS.COMPANY_ID = COMPANIES.COMPANY_ID"
-            vSQL &= " INNER JOIN USER_ROLES ON USER_ROLES.COMPANY_ID = USERS.COMPANY_ID"
+            vSQL &= " INNER JOIN USER_ROLES ON USER_ROLES.USER_ID = USERS.USER_ID"
             vSQL &= " WHERE USER_ROLES.PROJECT_ID = @PROJECT_ID OR DEFICIENCIES.PROJECT_ID = @PROJECT_ID"
         ElseIf pShowActiveOnly = True Then
             vSQL &= " WHERE COMPANIES.ISACTIVE = @ISACTIVE"
