@@ -4,30 +4,44 @@
 <asp:Content runat="server" ContentPlaceHolderID="head" ID="head">
 </asp:Content>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
-    <form id="frm" runat="server">
-        <table style="border: 10px solid double">
-            <tr>
-                <th>List of Companies</th>
-                <th>Sigle Company</th>
-            </tr>
-            <tr>
-                <td>
-                    <div style="OVERFLOW-Y:scroll; WIDTH:250px; HEIGHT:400px">
+    <div class="row">
+      <div class="col-md-10 col-xs-12 col-sm-12">
+            <form id="frm" runat="server">
+                           <div class="row form-group">
+                    <div class="col-md-12">
+                        <label class="blue-text">Merge Companies</label>
+                    </div>
+                </div>
+     <div class="row form-group">
+         <div class="col-md-4">
+               <label class="grey-text">Merge From</label>
+              <div style="OVERFLOW-Y: scroll;
+    WIDTH: 250px;
+    HEIGHT: 250px;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    padding: 8px;">
                     <asp:CheckBoxList ID="listCompany" runat="server" Height="50"></asp:CheckBoxList>
-                        </div>
-                </td>
-                <td>
-                    <asp:DropDownList ID="oneCompany" runat="server"></asp:DropDownList>
-                </td>
-            </tr>
-        </table>
+                    </div>
+         </div>
+          <div class="col-md-4">
+                 <label class="grey-text">Merge To</label>
+               <asp:DropDownList ID="oneCompany" runat="server"></asp:DropDownList>
+         </div>
+     </div>
+              
+          
+                   
+         
+                   
+     
         <div class="row">
             <div class="col-md-3 col-md-offset-6 col-sm-6 text-right">
                 <asp:LinkButton ID="BTNUpdate" runat="server" Width="100%" CssClass="text_reg"
                     TabIndex="4">Merge Companies</asp:LinkButton>
             
             </div>
-            <div class="col-md-3 col-sm-6 text-right">
+            <div class="col-md-3 col-sm-6">
                     <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
@@ -43,4 +57,7 @@
             <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
         </dxpc:aspxpopupcontrol>
     </form>
+        </div>
+    </div>
+  
 </asp:Content>
