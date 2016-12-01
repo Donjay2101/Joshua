@@ -120,9 +120,9 @@ Partial Class ProjectSelect
         PopupControl1.ShowOnPageLoad = False
     End Sub
 
-    Protected Sub BTNRequestAccess_Click(sender As Object, e As EventArgs) Handles BTNRequestAccess.Click
-        Response.Redirect("../Private/RequestAccess.aspx")
-    End Sub
+    'Protected Sub BTNRequestAccess_Click(sender As Object, e As EventArgs) Handles BTNRequestAccess.Click
+    '    Response.Redirect("../Private/RequestAccess.aspx")
+    'End Sub
     Protected Sub BTNMergeCompany_Click(sender As Object, e As EventArgs) Handles BTNMergeCompany.Click
         Response.Redirect("../Admin/Merge_Companies.aspx")
     End Sub

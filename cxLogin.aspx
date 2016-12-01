@@ -69,6 +69,8 @@
                         <a href="#" id="forgotpassword">Forgot password?</a>                        
                     </div>
                 </div>
+
+                <asp:LinkButton ID="BTNRequestAccess" runat="server" CssClass="text_reg">Request Access</asp:LinkButton>
                 <div class="row" id="divForgotpassword" style="display:none;margin-top:20px;">              
                         <label  class="col-md-2 control-label">Email</label>                                  
                   
