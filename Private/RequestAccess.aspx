@@ -5,7 +5,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="mainContent" Runat="Server">
-    <form id="AddCompany" runat="server">
+    <div class="row">
+        <div class="col-md-10 col-sm-12 col-xs-12">
+            <form id="AddCompany" runat="server">
         <div class="row form-group">
             <div class="col-md-12">
                 <label class="blue-text">Request Access</label>
@@ -75,7 +77,7 @@
                     <ContentCollection>
                         <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="margin-top:20px;">
                                     <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px"></dxwdc:ASPxButton>
                                 </div>
                             </div>
@@ -86,5 +88,8 @@
             </div>
         </div>
     </form>
+        </div>
+    </div>
+    
 </asp:Content>
 

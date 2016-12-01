@@ -249,12 +249,14 @@
             </ContentStyle>
             <ContentCollection>
                 <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
-
+                     <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top:20px;">
                  
                                 <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
                                     Text="Ok" Width="75px">
                                 </dxwdc:ASPxButton>
-                   
+                   </div>
+                         </div>
 
                 </dxpc:PopupControlContentControl>
             </ContentCollection>

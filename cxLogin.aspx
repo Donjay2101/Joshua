@@ -62,25 +62,28 @@
                         </dxwdc:ASPxTextBox>
                     </div>
                 </div>
-                <div class="row" >
+                <div class="row form-group" >
                     <div class="col-md-7 text-right">
                         <asp:Button ID="BTNLogin" runat="server" Text="Sign In" OnClick="BTNLogin_Click" CssClass="new-btn"/>
                         <%--<asp:LinkButton ID="BTNLogin" OnClick="BTNLogin_Click" runat="server" CssClass="text_bold">Sign In</asp:LinkButton>--%>
                         <a href="#" id="forgotpassword">Forgot password?</a>                        
                     </div>
                 </div>
-                <div class="row" id="divForgotpassword" style="display:none">
-                    <div class="col-md-4">
-                        Email:
-                    </div>
-                    <div>
-                        <asp:TextBox ID="txtEmailBox" ClientIDMode="Static"  runat="server"></asp:TextBox>
+                <div class="row" id="divForgotpassword" style="display:none;margin-top:20px;">              
+                        <label  class="col-md-2 control-label">Email</label>                                  
+                  
+                        <div class="col-md-5">
+                          <asp:TextBox ID="txtEmailBox" ClientIDMode="Static"  runat="server" Width="100%" CssClass="bodered-input"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="entered is not an email." ControlToValidate="txtEmailBox" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         <%--<input type="button" id="btnSendEmail" value="submit"name="submit"/>--%>
-                        <asp:Button ID="btnSendEmail" runat="server" Text="submit" />
-
-                    </div>
-                </div>
+                        </div>   
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-2 text-right">
+                             <asp:Button ID="btnSendEmail" runat="server" Text="submit" CssClass="new-btn submt" Style="background: #00a985;"/>
+                        </div>
+                    </div>                                         
+                 </div>
+               
             </div>
         </div>
         
