@@ -11,7 +11,7 @@ Partial Class Default2
         Try
             Dim mm As New MailMessage("testeac7@gmail.com", "testeac7@gmail.com")
             mm.Subject = "Request Access"
-            mm.Body = String.Format("A new request access has been generated for <b>" & ASPxTextBoxName.Text & "</b><br/><br/><table border=1><tr><td height=20px>" & "ID : </td><td height=20px>" & ASPxTextBoxEmail.Text & "</td>" & "</tr><tr><td height=20px>Company : </td><td height=20px>" & ASPxComboBoxCompany.Text & "</td></tr><tr><td height=20px>" & "Phone Number : </td><td height=20px>" & ASPxTextBoxPhoe.Text & "</td></tr><tr><td height=20px>" & "Email : </td><td height=20px>" & ASPxTextBoxEmail.Text & "</td></tr><tr><td height=20px>" & "Message : </td height=20px>" & InputComNoticeIntro.Text & "</td></tr></table>")
+            mm.Body = String.Format("A new request access has been sent by <b>" & ASPxTextBoxName.Text & "</b><br/><br/><table border=1><tr><td height=20px>" & "ID : </td><td height=20px>" & ASPxTextBoxEmail.Text & "</td>" & "</tr><tr><td height=20px>Company : </td><td height=20px>" & ASPxComboBoxCompany.Text & "</td></tr><tr><td height=20px>" & "Phone Number : </td><td height=20px>" & ASPxTextBoxPhoe.Text & "</td></tr><tr><td height=20px>" & "Email : </td><td height=20px>" & ASPxTextBoxEmail.Text & "</td></tr><tr><td height=20px>" & "Message : </td height=20px>" & InputComNoticeIntro.Text & "</td></tr></table>")
             mm.IsBodyHtml = True
             Dim smtp As New SmtpClient()
             smtp.Host = "smtp.gmail.com"
