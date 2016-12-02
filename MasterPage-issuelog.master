@@ -80,7 +80,7 @@
             </ul>
       
              <div class="credentials">
-                   <a href="/cxLogin.aspx" class="white pull-right">Sing Out</a>
+                   <a href="/cxLogin.aspx" class="white pull-right">Sign Out</a>
              </div>
         </div>
 
