@@ -37,9 +37,9 @@
                         <asp:LinkButton ID="BTNManageProjects" runat="server" CssClass="text_reg">Add/Edit Projects</asp:LinkButton></li>
                     <li>
                         <asp:LinkButton ID="BTNAssignUsers" runat="server" CssClass="text_reg">Assign Companies to Projects</asp:LinkButton></li>
-                    <li>
+                    <%--<li>
                         <asp:LinkButton ID="BTNRequestAccess" runat="server" CssClass="text_reg">Request Access</asp:LinkButton></li>
-                    <li>                        
+                    <li> --%>                       
                         <asp:LinkButton ID="BTNMergeCompany" runat="server" CssClass="text_reg">Merge Companies</asp:LinkButton></li>
                     <li>
                         <asp:LinkButton ID="BTNUsageLog" runat="server" CssClass="text_reg">View cxPortal Usage Log</asp:LinkButton></li>

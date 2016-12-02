@@ -46,7 +46,7 @@ Partial Class Merge_Companies
         Dim par As String
         Dim par1 As String
         par = GetValues()
-        par1 = par.Replace("," + oneCompany.SelectedValue, "")
+        par1 = par.Replace(oneCompany.SelectedValue, "6544398")
         Using cmd As New SqlCommand()
             cmd.CommandText = "update USERS set COMPANY_ID = " &
                                   "@COMPANY_ID where COMPANY_ID IN (" + par + ")"
@@ -55,21 +55,28 @@ Partial Class Merge_Companies
             Conn.Open()
             Dim i As Integer = 0
             i = cmd.ExecuteNonQuery()
-            If (i > 0) Then
-                cmd.CommandText = "update DEFICIENCIES set COMPANY_ID=" + oneCompany.SelectedValue + " where COMPANY_ID IN (" + par + ")"
+            ' If (i > 0) Then
+            cmd.CommandText = "update DEFICIENCIES set COMPANY_ID=" + oneCompany.SelectedValue + " where COMPANY_ID IN (" + par + ")"
                 cmd.ExecuteNonQuery()
 
                 cmd.CommandText = "delete from COMPANIES where COMPANY_ID In(" + par1 + ")"
                 cmd.ExecuteNonQuery()
-                PopupControl1.Text = "Success."
-                PopupControl1.ShowOnPageLoad = False
-            Else
-                PopupControl1.Text = "Failure."
-                PopupControl1.ShowOnPageLoad = False
-            End If
+            ' ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Success...');", True)
+            'PopupControl1.Text = "Success."
+            'PopupControl1.ShowOnPageLoad = False
+            'Else
+            'ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Failure...');", True)
+            'PopupControl1.Text = "Failure."
+            'PopupControl1.ShowOnPageLoad = False
+            'End If
             Conn.Close()
 
         End Using
+        For Each item As ListItem In listCompany.Items
+            item.Selected = False
+        Next
+        ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Success...');", True)
+        Response.Redirect("~/Admin/Merge_Companies.aspx")
     End Sub
     Dim val As Integer
     Protected Sub oneCompany_SelectedIndexChanged(sender As Object, e As EventArgs) Handles oneCompany.SelectedIndexChanged

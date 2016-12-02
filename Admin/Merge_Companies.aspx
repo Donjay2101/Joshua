@@ -8,7 +8,7 @@
         <table style="border: 10px solid double">
             <tr>
                 <th>List of Companies</th>
-                <th>Sigle Company</th>
+                <th>Single Company</th>
             </tr>
             <tr>
                 <td>

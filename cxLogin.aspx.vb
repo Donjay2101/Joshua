@@ -74,4 +74,7 @@ Partial Class cxLogin
         '    End While
 
     End Sub
+    Protected Sub BTNRequestAccess_Click(sender As Object, e As EventArgs) Handles BTNRequestAccess.Click
+        Response.Redirect("~/RequestAccess.aspx")
+    End Sub
 End Class
