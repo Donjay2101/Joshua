@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="pageContent" ContentPlaceHolderID="mainContent" runat="server">
     <div class="row">
-      <div class="col-md-10 col-xs-12 col-sm-12">
+      <div class="col-md-12 col-xs-12 col-sm-12">
             <form id="frm" runat="server">
                            <div class="row form-group">
                     <div class="col-md-12">
@@ -13,10 +13,10 @@
                     </div>
                 </div>
      <div class="row form-group">
-         <div class="col-md-4">
+         <div class="col-md-4 col-sm-6 col-xs-12">
                <label class="grey-text">Merge From</label>
               <div style="OVERFLOW-Y: scroll;
-    WIDTH: 250px;
+    WIDTH:100%;
     HEIGHT: 250px;
     border: 1px solid #cacaca;
     border-radius: 2px;
@@ -24,9 +24,9 @@
                     <asp:CheckBoxList ID="listCompany" runat="server" Height="50"></asp:CheckBoxList>
                     </div>
          </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-6 col-xs-12">
                  <label class="grey-text">Merge To</label>
-               <asp:DropDownList ID="oneCompany" runat="server"></asp:DropDownList>
+               <asp:DropDownList ID="oneCompany" runat="server" style="width: 100%;"></asp:DropDownList>
          </div>
      </div>
               
