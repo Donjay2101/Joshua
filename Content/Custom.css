@@ -76,6 +76,9 @@ nav{
     width:20%!important;
     position: relative;
 }
+.bc-lg{
+    padding-top:12em;
+}
 /*#li-1:hover{
     background-image:url("../Graphics/top__01.gif");
     width:20%;
@@ -347,7 +350,7 @@ a.change-pass {
     height: 84px;
 }
      .body-content {
-    padding-top: 6em!important;
+    padding-top:8em!important;
 }
      .bvh-menu {
     padding-top: 34px;
@@ -356,6 +359,7 @@ a.change-pass {
      .bvh-menu a {
     padding: 0px 7px;
 }
+
  }
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:portrait)
 {
@@ -398,6 +402,9 @@ a.change-pass {
     }*/
 nav ul li a img{
   
+}
+.bc-lg{
+    padding-top:12em;
 }
 }
 .popup{        
