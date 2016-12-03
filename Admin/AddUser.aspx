@@ -224,7 +224,7 @@
             </div>
             <div class="col-md-3">
                 <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
-                    TabIndex="11">Back to Project Selection</asp:LinkButton>
+                    TabIndex="11" CausesValidation="False">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
         <div id="popControl1" runat="server">
@@ -237,7 +237,7 @@
                                 <div class="col-md-12 text-center" style="margin-top:20px;">
                                 <%-- <input type="button" value="OK" id="btnOk" /> --%>
                                  <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center"
-                                        Text="Ok" Width="75px">
+                                        Text="Ok" Width="75px" AutoPostBack="False" CausesValidation="False">
                                     </dxwdc:ASPxButton>  
                                     </div>
                          </div>                   

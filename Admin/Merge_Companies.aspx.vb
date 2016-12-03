@@ -12,7 +12,7 @@ Partial Class Merge_Companies
     Public Function GetCompanies() As Boolean
         If Not Page.IsPostBack Then
             Conn = cxClass.vCommConn
-            cmd = New SqlCommand("Select * from COMPANIES where ISACTIVE=1", Conn)
+            cmd = New SqlCommand("Select * from COMPANIES where ISACTIVE=1 order by COMPANY_NAME", Conn)
             Conn.Open()
             Using sdr As SqlDataReader = cmd.ExecuteReader()
                 While sdr.Read()
@@ -57,10 +57,10 @@ Partial Class Merge_Companies
             i = cmd.ExecuteNonQuery()
             ' If (i > 0) Then
             cmd.CommandText = "update DEFICIENCIES set COMPANY_ID=" + oneCompany.SelectedValue + " where COMPANY_ID IN (" + par + ")"
-                cmd.ExecuteNonQuery()
+            cmd.ExecuteNonQuery()
 
-                cmd.CommandText = "delete from COMPANIES where COMPANY_ID In(" + par1 + ")"
-                cmd.ExecuteNonQuery()
+            cmd.CommandText = "delete from COMPANIES where COMPANY_ID In(" + par1 + ")"
+            cmd.ExecuteNonQuery()
             ' ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Success...');", True)
             'PopupControl1.Text = "Success."
             'PopupControl1.ShowOnPageLoad = False
@@ -72,11 +72,13 @@ Partial Class Merge_Companies
             Conn.Close()
 
         End Using
+
         For Each item As ListItem In listCompany.Items
             item.Selected = False
         Next
         ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Success...');", True)
         Response.Redirect("~/Admin/Merge_Companies.aspx")
+
     End Sub
     Dim val As Integer
     Protected Sub oneCompany_SelectedIndexChanged(sender As Object, e As EventArgs) Handles oneCompany.SelectedIndexChanged

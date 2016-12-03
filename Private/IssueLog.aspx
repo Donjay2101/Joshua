@@ -74,7 +74,7 @@
                                                             </dxw:ContentControl>
                                                         </ContentCollection>
                                                     </dxtc:TabPage>
-                                                    <dxtc:TabPage Text="Photo">
+                                                    <dxtc:TabPage Text="File">
                                                         <ContentCollection>
                                                             <dxw:ContentControl runat="server">
                                                                 <table border="0" cellpadding="0" cellspacing="0" id="Table1">
@@ -86,7 +86,7 @@
                                                                                         <table cellpadding="0" cellspacing="0">
                                                                                             <tr>
                                                                                                 <td class="caption">
-                                                                                                    <dxe:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select Image:" AssociatedControlID="uplImage">
+                                                                                                    <dxe:ASPxLabel ID="ASPxLabel1" runat="server" Text="Select File:" AssociatedControlID="uplImage">
                                                                                                     </dxe:ASPxLabel>
                                                                                                 </td>
                                                                                                 <td></td>
@@ -98,7 +98,7 @@
                                                                                                     </dxuc:ASPxUploadControl>
                                                                                                 </td>
                                                                                                 <td class="note">
-                                                                                                    <dxe:ASPxLabel ID="ASPxLabel2" runat="server" Text="Allowed ContentTypes: image/jpeg"
+                                                                                                    <dxe:ASPxLabel ID="ASPxLabel2" runat="server" Text="Allowed ContentTypes: image/jpg, image/jpeg, image/png .doc, .docx, .xsl, .xlsx, .pdf, .csv"
                                                                                                         Font-Size="8pt">
                                                                                                     </dxe:ASPxLabel>
                                                                                                     <br />

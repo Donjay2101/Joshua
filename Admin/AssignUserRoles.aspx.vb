@@ -64,10 +64,12 @@ Partial Class AssignUserRoles
 
             If UserRolesDS.Rows.Count = 0 Then
                 Dim CurUserRolesRow As dsCommissioning.USER_ROLESRow
+                'Dim CurUserTradesRow As dsCommissioning.user_t
+                'Dim CurUserCompanyIDRow As dsCommissioning.COMPANIESRow
                 CurUserRolesRow = UserRolesDS.NewUSER_ROLESRow
                 CurUserRolesRow.PROJECT_ID = ProjectSelectPulldown.Value
                 CurUserRolesRow.TRADE_ID = 14
-                CurUserRolesRow.USER_ID = 2
+                CurUserRolesRow.COMPANY_ID = 2
                 UserRolesDS.AddUSER_ROLESRow(CurUserRolesRow)
                 cxClass.UpdateUser_Roles(UserRolesDS)
             End If
@@ -75,7 +77,7 @@ Partial Class AssignUserRoles
     End Sub
 
     Protected Sub G1_RowDeleting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataDeletingEventArgs) Handles G1.RowDeleting
-        Dim updatedrow As dsCommissioning.USER_ROLESRow = UserRolesDS.FindByPROJECT_IDUSER_IDTRADE_ID(ProjectSelectPulldown.Value, e.Values("USER_ID"), e.Values("TRADE_ID"))
+        Dim updatedrow As dsCommissioning.USER_ROLESRow = UserRolesDS.FindByPROJECT_IDCOMPANY_IDTRADE_ID(ProjectSelectPulldown.Value, e.Values("COMPANY_ID"), e.Values("TRADE_ID"))
         If Not updatedrow Is Nothing Then
             updatedrow.Delete()
             cxClass.UpdateUser_Roles(UserRolesDS)
@@ -83,10 +85,11 @@ Partial Class AssignUserRoles
 
         e.Cancel = True
         G1.DataBind()
+
     End Sub
 
     Protected Sub G1_RowInserting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataInsertingEventArgs) Handles G1.RowInserting
-        UserRolesDS.Rows.Add(New Object() {ProjectSelectPulldown.Value, e.NewValues("USER_ID"), e.NewValues("TRADE_ID")})
+        UserRolesDS.Rows.Add(New Object() {ProjectSelectPulldown.Value, e.NewValues("COMPANY_ID"), e.NewValues("TRADE_ID")})
         cxClass.UpdateUser_Roles(UserRolesDS)
 
         e.Cancel = True
@@ -96,10 +99,10 @@ Partial Class AssignUserRoles
 
     Protected Sub G1_RowUpdating(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataUpdatingEventArgs) Handles G1.RowUpdating
         Dim updatedrow As dsCommissioning.USER_ROLESRow
-        updatedrow = UserRolesDS.FindByPROJECT_IDUSER_IDTRADE_ID(ProjectSelectPulldown.Value, e.OldValues("USER_ID"), e.OldValues("TRADE_ID"))
+        updatedrow = UserRolesDS.FindByPROJECT_IDCOMPANY_IDTRADE_ID(ProjectSelectPulldown.Value, e.OldValues("COMPANY_ID"), e.OldValues("TRADE_ID"))
         If Not updatedrow Is Nothing Then
             updatedrow("TRADE_ID") = e.NewValues("TRADE_ID")
-            updatedrow("USER_ID") = e.NewValues("USER_ID")
+            updatedrow("COMPANY_ID") = e.NewValues("COMPANY_ID")
         End If
         cxClass.UpdateUser_Roles(UserRolesDS)
         e.Cancel = True
