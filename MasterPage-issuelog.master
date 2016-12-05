@@ -60,7 +60,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
- <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs">
+ <nav class="navbar navbar-inverse navbar-fixed-top hidden-xs xsvisible-nav">
         <div class="main-menu" style="position:relative;">
             <div id="u7432">
                 <!-- group -->
@@ -85,7 +85,7 @@
         </div>
 
     </nav>
-  <nav class="navbar navbar-inverse  hidden-lg hidden-md hidden-sm mobile-nav">
+  <nav class="navbar navbar-inverse  hidden-lg hidden-md hidden-sm mobile-nav xsland-nav">
         <div class="container-fluid">
             <div class="navbar-header">
                 <img src="/Graphics/mobile-logo.gif" class="logo-img"/>
@@ -111,9 +111,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid body-content">
-   
-
+    <div class="container-fluid body-content bc-lg">
         <div class="row">
              <div class="col-md-12">
                 <asp:ContentPlaceHolder ID="mainContent" runat="server">
