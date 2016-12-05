@@ -38,8 +38,8 @@ Partial Class AddProject
     End Sub
 
     Private Function MakeProjectNumber() As Boolean
-        'Dim ConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
-        Dim ConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123;"
+        Dim ConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
+        'Dim ConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123;"
         Dim Conn As New SqlConnection(ConnStr)
         Dim sda As SqlDataAdapter
         Dim sds As DataSet

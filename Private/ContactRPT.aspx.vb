@@ -33,7 +33,7 @@ Partial Class Private_ContactRPT
                 ContactRPT.CreateDocument()
             End If
         Catch ex As Exception
-            'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
     End Sub
 End Class
