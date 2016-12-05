@@ -329,7 +329,7 @@ Public Class RPTProjectContacts
             UserEmail.DataBindings.Add(New DevExpress.XtraReports.UI.XRBinding("Text", Me.DataSource, "USER_EMAIL", ""))
             UserEmail.DataBindings.Add(New DevExpress.XtraReports.UI.XRBinding("NavigateUrl", Me.DataSource, "USER_EMAIL", "mailto:"))
         Catch ex As Exception
-            'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
     End Sub
 End Class

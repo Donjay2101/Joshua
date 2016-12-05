@@ -14,7 +14,7 @@
             Dim err As Exception = Server.GetLastError()
 
             Response.Clear()
-            Response.Write("<h1>" & err.InnerException.Message & "</h1>")
+            Response.Write("<h1>" & err.Message & "</h1>")
             Response.Write("<pre>" & err.ToString & "</pre>")
             Server.ClearError()
         End If

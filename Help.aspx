@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Help.aspx.vb" Inherits="Public_Help" MasterPageFile="~/MasterPage-afterLogin.master"%>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Help.aspx.vb" Inherits="Public_Help" MasterPageFile="~/MasterPage.master"%>
 <%@ Register assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dxwdc" %>
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
     <form id="Help" runat="server">

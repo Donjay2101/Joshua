@@ -45,17 +45,23 @@
                     <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
             </div>
         </div>
-        <dxpc:aspxpopupcontrol ID="PopupControl1" runat="server" CloseAction="CloseButton" HeaderText="" Modal="True" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" Text="Please Select a Project to Continue">
-            <ContentStyle Font-Bold="False" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" HorizontalAlign="Center" Wrap="True"></ContentStyle>
-            <ContentCollection>
-                <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
-                  
-                                <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px"></dxwdc:ASPxButton>
-                        
-                </dxpc:PopupControlContentControl>
-            </ContentCollection>
-            <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
-        </dxpc:aspxpopupcontrol>
+       <div class="row">
+            <div class="col-md-12">
+                <dxpc:ASPxPopupControl ID="PopupControl1" runat="server" CloseAction="CloseButton" HeaderText="" Modal="True" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" Text="Please Select a Project to Continue">
+                    <ContentStyle Font-Bold="False" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666" HorizontalAlign="Center" Wrap="True"></ContentStyle>
+                    <ContentCollection>
+                        <dxpc:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top:20px;">
+                                    <dxwdc:ASPxButton ID="ASPxButtonOk" runat="server" HorizontalAlign="Center" Text="Ok" Width="75px" CssClass="poput-btn"></dxwdc:ASPxButton>
+                                </div>
+                            </div>
+                        </dxpc:PopupControlContentControl>
+                    </ContentCollection>
+                    <HeaderStyle Font-Bold="True" Font-Names="Verdana" Font-Size="12px" />
+                </dxpc:ASPxPopupControl>
+            </div>
+        </div>
     </form>
         </div>
     </div>

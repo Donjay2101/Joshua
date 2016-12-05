@@ -471,11 +471,21 @@ Partial Class IssueLog
                 Dim strm As Stream = sender.UploadedFiles(0).PostedFile.InputStream
                 Using image = System.Drawing.Image.FromStream(strm)
                     ' Print Original Size of file (Height or Width)   
-
-                    Dim newWidth As Integer = 240
+                    Dim img_height As Integer
+                    img_height = image.Height
+                    Dim img_width As Integer
+                    img_width = image.Width
+                    Dim newWidth As Integer '= image.Width / 10
                     ' New Width of Image in Pixel  
-                    Dim newHeight As Integer = 240
-                    ' New Height of Image in Pixel  
+                    Dim newHeight As Integer '= image.Height / 10
+                    If (img_height > 1441 AndAlso img_width > 2197) Then
+                        newHeight = 1400
+                        newWidth = 2100
+                    Else
+                        newHeight = image.Height
+                        newWidth = image.Width
+                    End If
+
                     Dim thumbImg = New System.Drawing.Bitmap(newWidth, newHeight)
                     Dim thumbGraph = Graphics.FromImage(thumbImg)
                     thumbGraph.CompositingQuality = CompositingQuality.HighQuality

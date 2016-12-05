@@ -256,8 +256,9 @@ Partial Class AddUser
                 If UpdateUsers2DS() = True Then
                     UsersDS.AddUSERSRow(UserCurRow)
                     cxClass.UpdateUsers(UsersDS)
-                    PopupControl1.Text = "User Added"
-                    PopupControl1.ShowOnPageLoad = True
+                    'PopupControl1.Text = "User Added"
+                    'PopupControl1.ShowOnPageLoad = True
+                    ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('User created successfully.');", True)
 
                     'reset fields to be ready for another new user.
                     InputFirstName.Text = Nothing
@@ -289,7 +290,7 @@ Partial Class AddUser
             'ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + msg + "');", True)
 
         Catch ex As Exception
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "scirpt", "showSuccessMsg('" + ex.Message + "');", True)
+            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Username already exists. Please Select Different user name');", True)
             'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
     End Sub
@@ -308,14 +309,18 @@ Partial Class AddUser
             InputUserActive.Value = True
             InputPassword.Text = Nothing
             InputPassVerify.Text = Nothing
+            UserSelectPulldown.Items.Remove(UserSelectPulldown.SelectedItem)
+            UserSelectPulldown.SelectedIndex = 0
 
             InputPassword.Enabled = True
             InputPassVerify.Enabled = True
-            PopupControl1.Text = "User Deleted"
-            PopupControl1.ShowOnPageLoad = True
+            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('User Deleted');", True)
+            'PopupControl1.Text = "User Deleted"
+            'PopupControl1.ShowOnPageLoad = True
 
         Else
-            PopupControl1.Text = "Error Occured..."
+            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Error Occured');", True)
+            'PopupControl1.Text = "Error Occured..."
         End If
 
 

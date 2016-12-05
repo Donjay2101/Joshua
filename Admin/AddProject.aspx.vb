@@ -63,9 +63,9 @@ Partial Class AddProject
 
         prjNum = prjNum Mod 1000
         If (prjNum < 10) Then
-            sprj = "00" & Convert.ToString(prjNum + 1)
-        ElseIf (prjNum < 100) Then
             sprj = "0" & Convert.ToString(prjNum + 1)
+        ElseIf (prjNum < 100) Then
+            sprj = "00" & Convert.ToString(prjNum + 1)
         Else
             sprj = Convert.ToString(prjNum + 1)
         End If
