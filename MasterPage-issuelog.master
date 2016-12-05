@@ -112,8 +112,6 @@
         </div>
     </nav>
     <div class="container-fluid body-content bc-lg">
-   
-
         <div class="row">
              <div class="col-md-12">
                 <asp:ContentPlaceHolder ID="mainContent" runat="server">
