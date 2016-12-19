@@ -13,32 +13,43 @@ Public Class issueEmail
     Public Shared Function GetIssueList(ByVal curPoject As String, ByVal curEmail As String) As Boolean
 
         Dim dt As New DataTable()
-        If (curEmail IsNot Nothing) Then
-            dt = GetData(True)
-            dt.Columns("ITEM_NUMBER").ColumnName = "Number"
-            dt.Columns("TAG_ID").ColumnName = "Tag Id"
-            dt.Columns("ITEM_DESC").ColumnName = "Description"
-            dt.Columns("ITEM_STATUS").ColumnName = "Status"
-            dt.Columns("DATE_POSTED").ColumnName = "Posted On"
-            dt.Columns("COMPANY_ABB").ColumnName = "Company"
-            dt.Columns("ITEM_COMMENT").ColumnName = "Comments"
-            SendPDFEmail(curEmail, dt)
-        End If
-        If (curEmail Is Nothing) Then
-            dt = GetData(False)
-            For Each row As DataRow In dt.Rows
-                dt.Columns("ITEM_NUMBER").ColumnName = "Number"
-                dt.Columns("TAG_ID").ColumnName = "Tag Id"
-                dt.Columns("ITEM_DESC").ColumnName = "Description"
-                dt.Columns("ITEM_STATUS").ColumnName = "Status"
-                dt.Columns("DATE_POSTED").ColumnName = "Posted On"
-                dt.Columns("COMPANY_ABB").ColumnName = "Company"
-                dt.Columns("ITEM_COMMENT").ColumnName = "Comments"
-                dt.Columns("User_Email").ColumnName = "Email"
-                SendPDFEmail(dt.Rows(0)("Email"), dt)
-            Next
 
-        End If
+        dt = GetData()
+
+        dt.Columns("ITEM_NUMBER").ColumnName = "Number"
+        dt.Columns("TAG_ID").ColumnName = "Tag Id"
+        dt.Columns("ITEM_DESC").ColumnName = "Description"
+        dt.Columns("ITEM_STATUS").ColumnName = "Status"
+        dt.Columns("DATE_POSTED").ColumnName = "Posted On"
+        dt.Columns("COMPANY_ABB").ColumnName = "Company"
+        dt.Columns("ITEM_COMMENT").ColumnName = "Comments"
+        dt.Columns("User_Email").ColumnName = "Email"
+        SendPDFEmail(curEmail, dt)
+
+
+
+        Return True
+    End Function
+    Public Shared Function GetIssueListI(ByVal curPoject As String, ByVal curEmail As String) As Boolean
+
+        Dim dt As New DataTable()
+
+        dt = GetData()
+
+        dt.Columns("ITEM_NUMBER").ColumnName = "Number"
+        dt.Columns("TAG_ID").ColumnName = "Tag Id"
+        dt.Columns("ITEM_DESC").ColumnName = "Description"
+        dt.Columns("ITEM_STATUS").ColumnName = "Status"
+        dt.Columns("DATE_POSTED").ColumnName = "Posted On"
+        dt.Columns("COMPANY_ABB").ColumnName = "Company"
+        dt.Columns("ITEM_COMMENT").ColumnName = "Comments"
+        dt.Columns("User_Email").ColumnName = "Email"
+        For Each row As DataRow In dt.Rows
+            SendPDFEmail(dt.Rows(0)("Email"), dt)
+        Next
+
+
+
         Return True
     End Function
     Private Shared Sub SendPDFEmail(ByVal curEmail As String, dt As DataTable)
@@ -112,7 +123,7 @@ Public Class issueEmail
         End Using
     End Sub
 
-    Public Shared Function GetData(Optional ByVal para As Boolean = False) As DataTable
+    Public Shared Function GetData() As DataTable
         Dim COMPANYID As String
         If HttpContext.Current.Session.Item("FilterString") Like "*COMPANY_ID*" Then
             COMPANYID = HttpContext.Current.Session.Item("FilterString")
@@ -136,14 +147,14 @@ Public Class issueEmail
         Dim qryString As String
         qryString = cxClass.GetRPTDeficienciesQuery(HttpContext.Current.Session.Item("CurProjectID"), COMPANYID, "All", HttpContext.Current.Session.Item("GridSort"))
         Dim con As New SqlConnection(conString)
-        If para = False Then
-            qryString = "SELECT DISTINCT DEFICIENCIES.ITEM_NUMBER, DEFICIENCIES.TAG_ID," &
+
+        qryString = "SELECT DISTINCT DEFICIENCIES.ITEM_NUMBER, DEFICIENCIES.TAG_ID," &
                             "DEFICIENCIES.ITEM_DESC,  DEFICIENCIES.ITEM_STATUS, DEFICIENCIES.DATE_POSTED, " &
                             "COMPANIES.COMPANY_ABB,  DEFICIENCIES.ITEM_COMMENT, USERS.USER_EMAIL " &
-                            "FROM DEFICIENCIES  LEFT OUTER JOIN COMPANIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID" &
-                            "inner join USERS on COMPANIES.COMPANY_ID=USERS.COMPANY_ID" &
+                            "FROM DEFICIENCIES  LEFT OUTER JOIN COMPANIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID " &
+                            "inner join USERS on COMPANIES.COMPANY_ID=USERS.COMPANY_ID " &
                             "WHERE (DEFICIENCIES.PROJECT_ID = @PROJECT_ID)  ORDER BY ITEM_NUMBER"
-        End If
+
 
         Using cmd As New SqlCommand(qryString)
             Using sda As New SqlDataAdapter()

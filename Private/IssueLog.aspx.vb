@@ -573,16 +573,17 @@ Partial Class IssueLog
                 'YrStrList.Add(item.Value)
                 abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), item.Value)
                 If (abc = True) Then
-                    PopupControl1.Text = "Message sent to user..."
+                    'PopupControl1.Text = "Message sent to user..."
                 Else
-                    PopupControl1.Text = "Error occurred..."
+                    'PopupControl1.Text = "Error occurred..."
                 End If
                 PopupControl1.ShowOnPageLoad = True
             Else
+                abc = issueEmail.GetIssueListI(Session.Item("CurProjectID"), item.Value)
             End If
         Next
 
-        abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), Nothing)
+        'abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), Nothing)
         'Dim YrStr As [String] = [String].Join(";", YrStrList.ToArray())
         'Response.Write(String.Concat("Selected Items: ", YrStr))
 
