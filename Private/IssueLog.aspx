@@ -21,7 +21,7 @@
        <script>
 
     </script>        
-        <div class="row">
+        <div class="row issue-log-topspace">
             <div class="col-md-3 col-sm-3">
                 <ul class="nonbullet" style="padding-left:0px;">
                     <li>
