@@ -79,6 +79,18 @@ nav{
 .bc-lg{
     padding-top:12em;
 }
+.gen-rep{
+    background: #0180c3;
+    color: white!important;
+    padding: 3px 25px;
+
+}
+.labl{
+        padding: 8px;
+    border: 1px solid;
+    background: #f1fbfa;
+}
+/*as*/
 /*#li-1:hover{
     background-image:url("../Graphics/top__01.gif");
     width:20%;
@@ -391,6 +403,9 @@ a.change-pass {
     margin-left: -12%!important;
     top: 28%!important;
 }
+        .issue-log-topspace{
+    margin-top: 7em;
+}
 }
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape)
 {
@@ -406,6 +421,7 @@ nav ul li a img{
 .bc-lg{
     padding-top:12em;
 }
+
 }
 .popup{        
      position: fixed!important;
