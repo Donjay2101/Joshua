@@ -79,6 +79,17 @@ nav{
 .bc-lg{
     padding-top:12em;
 }
+.gen-rep{
+    background: #0180c3;
+    color: white!important;
+    padding: 3px 25px;
+
+}
+.labl{
+        padding: 8px;
+    border: 1px solid;
+    background: #f1fbfa;
+}
 /*as*/
 /*#li-1:hover{
     background-image:url("../Graphics/top__01.gif");

@@ -22,38 +22,38 @@
 
     </script>        
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-3">
                 <ul class="nonbullet" style="padding-left:0px;">
                     <li>
-                        <dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold"></dxwdc:ASPxLabel>
+                        <dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold labl"></dxwdc:ASPxLabel>
                     </li>
                     <li><a id="A1" runat="server" href="../cxLogin.aspx" onclick="__doPostBack()">Sign out</a></li>
                 </ul>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-9">
                 <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text" Width="100%"></dxwdc:ASPxLabel>
-            </div>
-        </div>
-         <div class="row form-group">
-        <table>
-            <tr>
-                <td><dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel></td>
-                <td>
-                    <asp:CheckBoxList ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL"></asp:CheckBoxList>
-                                        <asp:SqlDataSource ID="GETCOMPANY" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
+                <hr />
+             <div class="row form-group">
+             <div class="col-md-2">
+                  <dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel>
+             </div>
+              <div class="col-md-2">
+                   <asp:CheckBoxList ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL"></asp:CheckBoxList>
+                <asp:SqlDataSource ID="GETCOMPANY" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
              <SelectParameters>
                 <asp:SessionParameter Name="PROJECT_ID" SessionField="CurProjectID" Type="Int32" />
             </SelectParameters>
             </asp:SqlDataSource>
-                </td>
-                <td>
-                    <asp:LinkButton ID="LinkButtonGeneratePDF" runat="server" AutoPostBack="False" CssClass="text_reg">Generate Report</asp:LinkButton>
-                    <%-- </dxwdc:ASPxButton>--%>                       <%--<td>--%>
-                </td>
-            </tr>
-        </table>
+             </div>
+              <div class="col-md-3">
+          
+              <asp:LinkButton ID="LinkButtonGeneratePDF" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Generate Report</asp:LinkButton>
+             </div>           
         </div>
              
+            </div>
+        </div>
+
         <div class="row form-group">
             <div class="col-md-12">
                 <dxwgv:ASPxGridView ID="G1" ClientInstanceName="G1" runat="server" Width="100%" AutoGenerateColumns="False"
