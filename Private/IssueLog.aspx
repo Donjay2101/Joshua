@@ -25,13 +25,13 @@
             <div class="col-md-3 col-sm-3">
                 <ul class="nonbullet" style="padding-left:0px;">
                     <li>
-                        <dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold labl"></dxwdc:ASPxLabel>
+                        <dxwdc:ASPxLabel ID="LBLCurUser" runat="server" Text="Welcome, Greg Alverson" CssClass="login_text_bold"></dxwdc:ASPxLabel>
                     </li>
                     <li><a id="A1" runat="server" href="../cxLogin.aspx" onclick="__doPostBack()">Sign out</a></li>
                 </ul>
             </div>
             <div class="col-md-9 col-sm-9">
-                <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text" Width="100%"></dxwdc:ASPxLabel>
+                <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text  labl" Width="100%"></dxwdc:ASPxLabel>
                 <hr />
              <div class="row form-group">
              <div class="col-md-2">
