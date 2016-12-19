@@ -116,8 +116,7 @@ Partial Class AddIssue
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
-                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(0).FileName
-
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" + genId1 + ASPxUploadControl1.UploadedFiles(0).FileName.ToString()
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image1bytes")
@@ -132,7 +131,7 @@ Partial Class AddIssue
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
-                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(1).FileName
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" + genId2 + ASPxUploadControl1.UploadedFiles(1).FileName.ToString()
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image2bytes")
@@ -147,7 +146,7 @@ Partial Class AddIssue
                     vPhotoRow.ID = Guid.NewGuid().ToString().Replace("-", "")
                     vPhotoRow.PROJECT_ID = Session.Item("CurProjectID")
                     vPhotoRow.ITEM_NUMBER = ItemNo
-                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" & ASPxUploadControl1.UploadedFiles(2).FileName
+                    vPhotoRow.Url = "~/Uploads/" & Session.Item("CurProjectID") & "/" + genId3 + ASPxUploadControl1.UploadedFiles(2).FileName.ToString()
                     PhotoDS.AddPHOTOSRow(vPhotoRow)
                     vPhotoRow = Nothing
                     Session.Remove("Image3bytes")
@@ -218,7 +217,21 @@ Partial Class AddIssue
                 Dim imgRectangle = New Rectangle(0, 0, newWidth, newHeight)
                 thumbGraph.DrawImage(image, imgRectangle)
                 ' Save the file  
-                Dim targetPath As String = FolderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(img).FileName)
+                Dim targetPath As String
+
+                If (img = 0) Then
+                    genId1 = MakeUnique()
+                    targetPath = FolderPath & Path.GetFileName(genId1 & ASPxUploadControl1.UploadedFiles(img).FileName.ToString())
+                    thumbImg.Save(targetPath, image.RawFormat)
+                ElseIf (img = 1) Then
+                    genId2 = MakeUnique()
+                    targetPath = FolderPath & Path.GetFileName(genId2 & ASPxUploadControl1.UploadedFiles(img).FileName.ToString())
+                    thumbImg.Save(targetPath, image.RawFormat)
+                ElseIf (img = 2) Then
+                    genId3 = MakeUnique()
+                    targetPath = FolderPath & Path.GetFileName(genId3 & ASPxUploadControl1.UploadedFiles(img).FileName.ToString())
+                    thumbImg.Save(targetPath, image.RawFormat)
+                End If
                 thumbImg.Save(targetPath, image.RawFormat)
                 ' Print new Size of file (height or Width)  
 
@@ -229,6 +242,16 @@ Partial Class AddIssue
         End If
         Return True
     End Function
+    Private Shared genId As String
+    Public Function MakeUnique() As String
+        Dim newId As String
+        newId = RandomPassword.Generate(4, 4)
+        genId = newId
+        Return newId
+    End Function
+    Private Shared genId1 As String
+    Private Shared genId2 As String
+    Private Shared genId3 As String
     Protected Sub ASPxUploadControl1_FilesUploadComplete(ByVal sender As Object, ByVal e As System.EventArgs) Handles ASPxUploadControl1.FilesUploadComplete
 
         Dim folderPath As String = Server.MapPath("~/Uploads/" & Session.Item("CurProjectID") & "/")
@@ -242,7 +265,8 @@ Partial Class AddIssue
                 Resize(folderPath, 0)
                 Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
             Else
-                ASPxUploadControl1.UploadedFiles(0).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(0).FileName))
+                genId1 = MakeUnique()
+                ASPxUploadControl1.UploadedFiles(0).SaveAs(folderPath & Path.GetFileName(genId1 + ASPxUploadControl1.UploadedFiles(0).FileName))
                 Session.Add("Image1bytes", ASPxUploadControl1.UploadedFiles(0).FileBytes)
             End If
 
@@ -253,7 +277,8 @@ Partial Class AddIssue
                 Resize(folderPath, 1)
                 Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
             Else
-                ASPxUploadControl1.UploadedFiles(1).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(1).FileName))
+                genId2 = MakeUnique()
+                ASPxUploadControl1.UploadedFiles(1).SaveAs(folderPath & Path.GetFileName(genId2 + ASPxUploadControl1.UploadedFiles(1).FileName))
                 Session.Add("Image2bytes", ASPxUploadControl1.UploadedFiles(1).FileBytes)
             End If
         End If
@@ -263,7 +288,8 @@ Partial Class AddIssue
                 Resize(folderPath, 2)
                 Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
             Else
-                ASPxUploadControl1.UploadedFiles(2).SaveAs(folderPath & Path.GetFileName(ASPxUploadControl1.UploadedFiles(2).FileName))
+                genId3 = MakeUnique()
+                ASPxUploadControl1.UploadedFiles(2).SaveAs(folderPath & Path.GetFileName(genId3 + ASPxUploadControl1.UploadedFiles(2).FileName))
                 Session.Add("Image3bytes", ASPxUploadControl1.UploadedFiles(2).FileBytes)
             End If
         End If

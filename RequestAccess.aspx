@@ -91,7 +91,7 @@
             
             </div>
             <div class="col-md-3 col-sm-6 text-right">
-                    <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Project Selection</asp:LinkButton>
+                    <asp:LinkButton ID="BTNCancel" runat="server" Width="100%" CssClass="text_reg">Back to Login page</asp:LinkButton>
             </div>
         </div>
         <div class="row">
@@ -113,7 +113,6 @@
         </div>
     </form>
         </div>
-    </div>
-    
+    </div>    
 </asp:Content>
 

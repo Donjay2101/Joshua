@@ -165,7 +165,7 @@ Public Class cxClass
         Dim vSQL As String
         'vSQL &= "SELECT DISTINCT *"
         'vSQL &= "FROM PROJECTS "
-        vSQL = "SELECT DISTINCT PROJECTS.PROJECT_ID, PROJECTS.PROJECT_NUMBER, PROJECTS.PROJECT_DESC, "
+        vSQL = "SELECT DISTINCT PROJECTS.PROJECT_ID, PROJECTS.PROJECT_NUMBER, PROJECTS.PROJECT_DESC, [PROJECT_NUMBER]+' - '+[PROJECT_NAME] AS CREATER ,"
         vSQL &= " PROJECTS.PROJECT_LOC, PROJECTS.PROJECT_NAME, PROJECTS.PROJECT_OWNER, "
         vSQL &= " PROJECTS.PROJECT_LEED_CA, PROJECTS.PROJECT_LEED_EMAIL, PROJECTS.PROJECT_CLOSED, "
         vSQL &= " PROJECTS.PROJECT_COMNOTICE_INFO"
@@ -986,13 +986,13 @@ Public Class cxClass
         Dim vContactsDataAdapter As New SqlDataAdapter
         Dim vSQL As String
 
-        vSQL = "SELECT USER_ROLES.USER_ID, USER_ROLES.TRADE_ID, USERS.USER_NAME, "
+        vSQL = "SELECT USER_ROLES.COMPANY_ID, USER_ROLES.TRADE_ID, USERS.USER_NAME, "
         vSQL &= " USERS.USER_EMAIL, USERS.USER_PHONE, COMPANIES.COMPANY_NAME, "
         vSQL &= " TRADES.TRADE_DESC "
 
         vSQL &= " FROM USER_ROLES "
         vSQL &= " INNER JOIN TRADES ON USER_ROLES.TRADE_ID = TRADES.TRADE_ID "
-        vSQL &= " INNER JOIN USERS ON USER_ROLES.USER_ID = USERS.USER_ID "
+        vSQL &= " INNER JOIN USERS ON USER_ROLES.COMPANY_ID = USERS.COMPANY_ID "
         vSQL &= " INNER JOIN COMPANIES ON USERS.COMPANY_ID = COMPANIES.COMPANY_ID "
 
         vSQL &= " WHERE (USER_ROLES.PROJECT_ID = @PROJECT_ID)"
@@ -1006,6 +1006,62 @@ Public Class cxClass
 
         vCommConn.Close()
         Return vContactsDataSet.RPT_PROJ_CONTACT
+    End Function
+
+    Public Shared Function GetRPTDeficienciesQuery(ByVal pCurProj As Integer, ByVal pCurCompany As Integer, ByVal pStatus As String, ByVal pCurSort As String) As String
+        Try
+            vCommConn.Open()
+        Catch ex As Exception
+
+        End Try
+
+        Dim vDeficienciesDataAdapter As New SqlDataAdapter
+        Dim vSQL As String
+
+        vSQL = "SELECT DISTINCT DEFICIENCIES.ITEM_NUMBER, DEFICIENCIES.TAG_ID, DEFICIENCIES.ITEM_DESC, "
+        vSQL &= " DEFICIENCIES.ITEM_STATUS, CONVERT(DATE, DEFICIENCIES.DATE_POSTED) AS DATE_POSTED, COMPANIES.COMPANY_ABB, "
+        vSQL &= " DEFICIENCIES.ITEM_COMMENT "
+
+        vSQL &= " FROM DEFICIENCIES "
+        vSQL &= " LEFT OUTER JOIN COMPANIES ON DEFICIENCIES.COMPANY_ID = COMPANIES.COMPANY_ID "
+
+
+        vSQL &= " WHERE (DEFICIENCIES.PROJECT_ID = @PROJECT_ID)"
+        If Not pCurCompany = Nothing Then
+            vSQL &= " AND (DEFICIENCIES.COMPANY_ID = @COMPANY_ID)"
+        End If
+
+        If Not pStatus = "All" Then
+            If pStatus = "Both" Then
+                vSQL &= " AND (DEFICIENCIES.ITEM_STATUS = 'Open' OR DEFICIENCIES.ITEM_STATUS = 'Pending Verification')"
+            Else
+                vSQL &= " AND (DEFICIENCIES.ITEM_STATUS = @ITEM_STATUS)"
+            End If
+        End If
+        If Not pCurSort Is Nothing Then
+            vSQL &= " ORDER BY " & pCurSort
+        Else
+            vSQL &= " ORDER BY DEFICIENCIES.ITEM_NUMBER"
+        End If
+        vDeficienciesDataAdapter.SelectCommand = New SqlCommand(vSQL, vCommConn)
+
+        vDeficienciesDataAdapter.SelectCommand.Parameters.Add("@PROJECT_ID", SqlDbType.Int, 4)
+        vDeficienciesDataAdapter.SelectCommand.Parameters("@PROJECT_ID").Value = pCurProj
+
+        If Not pCurCompany = Nothing Then
+            vDeficienciesDataAdapter.SelectCommand.Parameters.Add("@COMPANY_ID", SqlDbType.Int, 4)
+            vDeficienciesDataAdapter.SelectCommand.Parameters("@COMPANY_ID").Value = pCurCompany
+        End If
+        If Not pStatus = "All" And Not pStatus = "Both" Then
+            vDeficienciesDataAdapter.SelectCommand.Parameters.Add("@ITEM_STATUS", SqlDbType.NVarChar, 32)
+            vDeficienciesDataAdapter.SelectCommand.Parameters("@ITEM_STATUS").Value = pStatus
+        End If
+
+        Dim vDeficienciesDataSet As New dsCommissioning
+        vDeficienciesDataAdapter.Fill(vDeficienciesDataSet.RPT_DEFICIENCIES)
+
+        vCommConn.Close()
+        Return vSQL
     End Function
     Public Shared Function GetRPTDeficiencies(ByVal pCurProj As Integer, ByVal pCurCompany As Integer, ByVal pStatus As String, ByVal pCurSort As String) As dsCommissioning.RPT_DEFICIENCIESDataTable
         Try
@@ -1100,4 +1156,15 @@ Public Class cxClass
         vCommConn.Close()
         Return userDataSet.USERS.Rows(0)
     End Function
+
+    'Public Shared Function get_Companies() As DataSet
+    '    Try
+    '        vCommConn.Open()
+    '    Catch ex As Exception
+    '    End Try
+    '    Dim sqlCommand As New SqlCommand
+    '    Dim companyDataSet As New DataSet
+    '    Dim vSQL As String
+
+    'End Function
 End Class

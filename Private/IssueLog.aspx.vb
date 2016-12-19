@@ -8,6 +8,10 @@ Imports DevExpress.Web.ASPxUploadControl
 Imports System.IO
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Data
+Imports System.Data.SqlClient
+Imports System.Collections.Generic
+
 Partial Class IssueLog
     Inherits System.Web.UI.Page
 
@@ -15,6 +19,7 @@ Partial Class IssueLog
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        PopupControl1.ShowOnPageLoad = False
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
             'Check if user is logged in and display name, send back to login if no current user
             If Not Session.Item("CurUserName") Is Nothing Then
@@ -41,7 +46,6 @@ Partial Class IssueLog
                 BTNAddIssues.Enabled = False
             End If
         End If
-
 
         Try
             G1.DataSource = DeficiencyDS
@@ -397,7 +401,6 @@ Partial Class IssueLog
         updatedrow("ITEM_COMMENT") = e.NewValues("ITEM_COMMENT")
         updatedrow("DATE_POSTED") = Date.Now
         DeficiencyDS.Rows.Add(updatedrow)
-
         cxClass.UpdateDeficiencies(DeficiencyDS)
         e.Cancel = True
         G1.CancelEdit()
@@ -443,21 +446,38 @@ Partial Class IssueLog
 
 
     Protected Sub ASPxGridView2_RowInserting(ByVal sender As Object, ByVal e As DevExpress.Web.Data.ASPxDataInsertingEventArgs)
-        Dim grid As ASPxGridView = TryCast(sender, ASPxGridView)
-        Dim textBox As ASPxTextBox = TryCast(FindPageControl(grid).FindControl("txbDesc"), ASPxTextBox)
-
-        'New Code-----------
-        'Dim fileUpload As ASPxUploadControl = TryCast(FindPageControl(grid).FindControl("ASPxUploadControl1"), ASPxUploadControl)   'New Code-----------
-        e.NewValues("Description") = textBox.Text
-        e.NewValues("ID") = Guid.NewGuid().ToString().Replace("-", "")
-        e.NewValues("PROJECT_ID") = Session.Item("CurProjectID")
-        e.NewValues("ITEM_NUMBER") = (TryCast(sender, ASPxGridView)).GetMasterRowKeyValue() 'Session.Item("ITEM_NUMBER")
-        e.NewValues("Url") = "~/Uploads/" & Session.Item("CurProjectID") & "/" & Url
-
-        e.Cancel = Not SaveFileBytesToRow(grid, e.NewValues)
+        If (Not Url = Nothing) Then
+            Dim grid As ASPxGridView = TryCast(sender, ASPxGridView)
+            Dim textBox As ASPxTextBox = TryCast(FindPageControl(grid).FindControl("txbDesc"), ASPxTextBox)
+            'New Code-----------
+            'Dim fileUpload As ASPxUploadControl = TryCast(FindPageControl(grid).FindControl("ASPxUploadControl1"), ASPxUploadControl)   'New Code-----------
+            e.NewValues("Description") = textBox.Text
+            e.NewValues("ID") = Guid.NewGuid().ToString().Replace("-", "")
+            e.NewValues("PROJECT_ID") = Session.Item("CurProjectID")
+            e.NewValues("ITEM_NUMBER") = (TryCast(sender, ASPxGridView)).GetMasterRowKeyValue() 'Session.Item("ITEM_NUMBER")
+            e.NewValues("Url") = "~/Uploads/" & Session.Item("CurProjectID") & "/" & genId1 & Url
+            e.Cancel = Not SaveFileBytesToRow(grid, e.NewValues)
+            'ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('File size can not be more than 2MB. Please Select a valid File');", True)
+        Else
+            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('File size can not be more than 2MB. Please Select a valid File');", True)
+            PopupControl1.Text = "Hello"
+            PopupControl1.ShowOnPageLoad = True
+        End If
     End Sub
 
     Shared Url As String
+    Private Shared genId As String
+    Public Function MakeUnique() As String
+        Dim newId As String
+        newId = RandomPassword.Generate(4, 4)
+        genId = newId
+        Return newId
+    End Function
+    Private Shared genId1 As String
+    Private Shared genId2 As String
+    Private Shared genId3 As String
+    Private Shared size As Integer
+
     Protected Sub ASPxUploadControl1_FileUploadComplete(ByVal sender As Object, ByVal e As FileUploadCompleteEventArgs)
         If TryCast(sender, ASPxUploadControl).IsValid Then
             Session("data") = TryCast(sender, ASPxUploadControl).FileBytes
@@ -467,6 +487,7 @@ Partial Class IssueLog
                 Directory.CreateDirectory(folderPath)
             End If
             Dim extension As String = Path.GetExtension(sender.UploadedFiles(0).FileName)
+            size = sender.UploadedFiles(0).PostedFile.ContentLength
             If (extension.ToLower = ".jpeg" Or extension.ToLower = ".jpg" Or extension.ToLower = ".png") Then
                 Dim strm As Stream = sender.UploadedFiles(0).PostedFile.InputStream
                 Using image = System.Drawing.Image.FromStream(strm)
@@ -494,21 +515,23 @@ Partial Class IssueLog
                     Dim imgRectangle = New Rectangle(0, 0, newWidth, newHeight)
                     thumbGraph.DrawImage(image, imgRectangle)
                     ' Save the file  
-                    Dim targetPath As String = folderPath & Path.GetFileName(sender.UploadedFiles(0).FileName)
+                    genId1 = MakeUnique()
+                    Dim targetPath As String = folderPath & Path.GetFileName(genId1 & sender.UploadedFiles(0).FileName)
                     thumbImg.Save(targetPath, image.RawFormat)
                     ' Print new Size of file (height or Width)  
 
                     'Show Image  
 
                 End Using
+            ElseIf (size / (1024 * 1024) <= 2) Then
+                genId1 = MakeUnique()
+                sender.UploadedFiles(0).SaveAs(folderPath & System.IO.Path.GetFileName(genId1 & sender.UploadedFiles(0).FileName))
 
+            Else
+                Url = Nothing
             End If
-
-            sender.UploadedFiles(0).SaveAs(folderPath & System.IO.Path.GetFileName(sender.UploadedFiles(0).FileName))
-            End If
+        End If
     End Sub
-
-
 
     Protected Function SaveFileBytesToRow(ByVal grid As ASPxGridView, ByVal newValues As OrderedDictionary) As Boolean
         Dim ret As Boolean = True
@@ -536,4 +559,37 @@ Partial Class IssueLog
     End Function
 
 
+
+    Protected Sub ASPxGridView2_CustomErrorText(sender As Object, e As ASPxGridViewCustomErrorTextEventArgs)
+        If e.Exception IsNot Nothing Then
+            e.ErrorText = "File size can not be more than 2MB. Please Select a valid File"
+        End If
+    End Sub
+    Protected Sub LinkButtonGeneratePDF_Click(sender As Object, e As EventArgs) Handles LinkButtonGeneratePDF.Click
+        Dim abc As Boolean
+        'Dim YrStrList As List(Of [String]) = New List(Of String)()
+        For Each item As ListItem In listCompany.Items
+            If item.Selected Then
+                'YrStrList.Add(item.Value)
+                abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), item.Value)
+                If (abc = True) Then
+                    PopupControl1.Text = "Message sent to user..."
+                Else
+                    PopupControl1.Text = "Error occurred..."
+                End If
+                PopupControl1.ShowOnPageLoad = True
+            Else
+            End If
+        Next
+
+        abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), Nothing)
+        'Dim YrStr As [String] = [String].Join(";", YrStrList.ToArray())
+        'Response.Write(String.Concat("Selected Items: ", YrStr))
+
+
+    End Sub
+
+    Protected Sub listCompany_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listCompany.SelectedIndexChanged
+
+    End Sub
 End Class
