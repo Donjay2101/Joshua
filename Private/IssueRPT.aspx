@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="IssueRPT.aspx.vb" Inherits="Private_IssueRPT" %>
 
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
 <%@ Register assembly="DevExpress.XtraReports.v9.2.Web, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraReports.Web" tagprefix="dxxr" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,7 +12,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <dxxr:ReportToolbar ID="ReportToolbar1" runat="server" 
+    <%--<dxxr:ReportToolbar ID="ReportToolbar1" runat="server" 
         ReportViewer="<%# ReportViewer1 %>" ShowDefaultButtons="False">
         <Items>
             <dxxr:ReportToolbarButton ItemKind="Search" />
@@ -50,7 +52,10 @@
         </styles>
     </dxxr:ReportToolbar>
     <dxxr:ReportViewer ID="ReportViewer1" runat="server">
-    </dxxr:ReportViewer>
+    </dxxr:ReportViewer>--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Height="918px" Width="773px" AsyncRendering="False" SizeToReportContent="True" ZoomMode="FullPage"></rsweb:ReportViewer>
+    
     </form>
 </body>
 </html>

@@ -67,6 +67,11 @@ Partial Class ProjectSummary
             'MsgBox(ex.Message, MsgBoxStyle.Critical, "cxPortal")
         End Try
         Me.Form.DefaultButton = "BTNShowIssues"
+
+        'Code changed by John
+        Session("Prj_Name") = LBLProjectName.Text
+        Session("Prj_No") = LBLProjectNumber.Text
+        Session("Prj_Lead") = LBLLeadCA.Text
     End Sub
 
     Protected Sub BTNShowIssues_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNShowIssues.Click

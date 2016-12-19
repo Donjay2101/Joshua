@@ -32,7 +32,7 @@ Partial Class AddProject
         ProjectSelectPulldown.Items.Clear()
         ProjectSelectPulldown.Items.Add("Add New Project...", -1)
         For Each Me.ProjectCurRow In ProjectDS
-            ProjectSelectPulldown.Items.Add(ProjectCurRow.PROJECT_NAME.ToString, ProjectCurRow.PROJECT_ID)
+            ProjectSelectPulldown.Items.Add(ProjectCurRow.PROJECT_NUMBER.ToString() & " - " & ProjectCurRow.PROJECT_NAME.ToString, ProjectCurRow.PROJECT_ID)
         Next
 
     End Sub

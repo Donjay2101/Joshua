@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsIssue" targetNamespace="http://tempuri.org/dsIssue.xsd" xmlns:mstns="http://tempuri.org/dsIssue.xsd" xmlns="http://tempuri.org/dsIssue.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsIssue" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dsIssue" msprop:Generator_UserDSName="dsIssue">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ITEM_NUMBER" msprop:Generator_ColumnVarNameInTable="columnITEM_NUMBER" msprop:Generator_ColumnPropNameInRow="ITEM_NUMBER" msprop:Generator_ColumnPropNameInTable="ITEM_NUMBERColumn" msprop:Generator_UserColumnName="ITEM_NUMBER" type="xs:int" minOccurs="0" />
+              <xs:element name="TAG_ID" msprop:Generator_ColumnVarNameInTable="columnTAG_ID" msprop:Generator_ColumnPropNameInRow="TAG_ID" msprop:Generator_ColumnPropNameInTable="TAG_IDColumn" msprop:Generator_UserColumnName="TAG_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="ITEM_DESC" msprop:Generator_ColumnVarNameInTable="columnITEM_DESC" msprop:Generator_ColumnPropNameInRow="ITEM_DESC" msprop:Generator_ColumnPropNameInTable="ITEM_DESCColumn" msprop:Generator_UserColumnName="ITEM_DESC" type="xs:string" minOccurs="0" />
+              <xs:element name="ITEM_STATUS" msprop:Generator_ColumnVarNameInTable="columnITEM_STATUS" msprop:Generator_ColumnPropNameInRow="ITEM_STATUS" msprop:Generator_ColumnPropNameInTable="ITEM_STATUSColumn" msprop:Generator_UserColumnName="ITEM_STATUS" type="xs:string" minOccurs="0" />
+              <xs:element name="DATE_POSTED" msprop:Generator_ColumnVarNameInTable="columnDATE_POSTED" msprop:Generator_ColumnPropNameInRow="DATE_POSTED" msprop:Generator_ColumnPropNameInTable="DATE_POSTEDColumn" msprop:Generator_UserColumnName="DATE_POSTED" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="COMPANY_ABB" msprop:Generator_ColumnVarNameInTable="columnCOMPANY_ABB" msprop:Generator_ColumnPropNameInRow="COMPANY_ABB" msprop:Generator_ColumnPropNameInTable="COMPANY_ABBColumn" msprop:Generator_UserColumnName="COMPANY_ABB" type="xs:string" minOccurs="0" />
+              <xs:element name="ITEM_COMMENT" msprop:Generator_ColumnVarNameInTable="columnITEM_COMMENT" msprop:Generator_ColumnPropNameInRow="ITEM_COMMENT" msprop:Generator_ColumnPropNameInTable="ITEM_COMMENTColumn" msprop:Generator_UserColumnName="ITEM_COMMENT" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

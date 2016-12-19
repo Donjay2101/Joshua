@@ -16,6 +16,7 @@ Partial Class cxLogin
             Session.Abandon()
             FormsAuthentication.SignOut()
         End If
+        PopupControl1.ShowOnPageLoad = False
     End Sub
 
     Protected Sub BTNLogin_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNLogin.Click

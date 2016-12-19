@@ -296,32 +296,39 @@ Partial Class AddUser
     End Sub
     Protected Sub LinkButtonDelete_Click(sender As Object, e As EventArgs) Handles LinkButtonDelete.Click
 
-        If (cxClass.DeleteUsers(UserSelectPulldown.SelectedItem.Value)) Then
-            PopupControl1.Text = "User Deleted..."
-            PopupControl1.ShowOnPageLoad = False
-            'reset fields to be ready for another new user.
-            InputFirstName.Text = Nothing
-            InputLastName.Text = Nothing
-            InputEmail.Value = Nothing
-            InputAdmin.Value = False
-            InputCompany.Value = Nothing
-            InputPhone.Value = Nothing
-            InputUserActive.Value = True
-            InputPassword.Text = Nothing
-            InputPassVerify.Text = Nothing
-            UserSelectPulldown.Items.Remove(UserSelectPulldown.SelectedItem)
-            UserSelectPulldown.SelectedIndex = 0
 
-            InputPassword.Enabled = True
-            InputPassVerify.Enabled = True
-            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('User Deleted');", True)
-            'PopupControl1.Text = "User Deleted"
-            'PopupControl1.ShowOnPageLoad = True
+        Dim confirmValue As String = Request.Form("confirm_value")
+        If confirmValue = "Yes" Then
+            If (cxClass.DeleteUsers(UserSelectPulldown.SelectedItem.Value)) Then
+                PopupControl1.Text = "User Deleted..."
+                PopupControl1.ShowOnPageLoad = False
+                'reset fields to be ready for another new user.
+                InputFirstName.Text = Nothing
+                InputLastName.Text = Nothing
+                InputEmail.Value = Nothing
+                InputAdmin.Value = False
+                InputCompany.Value = Nothing
+                InputPhone.Value = Nothing
+                InputUserActive.Value = True
+                InputPassword.Text = Nothing
+                InputPassVerify.Text = Nothing
+                UserSelectPulldown.Items.Remove(UserSelectPulldown.SelectedItem)
+                UserSelectPulldown.SelectedIndex = 0
 
+                InputPassword.Enabled = True
+                InputPassVerify.Enabled = True
+                'ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('User Deleted');", True)
+                'PopupControl1.Text = "User Deleted"
+                'PopupControl1.ShowOnPageLoad = True
+
+            Else
+                'ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Error Occured');", True)
+                'PopupControl1.Text = "Error Occured..."
+            End If
         Else
-            ScriptManager.RegisterStartupScript(Me, [GetType](), "showalert", "alert('Error Occured');", True)
-            'PopupControl1.Text = "Error Occured..."
+            'ClientScript.RegisterStartupScript(Me.[GetType](), "alert", "alert('You clicked NO!')", True)
         End If
+
 
 
     End Sub

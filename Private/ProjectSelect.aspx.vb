@@ -24,7 +24,7 @@ Partial Class ProjectSelect
             ProjectsDS = cxClass.GetProjects(0, User.IsInRole("Admin"), False, Session.Item("CurUserID"))
             ProjectsPulldown.DataSource = ProjectsDS
             ProjectsPulldown.ValueField = "PROJECT_ID"
-            ProjectsPulldown.TextField = "PROJECT_NAME"
+            ProjectsPulldown.TextField = "CREATER"
             ProjectsPulldown.DataBind()
             'ProjectsPulldown.EditorProperties.SortByDisplayText = True
 

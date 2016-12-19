@@ -18,6 +18,9 @@
 
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
     <form id="IssueLog" runat="server" enctype="multipart/form-data">
+       <script>
+
+    </script>        
         <div class="row">
             <div class="col-md-3">
                 <ul class="nonbullet" style="padding-left:0px;">
@@ -31,13 +34,33 @@
                 <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text" Width="100%"></dxwdc:ASPxLabel>
             </div>
         </div>
+         <div class="row form-group">
+        <table>
+            <tr>
+                <td><dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel></td>
+                <td>
+                    <asp:CheckBoxList ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL"></asp:CheckBoxList>
+                                        <asp:SqlDataSource ID="GETCOMPANY" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
+             <SelectParameters>
+                <asp:SessionParameter Name="PROJECT_ID" SessionField="CurProjectID" Type="Int32" />
+            </SelectParameters>
+            </asp:SqlDataSource>
+                </td>
+                <td>
+                    <asp:LinkButton ID="LinkButtonGeneratePDF" runat="server" AutoPostBack="False" CssClass="text_reg">Generate Report</asp:LinkButton>
+                    <%-- </dxwdc:ASPxButton>--%>                       <%--<td>--%>
+                </td>
+            </tr>
+        </table>
+        </div>
+             
         <div class="row form-group">
             <div class="col-md-12">
                 <dxwgv:ASPxGridView ID="G1" ClientInstanceName="G1" runat="server" Width="100%" AutoGenerateColumns="False"
-                    KeyFieldName="ITEM_NUMBER" CssClass="text_reg issue-log" Font-Names="Verdana" Font-Size="12px">
+                    KeyFieldName="ITEM_NUMBER" CssClass="text_reg issue-log" Font-Names="Verdana" Font-Size="12px" SettingsBehavior-ConfirmDelete="True" SettingsText-ConfirmDelete="Are you sure you want to delete the issue?">
                     <Templates>
                         <DetailRow>
-                            <dxwgv:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID" Width="100%" CssClass="text_reg" Font-Names="Verdana" Font-Size="12px" OnRowInserting="ASPxGridView2_RowInserting" OnBeforePerformDataSelect="ASPxGridView2_DataSelect" ClientInstanceName='<%# string.Format("detailGrid{0}", Container.VisibleIndex) %>'>
+                            <dxwgv:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" KeyFieldName="ID" Width="100%" CssClass="text_reg" Font-Names="Verdana" Font-Size="12px" OnRowInserting="ASPxGridView2_RowInserting" OnCustomErrorText="ASPxGridView2_CustomErrorText" OnBeforePerformDataSelect="ASPxGridView2_DataSelect" ClientInstanceName='<%# string.Format("detailGrid{0}", Container.VisibleIndex) %>' SettingsBehavior-ConfirmDelete="True" SettingsText-ConfirmDelete="Are you sure you want to delete the data?">
                                 <Columns>
                                     <dxwgv:GridViewCommandColumn VisibleIndex="0" Caption=" ">
                                         <ClearFilterButton Visible="True">
@@ -90,10 +113,10 @@
                                                                                                     </dxe:ASPxLabel>
                                                                                                 </td>
                                                                                                 <td></td>
-                                                                                                <td>
+                                                                                                <%--<td>--%>
                                                                                                     <dxuc:ASPxUploadControl runat="server" ClientInstanceName="uploader" Size="35" ID="ASPxUploadControl1" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete"
                                                                                                         ClientSideEvents-FileUploadComplete='<%# GetFileUploadComplete(Container) %>'>
-                                                                                                        <validationsettings AllowedFileExtensions=".jpg, .jpeg, .doc, .docx, .xsl, .xlsx, .pdf, .csv, .png" maxfilesize="2000000">
+                                                                                                        <validationsettings AllowedFileExtensions=".jpg, .jpeg, .doc, .docx, .xsl, .xlsx, .pdf, .csv, .png">
                                                                                                                             </validationsettings>
                                                                                                     </dxuc:ASPxUploadControl>
                                                                                                 </td>
@@ -102,8 +125,9 @@
                                                                                                         Font-Size="8pt">
                                                                                                     </dxe:ASPxLabel>
                                                                                                     <br />
-                                                                                                    <dxe:ASPxLabel ID="ASPxLabel3" runat="server" Text="Maximum file size: 2Mb" Font-Size="8pt">
-                                                                                                    </dxe:ASPxLabel>
+                                                                                                    <%--<dxe:ASPxLabel ID="ASPxLabel3" runat="server" Text="Maximum file size: 2Mb" Font-Size="8pt">
+                                                                                                    </dxe:ASPxLabel>--%>
+                                                                                                    
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
@@ -138,7 +162,7 @@
                         </DetailRow>
                     </Templates>
                     <SettingsBehavior AllowFocusedRow="True" AllowDragDrop="False"
-                        AllowGroup="False" SortMode="DisplayText" AutoExpandAllGroups="True" />
+                        AllowGroup="False" SortMode="DisplayText" AutoExpandAllGroups="True" ConfirmDelete="True" />
                     <Styles>
                         <Header Font-Bold="True" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"
                             Wrap="True">
@@ -296,6 +320,7 @@
                 <asp:SessionParameter Name="ITEM_NUMBER" SessionField="ITEM_NUMBER" Type="Int32" />
             </DeleteParameters>
         </asp:SqlDataSource>
+       
 
     </form>
 </asp:Content>

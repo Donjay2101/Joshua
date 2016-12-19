@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="AddUser.aspx.vb" Inherits="AddUser" MasterPageFile="~/MasterPage-afterLogin.master" %>
-
 <%@ Register Assembly="DevExpress.Web.ASPxEditors.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dxwdc" %>
 <%@ Register Assembly="DevExpress.Web.v9.2, Version=9.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dxpc" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
@@ -30,6 +29,21 @@
 
         }
 
+        function Confirm()
+        {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Are you sure you want to delete the user?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+
+       
+
     </script>
 
 </asp:Content>
@@ -54,6 +68,7 @@
                 <label class="blue-text">Add/Edit User</label>
             </div>
         </div>
+                  
         <div class="row form-group">
             <div class="col-md-3">
                 <label class="grey-text">Select User to Edit</label>
@@ -220,7 +235,7 @@
             </div>
              <div class="col-md-3">
                 <asp:LinkButton ID="LinkButtonDelete" runat="server" CssClass="text_reg" Width="100%"
-                    TabIndex="10" CausesValidation="False">Delete User</asp:LinkButton>
+                    TabIndex="10" CausesValidation="False" OnClientClick="Confirm()">Delete User</asp:LinkButton>
             </div>
             <div class="col-md-3">
                 <asp:LinkButton ID="BTNCancel" runat="server" CssClass="text_reg" Width="100%"
