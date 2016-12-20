@@ -56,13 +56,11 @@
             </SelectParameters>
             </asp:SqlDataSource>
              </div>
+               <div class="col-md-8 text-right sendemail">
+                    <asp:LinkButton ID="LinkButtonGeneratePDF" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Send emails to owner</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+               </div>
            
         </div>
-             <div class="row form-group">
-                 <div class="col-md-12 text-capitalize">
-                         <asp:LinkButton ID="LinkButtonGeneratePDF" style="float:right" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Send emails to owner</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-                 </div>
-             </div>
             </div>
         </div>
 
