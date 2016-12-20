@@ -315,6 +315,9 @@ a.change-pass {
         .dxpcControl {
     margin-left: -25%!important;
 }
+         .sendemail {
+    margin-top:1em;
+}
 }
  @media only screen and (min-width:500px) and (max-width:767px)
  {
@@ -375,7 +378,7 @@ a.change-pass {
     padding: 0px 7px;
 }
      .sendemail {
-    margin-top:0em;
+    margin-top:1em;
 }
  }
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:portrait)
@@ -412,7 +415,7 @@ a.change-pass {
     margin-top: 7em;
 }
         .sendemail {
-    margin-top:0em;
+    margin-top:1em;
 }
 }
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape)
@@ -429,7 +432,9 @@ nav ul li a img{
 .bc-lg{
     padding-top:12em;
 }
-
+ .sendemail {
+    margin-top:1em;
+}
 }
 .popup{        
      position: fixed!important;
