@@ -31,16 +31,16 @@
                 </ul>
             </div>
             <div class="col-md-9 col-sm-9">
-                <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text  labl" Width="100%"></dxwdc:ASPxLabel>
-                <hr />
-                 <asp:LinkButton ID="LinkButtonSave" style="margin-left:200px" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Save </asp:LinkButton>
+                <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text  labl form-group" Width="100%"></dxwdc:ASPxLabel>
+              
              <div class="row form-group">
                  
              <div class="col-md-2">
                   <dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel>
              </div>
                  
-              <div class="col-md-2">       
+              <div class="col-md-2">   
+                <asp:LinkButton ID="LinkButtonSave"  runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Save </asp:LinkButton>    
                   <div style="OVERFLOW-Y: scroll;
                                         WIDTH:100%;
                                         HEIGHT: 120px;
@@ -56,13 +56,13 @@
             </SelectParameters>
             </asp:SqlDataSource>
              </div>
-              <div class="col-md-3">
-          
-              <asp:LinkButton ID="LinkButtonGeneratePDF" style="float:right" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Send emails to owner</asp:LinkButton>&nbsp;&nbsp;&nbsp;
-                 
-             </div>           
+           
         </div>
-             
+             <div class="row form-group">
+                 <div class="col-md-12 text-capitalize">
+                         <asp:LinkButton ID="LinkButtonGeneratePDF" style="float:right" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Send emails to owner</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                 </div>
+             </div>
             </div>
         </div>
 
