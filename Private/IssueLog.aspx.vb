@@ -21,6 +21,7 @@ Partial Class IssueLog
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         PopupControl1.ShowOnPageLoad = False
         If (Not IsPostBack) AndAlso (Not IsCallback) Then
+
             'Check if user is logged in and display name, send back to login if no current user
             If Not Session.Item("CurUserName") Is Nothing Then
                 LBLCurUser.Text = "Welcome, " & Session.Item("CurUserName")
@@ -45,6 +46,7 @@ Partial Class IssueLog
                 G1.Columns.Item(0).Visible = False
                 BTNAddIssues.Enabled = False
             End If
+
         End If
 
         Try
@@ -118,6 +120,9 @@ Partial Class IssueLog
         'End If
     End Sub
 
+    Private Sub f(ByRef e As System.EventArgs)
+
+    End Sub
 
     Protected Sub BTNAddIssues_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles BTNAddIssues.Click
         If Not G1.FocusedRowIndex = Nothing Then
@@ -565,32 +570,89 @@ Partial Class IssueLog
             e.ErrorText = "File size can not be more than 2MB. Please Select a valid File"
         End If
     End Sub
+
+    Dim sql_con As SqlConnection
+    Dim cmd As SqlCommand
+    Dim str As String = ConfigurationManager.ConnectionStrings("CommissioningConnectionString").ConnectionString
     Protected Sub LinkButtonGeneratePDF_Click(sender As Object, e As EventArgs) Handles LinkButtonGeneratePDF.Click
+        sql_con = New SqlConnection(str)
+        cmd = New SqlCommand("IF Not EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) INSERT INTO REPORT VALUES(@PROJECT_ID,@SELECTED_IND) Else update  REPORT set SELECTED_IND=@SELECTED_IND where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
         Dim abc As Boolean
-        'Dim YrStrList As List(Of [String]) = New List(Of String)()
-        For Each item As ListItem In listCompany.Items
-            If item.Selected Then
-                'YrStrList.Add(item.Value)
-                abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), item.Value)
-                If (abc = True) Then
-                    'PopupControl1.Text = "Message sent to user..."
+        Try
+            For Each item As ListItem In listCompany.Items
+                If item.Selected Then
+                    'YrStrList.Add(item.Value)
+                    abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), item.Value)
+                    'PopupControl1.ShowOnPageLoad = True
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                    cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                    sql_con.Open()
+                    cmd.ExecuteNonQuery()
+                    sql_con.Close()
                 Else
-                    'PopupControl1.Text = "Error occurred..."
+                    abc = issueEmail.GetIssueListI(Session.Item("CurProjectID"), item.Value)
+                    cmd = New SqlCommand("IF EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) Delete from REPORT WHERE PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
+                    cmd.Parameters.Clear()
+                    cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                    cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                    sql_con.Open()
+                    cmd.ExecuteNonQuery()
+                    sql_con.Close()
                 End If
+            Next
+            If (abc = True) Then
+                PopupControl1.Text = "Message sent to user..."
                 PopupControl1.ShowOnPageLoad = True
             Else
-                abc = issueEmail.GetIssueListI(Session.Item("CurProjectID"), item.Value)
+                PopupControl1.Text = "Error occurred..."
+                PopupControl1.ShowOnPageLoad = True
             End If
-        Next
-
-        'abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), Nothing)
-        'Dim YrStr As [String] = [String].Join(";", YrStrList.ToArray())
-        'Response.Write(String.Concat("Selected Items: ", YrStr))
-
-
+            'abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), Nothing)
+            'Dim YrStr As [String] = [String].Join(";", YrStrList.ToArray())
+            'Response.Write(String.Concat("Selected Items: ", YrStr))
+        Catch ex As Exception
+            'MsgBox(ex.Message)
+        End Try
+        'Dim YrStrList As List(Of [String]) = New List(Of String)()
     End Sub
 
     Protected Sub listCompany_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listCompany.SelectedIndexChanged
 
+    End Sub
+    Protected Function getIndex() As Boolean
+        Dim i As Integer
+        sql_con = New SqlConnection(str)
+        cmd = New SqlCommand("Select SELECTED_IND FROM REPORT", sql_con)
+        sql_con.Open()
+
+        Dim items As List(Of Integer) = New List(Of Integer)()
+
+        Using sdr As SqlDataReader = cmd.ExecuteReader()
+            While sdr.Read()
+                items.Add(sdr(0))
+            End While
+        End Using
+
+
+        For j As Integer = 0 To listCompany.Items.Count - 1
+            Dim id As Integer
+            ''            id = listCompany.Items(0).Value
+
+            ''If (items.Contains(id)) Then
+            If (items.Contains(j)) Then
+                listCompany.Items(j).Selected = True
+            End If
+
+        Next j
+
+        sql_con.Close()
+        Return True
+    End Function
+    Protected Sub listCompany_Load(sender As Object, e As EventArgs) Handles listCompany.Load
+
+    End Sub
+    Protected Sub listCompany_DataBound(sender As Object, e As EventArgs)
+        getIndex()
     End Sub
 End Class

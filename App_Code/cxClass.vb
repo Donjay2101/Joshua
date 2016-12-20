@@ -5,8 +5,8 @@ Imports System.data
 Public Class cxClass
     Inherits System.ComponentModel.Component
 
-    Public Shared gConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123"
-    'Public Shared gConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
+    'Public Shared gConnStr As String = "Data Source=192.99.144.236;Initial Catalog=cxExample;user id=sqluser;password=user123"
+    Public Shared gConnStr As String = "Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;"
 
     Public Shared vCommConn As New SqlConnection(gConnStr)
     Public Shared ImageHolder As String

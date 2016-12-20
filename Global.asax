@@ -44,8 +44,8 @@
                 Dim cmd As System.Data.SqlClient.SqlCommand
                 Dim dr As System.Data.SqlClient.SqlDataReader
                 Dim retVal As Boolean = False
-                cnn = New System.Data.SqlClient.SqlConnection("Data Source=192.99.144.236;Initial Catalog=cxExample;Integrated Security=false;user id=sqluser;password=user123;")
-                'cnn = New System.Data.SqlClient.SqlConnection("Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;")
+                'cnn = New System.Data.SqlClient.SqlConnection("Data Source=192.99.144.236;Initial Catalog=cxExample;Integrated Security=false;user id=sqluser;password=user123;")
+                cnn = New System.Data.SqlClient.SqlConnection("Data Source = .;Initial Catalog=cxExample;Integrated Security=false;user id=sa;password=hello;")
                 cmd = New System.Data.SqlClient.SqlCommand("SELECT * FROM USERS WHERE USER_EMAIL = '" & id.Name & "' AND ISACTIVE = 1", cnn)
                 cnn.Open()
                 dr = cmd.ExecuteReader()

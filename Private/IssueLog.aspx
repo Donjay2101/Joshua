@@ -37,9 +37,17 @@
              <div class="col-md-2">
                   <dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel>
              </div>
-              <div class="col-md-2">
-                   <asp:CheckBoxList ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL"></asp:CheckBoxList>
-                <asp:SqlDataSource ID="GETCOMPANY" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
+              <div class="col-md-2">       
+                  <div style="OVERFLOW-Y: scroll;
+                                        WIDTH:100%;
+                                        HEIGHT: 80px;
+                                        border: 1px solid #cacaca;
+                                        border-radius: 2px;
+                                        padding: 8px;">           
+                   <asp:CheckBoxList OnDataBound="listCompany_DataBound" ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL" ></asp:CheckBoxList>                     
+                      </div>
+                <asp:SqlDataSource ID="GETCOMPANY" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
              <SelectParameters>
                 <asp:SessionParameter Name="PROJECT_ID" SessionField="CurProjectID" Type="Int32" />
             </SelectParameters>
