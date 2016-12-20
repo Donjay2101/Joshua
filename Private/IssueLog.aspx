@@ -33,13 +33,24 @@
             <div class="col-md-9 col-sm-9">
                 <dxwdc:ASPxLabel ID="LBLProjName" runat="server" Text="Project Name" CssClass="blue-text  labl" Width="100%"></dxwdc:ASPxLabel>
                 <hr />
+                 <asp:LinkButton ID="LinkButtonSave" style="margin-left:200px" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Save </asp:LinkButton>
              <div class="row form-group">
+                 
              <div class="col-md-2">
                   <dxwdc:ASPxLabel  runat="server" Text="Select Owner"></dxwdc:ASPxLabel>
              </div>
-              <div class="col-md-2">
-                   <asp:CheckBoxList ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL"></asp:CheckBoxList>
-                <asp:SqlDataSource ID="GETCOMPANY" runat="server" ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
+                 
+              <div class="col-md-2">       
+                  <div style="OVERFLOW-Y: scroll;
+                                        WIDTH:100%;
+                                        HEIGHT: 120px;
+                                        border: 1px solid #cacaca;
+                                        border-radius: 2px;
+                                        padding: 8px; margin-top: 5px;">           
+                   <asp:CheckBoxList OnDataBound="listCompany_DataBound" ID="listCompany" runat="server" DataSourceID="GETCOMPANY" DataTextField="COMPANY_NAME" DataValueField="USER_EMAIL" ></asp:CheckBoxList>                     
+                      </div>
+                <asp:SqlDataSource ID="GETCOMPANY" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:CommissioningConnectionString %>" SelectCommand="Select Distinct  com.COMPANY_ID, com.COMPANY_NAME, def.PROJECT_ID,usr.USER_EMAIL from COMPANIES com inner join DEFICIENCIES def on com.COMPANY_ID=def.COMPANY_ID inner join USERS usr on com.COMPANY_ID=usr.COMPANY_ID where PROJECT_ID=@PROJECT_ID order by com.COMPANY_NAME">
              <SelectParameters>
                 <asp:SessionParameter Name="PROJECT_ID" SessionField="CurProjectID" Type="Int32" />
             </SelectParameters>
@@ -47,7 +58,8 @@
              </div>
               <div class="col-md-3">
           
-              <asp:LinkButton ID="LinkButtonGeneratePDF" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Generate Report</asp:LinkButton>
+              <asp:LinkButton ID="LinkButtonGeneratePDF" style="float:right" runat="server" AutoPostBack="False" CssClass="text_reg gen-rep">Send emails to owner</asp:LinkButton>&nbsp;&nbsp;&nbsp;
+                 
              </div>           
         </div>
              
