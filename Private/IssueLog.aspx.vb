@@ -575,8 +575,8 @@ Partial Class IssueLog
     Dim cmd As SqlCommand
     Dim str As String = ConfigurationManager.ConnectionStrings("CommissioningConnectionString").ConnectionString
     Protected Sub LinkButtonGeneratePDF_Click(sender As Object, e As EventArgs) Handles LinkButtonGeneratePDF.Click
-        sql_con = New SqlConnection(str)
-        cmd = New SqlCommand("IF Not EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) INSERT INTO REPORT VALUES(@PROJECT_ID,@SELECTED_IND) Else update  REPORT set SELECTED_IND=@SELECTED_IND where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
+        'sql_con = New SqlConnection(str)
+        'cmd = New SqlCommand("IF Not EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) INSERT INTO REPORT VALUES(@PROJECT_ID,@SELECTED_IND) Else update  REPORT set SELECTED_IND=@SELECTED_IND where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
         Dim abc As Boolean
         Try
             For Each item As ListItem In listCompany.Items
@@ -584,21 +584,21 @@ Partial Class IssueLog
                     'YrStrList.Add(item.Value)
                     abc = issueEmail.GetIssueList(Session.Item("CurProjectID"), item.Value)
                     'PopupControl1.ShowOnPageLoad = True
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
-                    cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
-                    sql_con.Open()
-                    cmd.ExecuteNonQuery()
-                    sql_con.Close()
+                    'cmd.Parameters.Clear()
+                    'cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                    'cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                    'sql_con.Open()
+                    'cmd.ExecuteNonQuery()
+                    'sql_con.Close()
                 Else
                     abc = issueEmail.GetIssueListI(Session.Item("CurProjectID"), item.Value)
-                    cmd = New SqlCommand("IF EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) Delete from REPORT WHERE PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
-                    cmd.Parameters.Clear()
-                    cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
-                    cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
-                    sql_con.Open()
-                    cmd.ExecuteNonQuery()
-                    sql_con.Close()
+                    'cmd = New SqlCommand("IF EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) Delete from REPORT WHERE PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
+                    'cmd.Parameters.Clear()
+                    'cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                    'cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                    'sql_con.Open()
+                    'cmd.ExecuteNonQuery()
+                    'sql_con.Close()
                 End If
             Next
             If (abc = True) Then
@@ -654,5 +654,31 @@ Partial Class IssueLog
     End Sub
     Protected Sub listCompany_DataBound(sender As Object, e As EventArgs)
         getIndex()
+    End Sub
+    Protected Sub LinkButtonSave_Click(sender As Object, e As EventArgs) Handles LinkButtonSave.Click
+        sql_con = New SqlConnection(str)
+        cmd = New SqlCommand("IF Not EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) INSERT INTO REPORT VALUES(@PROJECT_ID,@SELECTED_IND) Else update  REPORT set SELECTED_IND=@SELECTED_IND where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
+        For Each item As ListItem In listCompany.Items
+            If item.Selected Then
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                sql_con.Open()
+                cmd.ExecuteNonQuery()
+                sql_con.Close()
+                PopupControl1.Text = "Record Saved."
+                PopupControl1.ShowOnPageLoad = True
+            Else
+                cmd = New SqlCommand("IF EXISTS(SELECT PROJECT_ID, SELECTED_IND FROM REPORT where PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND) Delete from REPORT WHERE PROJECT_ID=@PROJECT_ID and SELECTED_IND=@SELECTED_IND", sql_con)
+                cmd.Parameters.Clear()
+                cmd.Parameters.AddWithValue("@PROJECT_ID", Session.Item("CurProjectID"))
+                cmd.Parameters.AddWithValue("@SELECTED_IND", listCompany.Items.IndexOf(item))
+                sql_con.Open()
+                cmd.ExecuteNonQuery()
+                sql_con.Close()
+                PopupControl1.Text = "Record Saved."
+                PopupControl1.ShowOnPageLoad = True
+            End If
+        Next
     End Sub
 End Class
