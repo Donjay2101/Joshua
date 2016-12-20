@@ -24,7 +24,7 @@
             }            
         });
         //PageMethods.SendEmail(email);
-        
+        //PageMethods.SendEmail(email);
     });
 </script>
 </asp:Content>
